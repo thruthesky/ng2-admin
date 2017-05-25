@@ -9,27 +9,48 @@
 
 // buttons
 
-$btn-primary-bg: $nga-color-primary !default;
-$btn-primary-border: $nga-color-dark-primary !default;
-$btn-primary-color: $nga-color-inverse !default;
+$btn-primary-bg: $nga-color-primary;
+$btn-primary-border: $nga-color-dark-primary;
+$btn-primary-color: $nga-color-inverse;
+$btn-primary-bg-hover-focus: #917aff !default;
+$btn-primary-bg-active: #5e47cc !default;
 
-$btn-secondary-bg: $nga-color-secondary !default;
-$btn-secondary-border: $nga-color-dark-secondary !default;
-$btn-secondary-color: $nga-color-default !default;
+$btn-secondary-bg: $nga-color-secondary;
+$btn-secondary-border: $nga-color-dark-secondary;
+$btn-secondary-color: $nga-color-default;
 
-$btn-info-bg: $nga-color-info !default;
-$btn-info-border: $nga-color-dark-info !default;
-$btn-info-color: $nga-color-inverse !default;
+$btn-info-bg: $nga-color-info;
+$btn-info-border: $nga-color-dark-info;
+$btn-info-color: $nga-color-inverse;
+$btn-info-bg-hover-focus: #33a0ff !default;
+$btn-info-bg-active: #006dcc !default;
 
-$btn-success-bg: $nga-color-success !default;
-$btn-success-border: $nga-color-dark-success !default;
-$btn-success-color: $nga-color-inverse !default;
+$btn-success-bg: $nga-color-success;
+$btn-success-border: $nga-color-dark-success;
+$btn-success-color: $nga-color-inverse;
+$btn-success-bg-hover-focus: #33e192 !default;
+$btn-success-bg-active: #00ae5f !default;
 
-$btn-warning-bg: $nga-color-warning !default;
-$btn-warning-border: $nga-color-dark-warning !default;
-$btn-warning-color: $nga-color-inverse !default;
+$btn-warning-bg: $nga-color-warning;
+$btn-warning-border: $nga-color-dark-warning;
+$btn-warning-color: $nga-color-inverse;
+$btn-warning-bg-hover-focus: #ffde6a !default;
+$btn-warning-bg-active: #cca312 !default;
 
-$btn-danger-bg: $nga-color-danger !default;
-$btn-danger-border: $nga-color-dark-danger !default;
-$btn-danger-color: $nga-color-inverse !default;
+$btn-danger-bg: $nga-color-danger;
+$btn-danger-border: $nga-color-dark-danger;
+$btn-danger-color: $nga-color-inverse;
+$btn-danger-bg-hover-focus: #ff6088 !default;
+$btn-danger-bg-active: #cc2c55 !default;
+
+$btn-default-bg: transparent;
+$btn-default-border: #bdbaff;
+$btn-default-color: #ffffff;
+$btn-default-border-hover-focus: #cac8ff !default;
+$btn-default-border-active: #9795cc !default;
+
+$btn-border-radius: 12px;
+
+$btn-width: 180px;
+$btn-height: 48px;
 

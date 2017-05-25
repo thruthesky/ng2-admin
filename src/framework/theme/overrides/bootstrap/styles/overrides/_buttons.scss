@@ -6,9 +6,68 @@
 
 @import 'partial';
 
+@mixin btn-bg($hover-focus-color, $active-color) {
+  &:focus,
+  &:hover,
+  &.focus,
+  &.hover {
+    background-color: $hover-focus-color;
+  }
+
+  &:active,
+  &.active {
+    background-color: $active-color;
+  }
+}
+
 @mixin nga-b-buttons-theme($theme-name) {
   /deep/ {
     @import '~bootstrap/scss/buttons';
     @import '~bootstrap/scss/mixins/buttons';
+
+    .btn {
+      width: $btn-width;
+      height: $btn-height;
+
+      @include button-size($btn-padding-y, $btn-padding-x, $font-size-base, $btn-border-radius);
+    }
+
+    .btn-primary {
+      border: none;
+
+      @include btn-bg($btn-primary-bg-hover-focus, $btn-primary-bg-active);
+    }
+
+    .btn-default {
+      background-color: $btn-default-bg;
+      color: $btn-default-color;
+      border: 1px solid $btn-default-border;
+
+      @include btn-bg($btn-default-border-hover-focus, $btn-default-border-active);
+    }
+
+    .btn-warning {
+      border: none;
+
+      @include btn-bg($btn-warning-bg-hover-focus, $btn-warning-bg-active);
+    }
+
+    .btn-info {
+      border: none;
+
+      @include btn-bg($btn-info-bg-hover-focus, $btn-info-bg-active);
+    }
+
+    .btn-success {
+      border: none;
+
+      @include btn-bg($btn-success-bg-hover-focus, $btn-success-bg-active);
+    }
+
+    .btn-danger {
+      border: none;
+
+      @include btn-bg($btn-danger-bg-hover-focus, $btn-danger-bg-active);
+    }
   }
 }

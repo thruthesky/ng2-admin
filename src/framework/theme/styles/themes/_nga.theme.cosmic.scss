@@ -30,5 +30,8 @@ $nga-sidebar-width-compact: 3.45rem;
 $nga-sidebar-padding: 0;
 
 $nga-card-background: $nga-color-default;
+$nga-card-separator: $nga-color-default;
+$nga-card-foreground: $nga-foreground-inverse;
+$nga-card-header-foreground: $nga-foreground;
 
 @import 'nga.theme.default';

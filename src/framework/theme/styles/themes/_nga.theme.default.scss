@@ -40,12 +40,12 @@ $nga-background-inverse: $nga-color-default !default;
 $nga-color-gray: rgba(81, 113, 165, 0.15) !default;
 $nga-color-neutral: transparent !default;
 $nga-color-disabled: rgba(255, 255, 255, 0.4) !default;
-$nga-color-primary: #00abff !default;
+$nga-color-primary: #7659ff !default;
 $nga-color-secondary: #b5bbd5 !default;
-$nga-color-info: #40daf1 !default;
-$nga-color-success: #8bd22f !default;
-$nga-color-warning: #e7ba08 !default;
-$nga-color-danger: #f95372 !default;
+$nga-color-info: #0088ff !default;
+$nga-color-success: #00d977 !default;
+$nga-color-warning: #ffcb17 !default;
+$nga-color-danger: #ff386a !default;
 
 $nga-color-light-percent: 30% !default;
 $nga-color-light-primary: tint($nga-color-primary, $nga-color-light-percent) !default;
@@ -80,6 +80,10 @@ $nga-link-color-active: #285eb8 !default;
 $nga-link-color-hover: darken($nga-link-color-active, 20%) !default;
 $nga-link-color-visited: $nga-link-color-active !default;
 
+$nga-scrollbar-foreground: rgba(0, 0, 0, 0.6) !default;
+$nga-scrollbar-background: rgba(255, 255, 255, 0.7) !default;
+$nga-scrollbar-width: 0.4em !default;
+
 // component specific styles
 
 $nga-card-font-size: $nga-font-size !default;
@@ -92,9 +96,30 @@ $nga-card-height-medium: 400px !default;
 $nga-card-height-xmedium: 550px !default;
 $nga-card-height-large: 974px !default;
 $nga-card-shadow: $nga-shadow !default;
-$nga-card-separator: $nga-border-color !default;
+$nga-card-header-separator: $nga-border-color !default;
+$nga-card-header-separator-width: 1px !default;
 $nga-card-border-radius: $nga-radius !default;
 $nga-card-padding: $nga-padding !default;
+$nga-card-header-foreground: $nga-foreground !default;
+$nga-card-scrollbar-width: $nga-scrollbar-width !default;
+$nga-card-scrollbar-foreground: $nga-scrollbar-foreground !default;
+$nga-card-scrollbar-background: $nga-scrollbar-background !default;
+$nga-card-font-weight: $nga-font-weight-normal !default;
+$nga-card-header-active-background: $nga-color-default !default;
+$nga-card-header-active-separator: $nga-color-default !default;
+$nga-card-header-active-foreground: $nga-foreground-inverse !default;
+$nga-card-header-disabled-background: $nga-color-disabled !default;
+$nga-card-header-disabled-separator: $nga-color-disabled !default;
+$nga-card-header-primary-background: $nga-color-primary !default;
+$nga-card-header-primary-separator: $nga-color-primary !default;
+$nga-card-header-info-background: $nga-color-info !default;
+$nga-card-header-info-separator: $nga-color-info !default;
+$nga-card-header-success-background: $nga-color-success !default;
+$nga-card-header-success-separator: $nga-color-success !default;
+$nga-card-header-warning-background: $nga-color-warning !default;
+$nga-card-header-warning-separator: $nga-color-warning !default;
+$nga-card-header-danger-background: $nga-color-danger !default;
+$nga-card-header-danger-separator: $nga-color-danger !default;
 
 $nga-layout-font-size: $nga-font-size !default;
 $nga-layout-line-height: $nga-line-height !default;
@@ -134,13 +159,10 @@ $nga-menu-font-size: $nga-font-size !default;
 $nga-menu-line-height: $nga-line-height !default;
 $nga-menu-group-font-weight: $nga-font-weight-bolder !default;
 $nga-menu-group-font-size: 1.025rem !default;
-
 $nga-menu-item-foreground: $nga-foreground !default;
 $nga-menu-item-foreground-inverse: $nga-foreground-inverse !default;
-
 $nga-menu-item-background: $nga-background !default;
 $nga-menu-item-background-inverse: $nga-background-inverse !default;
-
 $nga-menu-item-padding: 0.5rem 1rem !default;
 
 $nga-tabs-font-size: $nga-font-size !default;
@@ -189,10 +211,6 @@ $nga-actions-size-medium: 2.5rem !default;
 $nga-actions-size-large: 4rem !default;
 $nga-actions-color: $nga-foreground !default;
 $nga-actions-color-inverse: $nga-foreground-inverse !default;
-
-$nga-scrollbar-foreground: rgba(0, 0, 0, 0.6) !default;
-$nga-scrollbar-background: rgba(255, 255, 255, 0.7) !default;
-$nga-scrollbar-width: 0.4em !default;
 
 $nga-search-btn-open-foreground: $nga-color-secondary !default;
 $nga-search-btn-close-foreground:	$nga-color-secondary !default;
