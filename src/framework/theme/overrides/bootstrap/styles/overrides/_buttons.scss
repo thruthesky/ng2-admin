@@ -19,16 +19,32 @@
     background-color: $active-color;
   }
 
-  &.rectangle {
+  &.btn-rectangle {
     border-radius: 4px;
   }
 
-  &.semi-round {
+  &.btn-semi-round {
     border-radius: 12px;
   }
 
-  &.round {
+  &.btn-round {
     border-radius: 24px;
+  }
+
+  &.btn-lg {
+    @include button-size($btn-padding-y-lg, $btn-padding-x-lg, $font-size-lg, $btn-border-radius-lg);
+  }
+
+  &.btn-md {
+    @include button-size($btn-padding-y-md, $btn-padding-x-md, $font-size-md, $btn-border-radius-md);
+  }
+
+  &.btn-sm {
+    @include button-size($btn-padding-y-sm, $btn-padding-x-sm, $font-size-sm, $btn-border-radius-sm);
+  }
+
+  &.btn-tn {
+    @include button-size($btn-padding-y-tn, $btn-padding-x-tn, $font-size-tn, $btn-border-radius-tn);
   }
 }
 
@@ -38,9 +54,6 @@
     @import '~bootstrap/scss/mixins/buttons';
 
     .btn {
-      width: $btn-width;
-      height: $btn-height;
-
       @include button-size($btn-padding-y, $btn-padding-x, $font-size-base, $btn-border-radius);
     }
 
@@ -53,7 +66,7 @@
     .btn-default {
       background-color: $btn-default-bg;
       color: $btn-default-color;
-      border: 1px solid $btn-default-border;
+      border: 2px solid $btn-default-border;
 
       @include btn-bg($btn-default-border-hover-focus, $btn-default-border-active);
     }
