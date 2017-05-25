@@ -18,6 +18,18 @@
   &.active {
     background-color: $active-color;
   }
+
+  &.rectangle {
+    border-radius: 4px;
+  }
+
+  &.semi-round {
+    border-radius: 12px;
+  }
+
+  &.round {
+    border-radius: 24px;
+  }
 }
 
 @mixin nga-b-buttons-theme($theme-name) {
