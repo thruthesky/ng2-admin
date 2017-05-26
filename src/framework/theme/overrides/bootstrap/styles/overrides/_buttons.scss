@@ -110,6 +110,8 @@
       color: $btn-default-color;
       border: $btn-default-border-width solid $btn-default-border;
       text-transform: uppercase;
+      font-family: Exo;
+      letter-spacing: 0.4px;
 
       @include btn($btn-default-bg, $btn-default-border-hover-focus, $btn-default-border-active);
       @include btn-shape();

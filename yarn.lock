@@ -5522,6 +5522,10 @@ scss-tokenizer@^0.2.3:
     js-base64 "^2.1.8"
     source-map "^0.4.2"
 
+segoe-fonts@1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/segoe-fonts/-/segoe-fonts-1.0.1.tgz#ec2c8270921b8457bc2ce166b1aee1068cba7cb7"
+
 select-hose@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/select-hose/-/select-hose-2.0.0.tgz#625d8658f865af43ec962bfc376a37359a4994ca"
@@ -6370,6 +6374,10 @@ type-is@~1.6.15:
   dependencies:
     media-typer "0.3.0"
     mime-types "~2.1.15"
+
+typeface-exo@0.0.22:
+  version "0.0.22"
+  resolved "https://registry.yarnpkg.com/typeface-exo/-/typeface-exo-0.0.22.tgz#8308dfd4e52d0f538cacff9f2aa176e9e18d894f"
 
 typescript@2.3.2:
   version "2.3.2"
