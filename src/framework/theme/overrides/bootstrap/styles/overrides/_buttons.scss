@@ -67,6 +67,7 @@
     .btn {
       color: $btn-default-color;
       border: $btn-default-border-width solid $btn-default-border;
+      text-transform: uppercase;
 
       @include btn($btn-default-bg, $btn-default-border-hover-focus, $btn-default-border-active);
     }
