@@ -15,13 +15,22 @@
   &.focus,
   &.hover {
     background-color: $hover-focus-color;
+    border-color: transparent;
   }
 
   &:active,
   &.active {
     background-color: $active-color;
+    border-color: transparent;
   }
 
+  &:focus,
+  &.focus {
+    box-shadow: none;
+  }
+}
+
+@mixin btn-shape() {
   &.btn-rectangle {
     border-radius: $btn-rectangle-bd-radius;
   }
@@ -33,7 +42,9 @@
   &.btn-round {
     border-radius: $btn-round-bd-radius;
   }
+}
 
+@mixin btn-size() {
   &.btn-lg {
     line-height: $line-height-lg;
 
@@ -59,6 +70,37 @@
   }
 }
 
+@mixin btn-hero() {
+  &.btn-primary-hero {
+    background-image: linear-gradient(to right, #ac63ff, #7659ff );
+    box-shadow: 0 3px 0 0 #6938c9, 0 4px 10px 0 rgba(6, 7, 64, 0.5), 0 2px 12px 0 #8646ef;
+  }
+
+  &.btn-warning-hero {
+    background-image: linear-gradient(to right, #ffcb17, #ff874c);
+    box-shadow: 0 3px 0 0 #ce7b22, 0 4px 10px 0 rgba(33, 7, 77, 0.5), 0 2px 12px 0 rgba(255, 193, 38, 0.6);
+  }
+
+  &.btn-success-hero {
+    background-image: linear-gradient(to right, #00c7c7, #00d977);
+    box-shadow: 0 3px 0 0 #00967d, 0 4px 10px 0 rgba(33, 7, 77, 0.5), 0 2px 12px 0 rgba(35, 255, 181, 0.6);
+  }
+
+  &.btn-info-hero {
+    background-image: linear-gradient(to right, #3dafff, #0088ff);
+    box-shadow: 0 3px 0 0 #4150d9, 0 4px 10px 0 rgba(33, 7, 77, 0.5), 0 2px 12px 0 rgba(0, 136, 255, 0.7);
+  }
+
+  &.btn-danger-hero {
+    background-image: linear-gradient(to right, #ff3dae, #ff386a);
+    box-shadow: 0 3px 0 0 #cc2568, 0 4px 10px 0 rgba(33, 7, 77, 0.5), 0 2px 12px 0 rgba(255, 73, 184, 0.8);
+  }
+
+  &.btn-hero {
+    box-shadow: 0 2px 0 0 #665ebd, 0 4px 10px 0 rgba(33, 7, 77, 0.5), 0 2px 10px 0 #928dff;
+  }
+}
+
 @mixin nga-b-buttons-theme($theme-name) {
   /deep/ {
     @import '~bootstrap/scss/buttons';
@@ -70,6 +112,9 @@
       text-transform: uppercase;
 
       @include btn($btn-default-bg, $btn-default-border-hover-focus, $btn-default-border-active);
+      @include btn-shape();
+      @include btn-size();
+      @include btn-hero();
     }
 
     .btn-primary {
