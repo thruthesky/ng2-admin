@@ -35,18 +35,26 @@
   }
 
   &.btn-lg {
+    line-height: $line-height-lg;
+
     @include button-size($btn-padding-y-lg, $btn-padding-x-lg, $font-size-lg, $btn-border-radius-lg);
   }
 
   &.btn-md {
+    line-height: $line-height-md;
+
     @include button-size($btn-padding-y-md, $btn-padding-x-md, $font-size-md, $btn-border-radius-md);
   }
 
   &.btn-sm {
+    line-height: $line-height-sm;
+
     @include button-size($btn-padding-y-sm, $btn-padding-x-sm, $font-size-sm, $btn-border-radius-sm);
   }
 
   &.btn-tn {
+    line-height: $line-height-tn;
+
     @include button-size($btn-padding-y-tn, $btn-padding-x-tn, $font-size-tn, $btn-border-radius-tn);
   }
 }
