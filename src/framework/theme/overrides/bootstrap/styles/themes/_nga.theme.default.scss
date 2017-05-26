@@ -48,6 +48,7 @@ $btn-default-border: #bdbaff;
 $btn-default-color: #ffffff;
 $btn-default-border-hover-focus: #cac8ff !default;
 $btn-default-border-active: #9795cc !default;
+$btn-default-border-width: 2px;
 
 $btn-border-radius: 12px;
 
@@ -63,12 +64,19 @@ $btn-border-radius-md: 4px;
 
 $btn-padding-y-sm: 0.875rem;
 $btn-padding-x-sm: 1.5rem;
-$font-size-sm: 0.875rem;
+$font-size-sm: 1rem;
 $btn-border-radius-sm: 4px;
 
 $btn-padding-y-tn: 0.625rem;
 $btn-padding-x-tn: 1.25rem;
-$font-size-tn: 0.625rem;
+$font-size-tn: 1rem;
 $btn-border-radius-tn: 4px;
+
+$btn-padding-y: 0.875rem;
+$btn-padding-x: 1.5rem;
+
+$btn-rectangle-bd-radius: 4px;
+$btn-semi-round-bd-radius: 12px;
+$btn-round-bd-radius: 24px;
 
 

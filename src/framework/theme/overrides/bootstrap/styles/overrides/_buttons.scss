@@ -6,7 +6,10 @@
 
 @import 'partial';
 
-@mixin btn-bg($hover-focus-color, $active-color) {
+@mixin btn($background-color, $hover-focus-color, $active-color) {
+
+  background-color: $background-color;
+
   &:focus,
   &:hover,
   &.focus,
@@ -20,15 +23,15 @@
   }
 
   &.btn-rectangle {
-    border-radius: 4px;
+    border-radius: $btn-rectangle-bd-radius;
   }
 
   &.btn-semi-round {
-    border-radius: 12px;
+    border-radius: $btn-semi-round-bd-radius;
   }
 
   &.btn-round {
-    border-radius: 24px;
+    border-radius: $btn-round-bd-radius;
   }
 
   &.btn-lg {
@@ -54,45 +57,40 @@
     @import '~bootstrap/scss/mixins/buttons';
 
     .btn {
-      @include button-size($btn-padding-y, $btn-padding-x, $font-size-base, $btn-border-radius);
+      color: $btn-default-color;
+      border: $btn-default-border-width solid $btn-default-border;
+
+      @include btn($btn-default-bg, $btn-default-border-hover-focus, $btn-default-border-active);
     }
 
     .btn-primary {
       border: none;
 
-      @include btn-bg($btn-primary-bg-hover-focus, $btn-primary-bg-active);
-    }
-
-    .btn-default {
-      background-color: $btn-default-bg;
-      color: $btn-default-color;
-      border: 2px solid $btn-default-border;
-
-      @include btn-bg($btn-default-border-hover-focus, $btn-default-border-active);
+      @include btn($btn-primary-bg, $btn-primary-bg-hover-focus, $btn-primary-bg-active);
     }
 
     .btn-warning {
       border: none;
 
-      @include btn-bg($btn-warning-bg-hover-focus, $btn-warning-bg-active);
+      @include btn($btn-warning-bg, $btn-warning-bg-hover-focus, $btn-warning-bg-active);
     }
 
     .btn-info {
       border: none;
 
-      @include btn-bg($btn-info-bg-hover-focus, $btn-info-bg-active);
+      @include btn($btn-info-bg, $btn-info-bg-hover-focus, $btn-info-bg-active);
     }
 
     .btn-success {
       border: none;
 
-      @include btn-bg($btn-success-bg-hover-focus, $btn-success-bg-active);
+      @include btn($btn-success-bg, $btn-success-bg-hover-focus, $btn-success-bg-active);
     }
 
     .btn-danger {
       border: none;
 
-      @include btn-bg($btn-danger-bg-hover-focus, $btn-danger-bg-active);
+      @include btn($btn-danger-bg, $btn-danger-bg-hover-focus, $btn-danger-bg-active);
     }
   }
 }
