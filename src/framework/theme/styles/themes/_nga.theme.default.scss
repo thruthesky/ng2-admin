@@ -63,6 +63,17 @@ $nga-color-dark-success: darken($nga-color-success, $nga-color-dark-percent) !de
 $nga-color-dark-warning: darken($nga-color-warning, $nga-color-dark-percent) !default;
 $nga-color-dark-danger: darken($nga-color-danger, $nga-color-dark-percent) !default;
 
+$nga-color-gradient-primary-left: #ac63ff !default;
+$nga-color-gradient-primary-right: #7659ff !default;
+$nga-color-gradient-warning-left: #ffcb17 !default;
+$nga-color-gradient-warning-right: #ff874c !default;
+$nga-color-gradient-success-left: #00c7c7 !default;
+$nga-color-gradient-success-right: #00d977 !default;
+$nga-color-gradient-info-left: #3dafff !default;
+$nga-color-gradient-info-right: #0088ff !default;
+$nga-color-gradient-danger-left: #ff3dae !default;
+$nga-color-gradient-danger-right: #ff386a !default;
+
 $nga-social-color-facebook: #3b5998 !default;
 $nga-social-color-twitter: #55acee !default;
 $nga-social-color-google: #dd4b39 !default;
