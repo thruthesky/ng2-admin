@@ -73,6 +73,7 @@ $nga-color-gradient-info-left: #3dafff !default;
 $nga-color-gradient-info-right: #0088ff !default;
 $nga-color-gradient-danger-left: #ff3dae !default;
 $nga-color-gradient-danger-right: #ff386a !default;
+$nga-color-gradient-shadow: rgba(33, 7, 77, 0.5) !default;
 
 $nga-social-color-facebook: #3b5998 !default;
 $nga-social-color-twitter: #55acee !default;
@@ -94,6 +95,9 @@ $nga-link-color-visited: $nga-link-color-active !default;
 $nga-scrollbar-foreground: rgba(0, 0, 0, 0.6) !default;
 $nga-scrollbar-background: rgba(255, 255, 255, 0.7) !default;
 $nga-scrollbar-width: 0.4em !default;
+
+$nga-font-main: SegoeUI !default;
+$nga-font-secondary: Exo !default;
 
 // component specific styles
 
