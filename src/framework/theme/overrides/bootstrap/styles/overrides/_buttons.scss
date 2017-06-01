@@ -148,7 +148,7 @@
       font-weight: $nga-font-wiight-normal-bold;
       font-family: $btn-font-family;
 
-      @include btn($btn-default-bg, $btn-default-border-hover-focus, $btn-default-border-active);
+      @include btn($btn-default-bg, $btn-default-bg-hover-focus, $btn-default-bg-active);
     }
 
     @include btn-shape();
