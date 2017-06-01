@@ -145,7 +145,7 @@
       border: $btn-default-border-width solid $btn-default-border;
       text-transform: uppercase;
       letter-spacing: $btn-letter-spacing;
-      font-weight: $nga-font-wiight-normal-bold;
+      font-weight: $nga-font-weight-bolder;
       font-family: $btn-font-family;
 
       @include btn($btn-default-bg, $btn-default-bg-hover-focus, $btn-default-bg-active);
