@@ -31,39 +31,39 @@
 }
 
 @mixin btn-shape() {
-  &.btn-rectangle {
+  .btn-rectangle {
     border-radius: $btn-rectangle-bd-radius;
   }
 
-  &.btn-semi-round {
+  .btn-semi-round {
     border-radius: $btn-semi-round-bd-radius;
   }
 
-  &.btn-round {
+  .btn-round {
     border-radius: $btn-round-bd-radius;
   }
 }
 
 @mixin btn-size() {
-  &.btn-lg {
+  .btn-lg {
     line-height: $line-height-lg;
 
     @include button-size($btn-padding-y-lg, $btn-padding-x-lg, $font-size-lg, $btn-border-radius-lg);
   }
 
-  &.btn-md {
+  .btn-md {
     line-height: $line-height-md;
 
     @include button-size($btn-padding-y-md, $btn-padding-x-md, $font-size-md, $btn-border-radius-md);
   }
 
-  &.btn-sm {
+  .btn-sm {
     line-height: $line-height-sm;
 
     @include button-size($btn-padding-y-sm, $btn-padding-x-sm, $font-size-sm, $btn-border-radius-sm);
   }
 
-  &.btn-tn {
+  .btn-tn {
     line-height: $line-height-tn;
 
     @include button-size($btn-padding-y-tn, $btn-padding-x-tn, $font-size-tn, $btn-border-radius-tn);
@@ -91,49 +91,47 @@
 }
 
 @mixin btn-hero() {
-  &.btn-primary-hero {
+  .btn-hero {
+    box-shadow: 0 $btn-default-bevel-bd-height 0 0 $btn-default-bevel-bd,
+                0 4px 10px 0 $btn-default-shadow,
+                0 2px 12px 0 $btn-default-glow;
+
+    text-shadow: 0 $btn-hero-text-shadow-y $btn-hero-text-shadow-radius $btn-hero-text-shadow;
+  }
+
+  .btn-hero.btn-primary {
     @include primary-gradient();
     box-shadow: 0 $btn-primary-bevel-bd-height 0 0 $btn-primary-bevel-bd,
                 0 4px 10px 0 $btn-primary-shadow,
                 0 2px 12px 0 $btn-primary-glow;
   }
 
-  &.btn-warning-hero {
+  .btn-hero.btn-warning {
     @include warning-gradient();
     box-shadow: 0 $btn-warning-bevel-bd-height 0 0 $btn-warning-bevel-bd,
                 0 4px 10px 0 $btn-warning-shadow,
                 0 2px 12px 0 $btn-warning-glow;
   }
 
-  &.btn-success-hero {
+  .btn-hero.btn-success {
     @include success-gradient();
     box-shadow: 0 $btn-success-bevel-bd-height 0 0 $btn-success-bevel-bd,
                 0 4px 10px 0 $btn-success-shadow,
                 0 2px 12px 0 $btn-success-glow;
   }
 
-  &.btn-info-hero {
+  .btn-hero.btn-info {
     @include info-gradient();
     box-shadow: 0 $btn-info-bevel-bd-height 0 0 $btn-info-bevel-bd,
                 0 4px 10px 0 $btn-info-shadow,
                 0 2px 12px 0 $btn-info-glow;
   }
 
-  &.btn-danger-hero {
-    @include nga-right-gradient($nga-color-gradient-danger-left, $nga-color-gradient-danger-right);
+  .btn-hero.btn-danger {
+    @include danger-gradient();
     box-shadow: 0 $btn-danger-bevel-bd-height 0 0 $btn-danger-bevel-bd,
                 0 4px 10px 0 $btn-danger-shadow,
                 0 2px 12px 0 $btn-danger-glow;
-  }
-
-  &.btn-ghost-hero {
-    box-shadow: 0 $btn-default-bevel-bd-height 0 0 $btn-default-bevel-bd,
-                0 4px 10px 0 $btn-default-shadow,
-                0 2px 12px 0 $btn-default-glow;
-  }
-
-  &.btn-hero {
-    text-shadow: 0 $btn-hero-text-shadow-y $btn-hero-text-shadow-radius $btn-hero-text-shadow;
   }
 }
 
@@ -151,10 +149,13 @@
       font-family: $btn-font-family;
 
       @include btn($btn-default-bg, $btn-default-border-hover-focus, $btn-default-border-active);
-      @include btn-shape();
-      @include btn-size();
-      @include btn-hero();
     }
+
+    @include btn-shape();
+
+    @include btn-size();
+
+    @include btn-hero();
 
     .btn-primary {
       border: none;
