@@ -94,48 +94,46 @@
   &.btn-primary-hero {
     @include primary-gradient();
     box-shadow: 0 $btn-primary-bevel-bd-height 0 0 $btn-primary-bevel-bd,
-                0 4px 10px 0 $nga-color-gradient-shadow,
+                0 4px 10px 0 $btn-primary-shadow,
                 0 2px 12px 0 $btn-primary-glow;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   }
 
   &.btn-warning-hero {
     @include warning-gradient();
     box-shadow: 0 $btn-warning-bevel-bd-height 0 0 $btn-warning-bevel-bd,
-                0 4px 10px 0 $nga-color-gradient-shadow,
+                0 4px 10px 0 $btn-warning-shadow,
                 0 2px 12px 0 $btn-warning-glow;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   }
 
   &.btn-success-hero {
     @include success-gradient();
     box-shadow: 0 $btn-success-bevel-bd-height 0 0 $btn-success-bevel-bd,
-                0 4px 10px 0 $nga-color-gradient-shadow,
+                0 4px 10px 0 $btn-success-shadow,
                 0 2px 12px 0 $btn-success-glow;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   }
 
   &.btn-info-hero {
     @include info-gradient();
     box-shadow: 0 $btn-info-bevel-bd-height 0 0 $btn-info-bevel-bd,
-                0 4px 10px 0 $nga-color-gradient-shadow,
+                0 4px 10px 0 $btn-info-shadow,
                 0 2px 12px 0 $btn-info-glow;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   }
 
   &.btn-danger-hero {
     @include nga-right-gradient($nga-color-gradient-danger-left, $nga-color-gradient-danger-right);
     box-shadow: 0 $btn-danger-bevel-bd-height 0 0 $btn-danger-bevel-bd,
-                0 4px 10px 0 $nga-color-gradient-shadow,
+                0 4px 10px 0 $btn-danger-shadow,
                 0 2px 12px 0 $btn-danger-glow;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
+
+  &.btn-ghost-hero {
+    box-shadow: 0 $btn-default-bevel-bd-height 0 0 $btn-default-bevel-bd,
+                0 4px 10px 0 $btn-default-shadow,
+                0 2px 12px 0 $btn-default-glow;
   }
 
   &.btn-hero {
-    box-shadow: 0 $btn-default-bevel-bd-height 0 0 $btn-default-bevel-bd,
-                0 4px 10px 0 $nga-color-gradient-shadow,
-                0 2px 12px 0 $btn-default-glow;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 $btn-hero-text-shadow-y $btn-hero-text-shadow-radius $btn-hero-text-shadow;
   }
 }
 
@@ -148,8 +146,9 @@
       color: $btn-default-color;
       border: $btn-default-border-width solid $btn-default-border;
       text-transform: uppercase;
-      letter-spacing: 0.4px;
-      font-weight: 600;
+      letter-spacing: $btn-letter-spacing;
+      font-weight: $nga-font-wiight-normal-bold;
+      font-family: $btn-font-family;
 
       @include btn($btn-default-bg, $btn-default-border-hover-focus, $btn-default-border-active);
       @include btn-shape();
