@@ -1,11 +1,11 @@
-import { Component, ViewContainerRef } from '@angular/core';
+import { Component, ViewContainerRef, AfterViewInit } from '@angular/core';
 import * as $ from 'jquery';
 
 import { GlobalState } from './global.state';
 import { BaImageLoaderService, BaThemePreloader, BaThemeSpinner } from './theme/services';
 import { BaThemeConfig } from './theme/theme.config';
 import { layoutPaths } from './theme/theme.constants';
-
+import { Backend } from 'angular-backend';
 /*
  * App Component
  * Top Level Component
@@ -20,7 +20,7 @@ import { layoutPaths } from './theme/theme.constants';
     </main>
   `
 })
-export class App {
+export class App implements AfterViewInit {
 
   isMenuCollapsed: boolean = false;
 
@@ -28,7 +28,15 @@ export class App {
               private _imageLoader: BaImageLoaderService,
               private _spinner: BaThemeSpinner,
               private viewContainerRef: ViewContainerRef,
-              private themeConfig: BaThemeConfig) {
+              private themeConfig: BaThemeConfig,
+              private backend: Backend ) {
+
+                console.log("backend versio: ", backend.getBackendUrl());
+
+                backend.version().subscribe( r => console.log(r) );
+
+
+
 
     themeConfig.config();
 
@@ -39,7 +47,7 @@ export class App {
     });
   }
 
-  public ngAfterViewInit(): void {
+  ngAfterViewInit(): void {
     // hide spinner once all loaders are completed
     BaThemePreloader.load().then((values) => {
       this._spinner.hide();

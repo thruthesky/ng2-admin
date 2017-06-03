@@ -88,14 +88,14 @@
     "no-var-keyword": true,
     "prefer-const": true,
     "trailing-comma": [
-      true,
+      false,
       {
         "multiline": "always",
         "singleline": "never"
       }
     ],
     "no-conditional-assignment": true,
-    "no-console": [true, "log"],
+    "no-console": [false, "log"],
     "space-in-parens": ["error", "info", "never"],
     "number-literal-format": true,
     "no-invalid-template-strings": true,
@@ -114,7 +114,7 @@
     "object-literal-shorthand": true,
 
     "directive-selector": [true, "attribute", ["nga", "ngd", "ngt"], "camelCase"],
-    "component-selector": [true, "element", ["nga", "ngd", "ngt"], "kebab-case"],
+    "component-selector": [false, "element", ["nga", "ngd", "ngt"], "kebab-case"],
     "use-input-property-decorator": true,
     "use-output-property-decorator": true,
     "use-host-property-decorator": true,
@@ -125,7 +125,7 @@
     "use-life-cycle-interface": true,
     "use-pipe-transform-interface": true,
     "pipe-naming": [true, "camelCase", ["nga", "ngd", "ngt"]],
-    "component-class-suffix": true,
+    "component-class-suffix": false,
     "directive-class-suffix": true,
     "templates-use-public": true,
     "no-access-missing-member": true,
