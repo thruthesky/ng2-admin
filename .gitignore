@@ -1,5 +1,9 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
+
+
+
+
 # compiled output
 /dist
 /tmp
@@ -17,6 +21,7 @@
 *.launch
 .settings/
 *.sublime-workspace
+
 
 # IDE - VSCode
 .vscode/*
