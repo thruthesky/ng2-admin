@@ -5,6 +5,7 @@ import { GlobalState } from './global.state';
 import { BaImageLoaderService, BaThemePreloader, BaThemeSpinner } from './theme/services';
 import { BaThemeConfig } from './theme/theme.config';
 import { layoutPaths } from './theme/theme.constants';
+import { Router } from '@angular/router';
 import { Backend } from 'angular-backend';
 /*
  * App Component
@@ -29,12 +30,16 @@ export class App implements AfterViewInit {
               private _spinner: BaThemeSpinner,
               private viewContainerRef: ViewContainerRef,
               private themeConfig: BaThemeConfig,
-              private backend: Backend ) {
+              private backend: Backend,
+              private router: Router,
+  ) {
 
-                console.log("backend versio: ", backend.getBackendUrl());
+    this.backend.setBackendUrl('http://backend.org/index.php');
+    console.log("backend URL: ", backend.getBackendUrl());
+    backend.version().subscribe( r => console.log("backend version: ", r) );
 
-                backend.version().subscribe( r => console.log(r) );
 
+    if ( ! backend.logged ) this.router.navigateByUrl('/login');
 
 
 

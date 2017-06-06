@@ -1,6 +1,8 @@
 import {Component} from '@angular/core';
 
 import {GlobalState} from '../../../global.state';
+import {Router} from "@angular/router";
+import {User, _USER_LOGOUT_RESPONSE } from "angular-backend";
 
 @Component({
   selector: 'ba-page-top',
@@ -12,7 +14,11 @@ export class BaPageTop {
   public isScrolled:boolean = false;
   public isMenuCollapsed:boolean = false;
 
-  constructor(private _state:GlobalState) {
+  constructor(
+    public user: User,
+    private _state:GlobalState,
+    private router: Router
+  ) {
     this._state.subscribe('menu.isCollapsed', (isCollapsed) => {
       this.isMenuCollapsed = isCollapsed;
     });
@@ -26,5 +32,14 @@ export class BaPageTop {
 
   public scrolledChanged(isScrolled) {
     this.isScrolled = isScrolled;
+  }
+
+  onClickLogout() {
+    this.user.logout().subscribe((res: _USER_LOGOUT_RESPONSE) => {
+      this.router.navigateByUrl('/login');
+      console.log('user.logout', res);
+    }, err => {
+      this.user.alert(err);
+    });
   }
 }

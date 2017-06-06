@@ -9,7 +9,7 @@
   </a>
 
   <a *ngIf="menuItem.children" (mouseenter)="onHoverItem($event, item)" href (click)="onToggleSubMenu($event, menuItem)" class="al-sidebar-list-link">
-    <i *ngIf="menuItem.icon" class="{{ menuItem.icon }}"></i><span translate>{{ menuItem.title }}</span>
+    <i *ngIf="menuItem.icon" class  ="{{ menuItem.icon }}"></i><span translate>{{ menuItem.title }}</span>
     <b class="fa fa-angle-down" [ngClass]="{'fa-angle-up': menuItem.expanded}"></b>
   </a>
 

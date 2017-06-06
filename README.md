@@ -63,3 +63,29 @@ Yes!  Visit [our homepage](http://akveo.com/) or simply leave us a message to [c
 
 Enjoy :metal:
 We're always happy to receive your feedback!
+
+
+
+
+
+## Disabled from tslint.json 
+    
+    "curly": false,
+    "prefer-const": false,
+    "object-curly-spacing": [false, "always"],
+    "use-life-cycle-interface": false,
+    "no-consecutive-blank-lines": [false, 2],
+    "quotemark": [false, "single", "avoid-escape"],
+    "member-access": [false, "no-public"],
+    "no-multi-spaces": [
+        false,
+        {
+          "exceptions": {
+            "BinaryExpression": true,
+            "PropertyAssignment": false,
+            "VariableDeclarator": false,
+            "ImportDeclaration": false
+          }
+        }
+    ],
+    "whitespace": [false, "check-branch", "check-decl", "check-operator", "check-module", "check-separator", "check-type", "check-preblock"],
