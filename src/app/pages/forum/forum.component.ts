@@ -107,8 +107,8 @@ export class Forum {
     // });
 
     this.searchQuery.order = 'idx DESC';
-    // this.searchQuery.where = 'deleted != ?';
-    // this.searchQuery.bind  = '1';
+    this.searchQuery.where = "deleted is null and cast(? as integer)";
+    this.searchQuery.bind  = '1';
 
 
     this.loadPostConfig();
