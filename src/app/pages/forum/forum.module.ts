@@ -2,12 +2,13 @@ import { NgModule }      from '@angular/core';
 import { CommonModule }  from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgaModule } from '../../theme/nga.module';
-
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 
 import { Forum } from "./forum.component";
 import { routing }       from './forum.routing';
-import { ForumService } from './forum.service';
+
+import { PaginationModule } from './../../components/pagination/pagination.module';
+
 
 
 @NgModule({
@@ -17,13 +18,11 @@ import { ForumService } from './forum.service';
     FormsModule,
     NgaModule,
     Ng2SmartTableModule,
-    routing
+    routing,
+    PaginationModule
   ],
   declarations: [
     Forum
-  ],
-  providers: [
-    ForumService
   ]
 })
 export class ForumModule {}

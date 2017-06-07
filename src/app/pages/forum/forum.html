@@ -1,8 +1,29 @@
 <div class="widgets">
-  <h2>Forum Management</h2>
   <div class="row">
     <ba-card title="" baCardClass="with-scroll" class="smart-table-container">
-      <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)"></ng2-smart-table>
+      <h2>Forum Management</h2>
+
+      <div class="input-group mt-3">
+        <span class="input-group-addon input-group-addon-primary addon-left" id="basic-addon1">Search</span>
+        <input [(ngModel)]="searchString" (keyup)="onChangeConfigSearch()" type="text" class="form-control with-primary-addon" placeholder="Forum ID, Name, Description...">
+      </div>
+
+      <ng2-smart-table
+        [settings]="settings"
+        [source]="source"
+        (deleteConfirm)="onDeleteConfirm($event)"
+        (editConfirm)="onEditConfirm($event)"
+        (createConfirm)="onCreateConfirm($event)"
+      ></ng2-smart-table>
+      <admin-pagination
+        [no_of_total_items]=" no_of_total_items "
+        [no_of_items_in_one_page] = " no_of_items_in_one_page "
+        [no_of_pages_in_navigator] = " no_of_pages_in_navigator "
+        [no_of_current_page] = " no_of_current_page "
+        [show_prev_next] = " true "
+        (pageClick)="onConfigPageClick( $event )"
+      >
+      </admin-pagination>
     </ba-card>
   </div>
 

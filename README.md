@@ -70,6 +70,11 @@ We're always happy to receive your feedback!
 
 ## Disabled from tslint.json 
     
+    
+    "prefer-template": false,
+    "max-line-length": [false, 120],
+    "comment-format": [false, "check-space"],
+    "variable-name": [false, "ban-keywords", "check-format", "allow-leading-underscore"],    
     "curly": false,
     "prefer-const": false,
     "object-curly-spacing": [false, "always"],
