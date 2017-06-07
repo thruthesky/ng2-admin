@@ -60,35 +60,6 @@ export class User {
         title: 'Name',
         type: 'string'
       },
-      description: {
-        title: 'Description',
-        type: 'string'
-      },
-      moderators: {
-        title: 'Moderators',
-        type: 'string'
-      },
-      level_list: {
-        title: 'List',
-        type: 'number'
-      },
-      level_view: {
-        title: 'View',
-        type: 'number'
-      },
-      level_write: {
-        title: 'Write',
-        type: 'number'
-      },
-      level_comment: {
-        title: 'Comment',
-        type: 'number'
-      },
-      deleted: {
-        title: 'Deleted',
-        type: 'number',
-        editable: false
-      }
     },
     pager: {
       display: false

@@ -106,7 +106,10 @@ export class Forum {
     //   this.source.load(data);
     // });
 
-    this.searchQuery['order'] = 'idx DESC';
+    this.searchQuery.order = 'idx DESC';
+    // this.searchQuery.where = 'deleted != ?';
+    // this.searchQuery.bind  = '1';
+
 
     this.loadPostConfig();
 
@@ -121,7 +124,7 @@ export class Forum {
 
 
   loadPostConfig( page = 1 ) {
-
+    console.log('query search',this.searchQuery);
     this.source.empty();
     this.searchQuery.page = page;
     this.searchQuery.limit = this.no_of_items_in_one_page;
@@ -154,13 +157,15 @@ export class Forum {
     let bind = '';
 
     if ( this.searchString ) {
-      cond += "id LIKE ? OR" +
+      cond += "(id LIKE ? OR" +
         " name LIKE ? OR" +
-        " description LIKE ?";
+        " description LIKE ?)" +
+        " AND deleted LIKE ?";
 
       bind += `%${this.searchString}%,` +
         `%${this.searchString}%,` +
-        `%${this.searchString}%`;
+        `%${this.searchString}%,` +
+        `1`;
     }
 
     this.searchQuery.where = cond;
@@ -186,16 +191,20 @@ export class Forum {
       name: event.newData.name,
       description: event.newData.description,
       moderators: event.newData.moderators,
-      level_list: event.newData.list,
-      level_view: event.newData.view,
-      level_write: event.newData.write,
-      level_comment: event.newData.comment
+      level_list: event.newData.level_list,
+      level_view: event.newData.level_view,
+      level_write: event.newData.level_write,
+      level_comment: event.newData.level_comment
     };
 
     this.postConfig.create( this.configCreate ).subscribe( (res: _CONFIG_CREATE_RESPONSE ) => {
       console.log(res);
       if ( res.code === 0 ) {
+        this.configCreate['idx'] = res.data.idx;
+        //this.postConfigs.push(this.configCreate);
         event.confirm.resolve();
+        //this.source.refresh();
+
       }
     }, err => this.postConfig.alert(err));
   }
