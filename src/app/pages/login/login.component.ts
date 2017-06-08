@@ -21,6 +21,9 @@ export class Login {
     private user: User,
     private router: Router
   ) {
+
+    console.log('LoginPage::Constructor');
+
     this.form = fb.group({
       'id': ['', Validators.compose([Validators.required, Validators.minLength(4)])],
       'password': ['', Validators.compose([Validators.required, Validators.minLength(4)])]

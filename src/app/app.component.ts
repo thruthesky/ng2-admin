@@ -55,14 +55,21 @@ export class App implements AfterViewInit {
 
   ngAfterViewInit(): void {
     // hide spinner once all loaders are completed
-    BaThemePreloader.load().then((values) => {
+
+    console.log('ngAfterViewInit');
+      BaThemePreloader.load().then((values) => {
+        console.log('BaThemePreloader.load()');
       this._spinner.hide();
     });
   }
 
   private _loadImages(): void {
     // register some loaders
-    BaThemePreloader.registerLoader(this._imageLoader.load('/assets/img/sky-bg.jpg'));
+
+    console.log('spinner before init');
+    BaThemePreloader.registerLoader(this._imageLoader.load('/admin/assets/img/sky-bg.jpg'));
+
+    //BaThemePreloader.registerLoader(this._imageLoader.load('/assets/img/sky-bg.jpg'));
   }
 
 }

@@ -94,3 +94,29 @@ We're always happy to receive your feedback!
         }
     ],
     "whitespace": [false, "check-branch", "check-decl", "check-operator", "check-module", "check-separator", "check-type", "check-preblock"],
+
+
+## Tips
+
+
+    Theme spinner sometimes dont resolve. this will cause the spinner not to remove and will cause an infinite loading.
+    
+    just add right path in case we use base ref except the root 
+    
+    exp: /admin/ base-ref
+    /admin/assets
+    
+    root 
+    /assets/
+    
+    `````
+      private _loadImages(): void {
+        // register some loaders
+    
+        console.log('spinner before init');
+        BaThemePreloader.registerLoader(this._imageLoader.load('/admin/assets/img/sky-bg.jpg'));
+    
+        //BaThemePreloader.registerLoader(this._imageLoader.load('/assets/img/sky-bg.jpg'));
+      }
+    
+    ````
