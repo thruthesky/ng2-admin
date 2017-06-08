@@ -5,7 +5,7 @@
 
       <div class="input-group mt-3">
         <span class="input-group-addon input-group-addon-primary addon-left" id="basic-addon1">Search</span>
-        <input [(ngModel)]="searchString" (keyup)="onChangeUserSearch()" type="text" class="form-control with-primary-addon" placeholder="User ID, Name, Email...">
+        <input [(ngModel)]="searchString" (keyup)="onChangeSearch()" type="text" class="form-control with-primary-addon" placeholder="User ID, Name, Email...">
       </div>
 
       <ng2-smart-table
@@ -21,7 +21,7 @@
         [no_of_pages_in_navigator] = " no_of_pages_in_navigator "
         [no_of_current_page] = " no_of_current_page "
         [show_prev_next] = " true "
-        (pageClick)="onConfigPageClick( $event )"
+        (pageClick)="onPageClick( $event )"
       >
       </admin-pagination>
     </ba-card>

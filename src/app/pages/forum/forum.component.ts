@@ -9,11 +9,11 @@ import {Router} from "@angular/router";
 import {Subject} from "rxjs/Subject";
 
 @Component({
-  selector: 'forum',
+  selector: 'forum-page',
   templateUrl: './forum.html',
   styleUrls: ['./forum.scss']
 })
-export class Forum {
+export class ForumPage {
 
   settings = {
     add: {
@@ -41,6 +41,7 @@ export class Forum {
       id: {
         title: 'ID',
         type: 'string',
+        editable: false
       },
       name: {
         title: 'Name',
@@ -70,11 +71,11 @@ export class Forum {
         title: 'Comment',
         type: 'number'
       },
-      deleted: {
-        title: 'Deleted',
-        type: 'number',
-        editable: false
-      }
+        // deleted: {
+        //   title: 'Deleted',
+        //   type: 'number',
+        //   editable: false
+        // }
     },
     pager: {
       display: false
@@ -160,13 +161,17 @@ export class Forum {
       cond += "(id LIKE ? OR" +
         " name LIKE ? OR" +
         " description LIKE ?)" +
-        " AND deleted LIKE ?";
+        " AND deleted is null AND cast(? as integer)";
 
       bind += `%${this.searchString}%,` +
         `%${this.searchString}%,` +
         `%${this.searchString}%,` +
         `1`;
+    } else {
+      cond += "deleted is null and cast(? as integer)";
+      bind += '1';
     }
+
 
     this.searchQuery.where = cond;
     this.searchQuery.bind = bind;
@@ -203,8 +208,7 @@ export class Forum {
         this.configCreate['idx'] = res.data.idx;
         //this.postConfigs.push(this.configCreate);
         event.confirm.resolve();
-        //this.source.refresh();
-
+        this.loadPostConfig();
       }
     }, err => this.postConfig.alert(err));
   }
@@ -231,7 +235,8 @@ export class Forum {
     this.postConfig.edit( edit ).subscribe( (res: _CONFIG_EDIT_RESPONSE ) => {
       console.log("edit response::" ,res);
       if ( res.code === 0 ) {
-        event.confirm.resolve();
+        //event.confirm.resolve();
+        this.loadPostConfig();
       }
     }, err => this.postConfig.alert(err));
 
@@ -245,15 +250,10 @@ export class Forum {
       this.postConfig.delete( event.data.id ).subscribe( (res: _DELETE_RESPONSE) => {
         console.log("delete response: ", res);
         if ( res.code === 0 ) {
-          event.data.deleted = '1';
-          //event.confirm.resolve();
-          event.source.data.map( (config: _CONFIG) => {
-            if(config.id === event.data.id) {
-              console.log('map::', config);
-            }
-          });
-
-          console.log('event,source.data::', event.source.data );
+          //event.data.deleted = '1';
+          event.confirm.resolve();
+          alert('POST ID: ' + event.data.id + ' has been deleted...');
+          //console.log('event,source.data::', event.source.data );
         }
         //this.postConfigs = this.postConfigs.filter( ( config: _CONFIG ) => config.id != id );
       }, err => this.postConfig.alert( err ) );

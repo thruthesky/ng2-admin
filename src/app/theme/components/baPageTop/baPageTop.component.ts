@@ -40,6 +40,7 @@ export class BaPageTop {
       console.log('user.logout', res);
     }, err => {
       this.user.alert(err);
+      this.router.navigateByUrl('/login');
     });
   }
 }

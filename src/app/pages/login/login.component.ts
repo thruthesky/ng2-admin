@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {FormGroup, AbstractControl, FormBuilder, Validators} from '@angular/forms';
 import { Router } from "@angular/router";
 
-import {User, _USER_LOGIN_RESPONSE, _USER_LOGIN} from 'angular-backend';
+import {User, _USER_LOGIN_RESPONSE, _USER_LOGIN, _USER_LOGOUT_RESPONSE} from 'angular-backend';
 
 @Component({
   selector: 'login',
@@ -22,8 +22,8 @@ export class Login {
     private router: Router
   ) {
     this.form = fb.group({
-      'id': ['aaaa', Validators.compose([Validators.required, Validators.minLength(4)])],
-      'password': ['aaaa', Validators.compose([Validators.required, Validators.minLength(4)])]
+      'id': ['', Validators.compose([Validators.required, Validators.minLength(4)])],
+      'password': ['', Validators.compose([Validators.required, Validators.minLength(4)])]
     });
 
 
@@ -36,8 +36,23 @@ export class Login {
     if (this.form.valid) {
 
       this.user.login( <_USER_LOGIN>this.form.value ).subscribe((res: _USER_LOGIN_RESPONSE) => {
-        console.log(res);
-        this.router.navigateByUrl('/page/dashboard');
+        console.log('login::',res);
+        if( res.code === 0 ) {
+          if( res.data.admin  && res.data.admin == 1 ) {
+            this.router.navigateByUrl('/page/dashboard');
+          } else {
+            alert('User must have Admin Permission...');
+
+            this.user.logout().subscribe(( re: _USER_LOGOUT_RESPONSE) => {
+              //this.router.navigateByUrl('/login');
+              console.log('user.logout', re);
+            }, err => {
+              this.user.alert(err);
+              //this.router.navigateByUrl('/login');
+            });
+          }
+        }
+
       }, err => {
         const errstr = this.user.getErrorString(err);
         console.log( errstr );

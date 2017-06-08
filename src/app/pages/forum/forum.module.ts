@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgaModule } from '../../theme/nga.module';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 
-import { Forum } from "./forum.component";
+import { ForumPage } from "./forum.component";
 import { routing }       from './forum.routing';
 
 import { PaginationModule } from './../../components/pagination/pagination.module';
@@ -22,7 +22,7 @@ import { PaginationModule } from './../../components/pagination/pagination.modul
     PaginationModule
   ],
   declarations: [
-    Forum
+    ForumPage
   ]
 })
 export class ForumModule {}
