@@ -63,17 +63,17 @@
     top: 0;
     left: 0;
   }
-  .percent {
+  .icon {
     display: inline-block;
     line-height: 84px;
     z-index: 2;
-    font-size: 16px;
+    font-size: 32px;
   }
-  .percent:after {
-    content: '%';
-    margin-left: 0.1em;
-    font-size: .8em;
-  }
+  //.icon:after {
+  //  content: '%';
+  //  margin-left: 0.1em;
+  //  font-size: .8em;
+  //}
   .description {
     display: inline-block;
     padding: 20px 0 0 20px;

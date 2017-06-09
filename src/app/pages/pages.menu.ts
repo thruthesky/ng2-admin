@@ -38,6 +38,36 @@ export const PAGES_MENU = [
           }
         }
       },
+      {
+        path: '',
+        data: {
+          menu: {
+            title: 'Live Chat List',
+            icon: '',
+            url: 'http://witheng.com/~centerxmain',
+            target: '_blank',
+            order: 30,
+          }
+        }
+      },
+      {
+        path: '',
+        data: {
+          menu: {
+            title: 'Center X LMS',
+            icon: '',
+            url: 'http://witheng.com/~centerxmain',
+            target: '_blank',
+            order: 40,
+          }
+        }
+      },
+
+      //       title: 'general.menu.external_link',
+      //       url: 'http://akveo.com',
+      //       icon: 'ion-android-exit',
+      //       order: 800,
+      //       target: '_blank'
       // {
       //   path: '',
       //   data: {
