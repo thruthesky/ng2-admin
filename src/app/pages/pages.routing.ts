@@ -11,10 +11,6 @@ export const routes: Routes = [
     loadChildren: 'app/pages/login/login.module#LoginModule'
   },
   {
-    path: 'register',
-    loadChildren: 'app/pages/register/register.module#RegisterModule'
-  },
-  {
     path: 'pages',
     component: Pages,
     children: [
@@ -22,11 +18,6 @@ export const routes: Routes = [
       { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule' },
       { path: 'forum', loadChildren: './forum/forum.module#ForumModule' },
       { path: 'user', loadChildren: './user/user.module#UserModule' },
-      { path: 'components', loadChildren: './components/components.module#ComponentsModule' },
-      { path: 'charts', loadChildren: './charts/charts.module#ChartsModule' },
-      { path: 'ui', loadChildren: './ui/ui.module#UiModule' },
-      { path: 'tables', loadChildren: './tables/tables.module#TablesModule' },
-      { path: 'maps', loadChildren: './maps/maps.module#MapsModule' }
     ]
   }
 ];

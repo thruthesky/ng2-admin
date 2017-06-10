@@ -113,10 +113,40 @@ We're always happy to receive your feedback!
       private _loadImages(): void {
         // register some loaders
     
-        console.log('spinner before init');
+        //console.log('spinner before init');
         BaThemePreloader.registerLoader(this._imageLoader.load('/admin/assets/img/sky-bg.jpg'));
     
         //BaThemePreloader.registerLoader(this._imageLoader.load('/assets/img/sky-bg.jpg'));
       }
     
     ````
+
+
+## Search with Group by
+
+    How to get User Registration Graph from 7days ago
+    
+    ###Declaration
+    ````
+      today = Math.round((new Date).getTime() / 1000);
+      sevenDaysAgo = this.today - (7 * 24 * 60 * 60);
+      searchQuery: _LIST = {}; 
+    ````
+    
+    ###http request
+    ````
+       let q = this.searchQuery;
+       q.select = "DATE( FROM_UNIXTIME( created ) ) AS PerDay, COUNT(*), idx";
+       q.where = "created > cast(? as integer) GROUP BY PerDay";
+       q.bind = "sevenDaysAgo";
+       //q.order  = "PerDay";
+       //console.log('Query:: ', q);
+       this.user.list( q ).subscribe( (res: _USER_LIST_RESPONSE ) => {
+         //console.log('getUserGraph.list:: ', res);
+         if( res.code === 0 ) {
+    
+         }
+       }, e => this.user.alert(e) );
+    
+    ```
+

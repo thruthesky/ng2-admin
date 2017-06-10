@@ -1,7 +1,10 @@
 import {Component, Input} from '@angular/core';
 
 
-import { PostData, PostComment, _POST, _POSTS, _LIST, _POST_LIST_RESPONSE } from 'angular-backend';
+import {
+  PostData, PostComment, _POST, _POSTS, _LIST, _POST_LIST_RESPONSE,
+  _POST_COMMON_WRITE_FIELDS
+} from 'angular-backend';
 
 @Component({
   selector: 'feed',
@@ -37,15 +40,14 @@ export class Feed {
 
   getPostData() {
     let q = this.searchQuery;
-    q.where = 'parent_idx = cast( ? as integer )';
-    q.bind = '0';
     q.extra= { file: true , post_config_id: this.config };
     this.postData.list(q).subscribe( (res: _POST_LIST_RESPONSE ) => {
-      console.log(this.config + '::feed::getData::postData:: ', res);
+      //console.log(this.config + '::feed::getData::postData:: ', res);
       if (res.code === 0 ) {
         this.feed = res.data.posts;
-        this.feed.map( (post: _POST) => {
+        this.feed.map( (post: _POST_COMMON_WRITE_FIELDS) => {
           post['expanded'] = false;
+          post.created = ( new Date( parseInt(post.created) * 1000 ) ).toDateString();
         });
       }
     }, e => this.postData.alert(e));

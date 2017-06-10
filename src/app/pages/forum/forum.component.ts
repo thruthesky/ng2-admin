@@ -125,13 +125,13 @@ export class ForumPage {
 
 
   loadPostConfig( page = 1 ) {
-    console.log('query search',this.searchQuery);
+    //console.log('query search',this.searchQuery);
     this.source.empty();
     this.searchQuery.page = page;
     this.searchQuery.limit = this.no_of_items_in_one_page;
     this.postConfig.list( this.searchQuery ).subscribe( (res: _POST_LIST_RESPONSE ) => {
 
-      console.log(res);
+      //console.log(res);
 
       this.postConfigs = res.data.configs;
       this.no_of_total_items = res.data.total;
@@ -186,7 +186,7 @@ export class ForumPage {
 
 
   onCreateConfirm(event) {
-    console.log('onCreateConfirm:: ', event);
+    //console.log('onCreateConfirm:: ', event);
 
     let re = confirm("Submit New Config: " + event.newData.id);
     if ( !re ) return;
@@ -203,7 +203,7 @@ export class ForumPage {
     };
 
     this.postConfig.create( this.configCreate ).subscribe( (res: _CONFIG_CREATE_RESPONSE ) => {
-      console.log(res);
+      //console.log(res);
       if ( res.code === 0 ) {
         this.configCreate['idx'] = res.data.idx;
         //this.postConfigs.push(this.configCreate);
@@ -214,8 +214,8 @@ export class ForumPage {
   }
 
   onEditConfirm(event) {
-    console.log('onEditConfirm:: ', event);
-    console.log('onEditConfirm:: ', event.newData);
+    //console.log('onEditConfirm:: ', event);
+    //console.log('onEditConfirm:: ', event.newData);
 
     let re = confirm("Save Changes for Config ID: " + event.data.id);
     if ( !re ) return;
@@ -231,9 +231,9 @@ export class ForumPage {
       level_comment: event.newData.level_comment
     };
 
-    console.log('EDIT:: ', edit);
+    //console.log('EDIT:: ', edit);
     this.postConfig.edit( edit ).subscribe( (res: _CONFIG_EDIT_RESPONSE ) => {
-      console.log("edit response::" ,res);
+      //console.log("edit response::" ,res);
       if ( res.code === 0 ) {
         //event.confirm.resolve();
         this.loadPostConfig();
@@ -244,11 +244,11 @@ export class ForumPage {
   }
 
   onDeleteConfirm(event): void {
-    console.log('onDeleteConfirm:: ', event);
+    //console.log('onDeleteConfirm:: ', event);
     if (window.confirm('Are you sure you want to delete?')) {
 
       this.postConfig.delete( event.data.id ).subscribe( (res: _DELETE_RESPONSE) => {
-        console.log("delete response: ", res);
+        //console.log("delete response: ", res);
         if ( res.code === 0 ) {
           //event.data.deleted = '1';
           event.confirm.resolve();

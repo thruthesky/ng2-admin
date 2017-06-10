@@ -88,7 +88,7 @@ export class UserPage implements OnInit {
         renderComponent: ChangePasswordButton,
           // onComponentInitFunction(instance) {
           //   instance.onClickKey.subscribe(row => {
-          //     console.log(`click ${row}`);
+          //     //console.log(`click ${row}`);
           //   });
           // },
         editable: false,
@@ -162,13 +162,13 @@ export class UserPage implements OnInit {
 
 
   onCreateConfirm(event) {
-    console.log('onCreateConfirm:: ', event);
+    //console.log('onCreateConfirm:: ', event);
   }
 
   onEditConfirm(event) {
-    console.log('onEditConfirm:: ', event);
-    console.log('onEditConfirm:: ', event.newData);
-    console.log( event.newData ) ;
+    //console.log('onEditConfirm:: ', event);
+    //console.log('onEditConfirm:: ', event.newData);
+    //console.log( event.newData ) ;
     let re = confirm("Save Changes for User ID : " + event.newData.id);
     if ( !re ) return;
 
@@ -179,7 +179,7 @@ export class UserPage implements OnInit {
       gender: event.newData.gender
     };
     this.user.edit( edit ).subscribe( (res: _USER_EDIT_RESPONSE) => {
-      console.log("edit response: ", res);
+      //console.log("edit response: ", res);
       if ( res.code === 0 ) {
         //event.confirm.resolve();
         this.loadSearchedData();
@@ -188,13 +188,13 @@ export class UserPage implements OnInit {
   }
 
   onDeleteConfirm(event): void {
-    console.log('onDeleteConfirm:: ', event);
-    console.log( event.data.id );
+    //console.log('onDeleteConfirm:: ', event);
+    //console.log( event.data.id );
     let re = confirm("Are you sure you want to delete ID: " + event.data.id);
     if ( !re ) return;
 
     this.user.delete( event.data.id ).subscribe( (res: _DELETE_RESPONSE) => {
-      console.log("delete response: ", res);
+      //console.log("delete response: ", res);
       if ( res.code === 0 ) {
         event.confirm.resolve();
         //this.loadSearchedData();

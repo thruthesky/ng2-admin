@@ -26,7 +26,7 @@ export class ChangePasswordButton implements OnInit {
   }
 
   onClick() {
-    console.log('this.value', this.value);
+    //console.log('this.value', this.value);
     this.staticModalShow();
 
     //this.onClickKey.emit('change password');

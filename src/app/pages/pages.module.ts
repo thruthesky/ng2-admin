@@ -7,7 +7,7 @@ import { NgaModule } from '../theme/nga.module';
 import { AppTranslationModule } from '../app.translation.module';
 
 import { Pages } from './pages.component';
-import {ChangePasswordModal} from "./user/components/changePasswordModal/changePasswordModal";
+import { ChangePasswordModal } from "./user/components/changePasswordModal/changePasswordModal";
 
 @NgModule({
   imports: [CommonModule, FormsModule, AppTranslationModule, NgaModule, routing],

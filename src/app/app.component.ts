@@ -34,15 +34,13 @@ export class App implements AfterViewInit {
               private router: Router,
   ) {
 
-    this.backend.setBackendUrl('http://backend.org/index.php');
-    //this.backend.setBackendUrl("https://www.englishfordevelopers.com/index.php");
-    console.log("backend URL: ", backend.getBackendUrl());
+    //this.backend.setBackendUrl('http://backend.org/index.php');
+    this.backend.setBackendUrl("https://www.englishfordevelopers.com/index.php");
+    //console.log("backend URL: ", backend.getBackendUrl());
     backend.version().subscribe( r => console.log("backend version: ", r) );
 
-
     if ( ! backend.logged || ! backend.info.admin ) this.router.navigateByUrl('/login');
-
-
+    //console.log(backend.info);
 
     themeConfig.config();
 
@@ -56,9 +54,9 @@ export class App implements AfterViewInit {
   ngAfterViewInit(): void {
     // hide spinner once all loaders are completed
 
-    console.log('ngAfterViewInit');
+    //console.log('ngAfterViewInit');
       BaThemePreloader.load().then((values) => {
-        console.log('BaThemePreloader.load()');
+        //console.log('BaThemePreloader.load()');
       this._spinner.hide();
     });
   }
@@ -66,9 +64,9 @@ export class App implements AfterViewInit {
   private _loadImages(): void {
     // register some loaders
 
-    console.log('spinner before init');
-    //BaThemePreloader.registerLoader(this._imageLoader.load('/admin/assets/img/sky-bg.jpg'));
-    BaThemePreloader.registerLoader(this._imageLoader.load('/assets/img/sky-bg.jpg'));
+    //console.log('spinner before init');
+    BaThemePreloader.registerLoader(this._imageLoader.load('/admin/assets/img/sky-bg.jpg'));
+    //BaThemePreloader.registerLoader(this._imageLoader.load('/assets/img/sky-bg.jpg'));
   }
 
 }

@@ -27,7 +27,6 @@ export class Dashboard {
 
   searchQuery: _LIST = {};
 
-  // sevenDaysAgo = (new Date().getTime() - ( 7 * 24 * 60 * 60 * 1000 )).toString().substring(0,10);
   today = Math.round((new Date).getTime() / 1000);
   sevenDaysAgo = this.today - (7 * 24 * 60 * 60);
 
@@ -37,26 +36,28 @@ export class Dashboard {
     this.getUserGraph();
   }
 
-  //
-  // SELECT DATE(FROM_UNIXTIME(created)) AS PerDay,
-  // COUNT(*) AS NewRegister
-  // FROM `be04_user`
-  // GROUP BY DATE(FROM_UNIXTIME(created))
-  // ORDER BY PerDay
-
-
-
   getUserGraph() {
     let q = this.searchQuery;
-    q.select = "DATE( FROM_UNIXTIME( created ) ) AS PerDay, COUNT( id ) AS NewRegister";
-    q.where = "cast(? as integer) GROUP BY DATE(FROM_UNIXTIME(created))";
-    q.bind = "1";
+    q.select = "DATE( FROM_UNIXTIME( created ) ) AS perDay, COUNT(idx) AS total, idx";
+    q.where = "created > cast(? as integer) GROUP BY PerDay";
+    q.bind = "sevenDaysAgo";
     //q.order  = "PerDay";
-    console.log('Query:: ', q);
+    //console.log('Query:: ', q);
     this.user.list( q ).subscribe( (res: _USER_LIST_RESPONSE ) => {
-      console.log('getUserGraph.list:: ', res);
+      //console.log('getUserGraph.list:: ', res);
       if( res.code === 0 ) {
-
+        let labels = [];
+        let series = [];
+        res.data.users.map( v => {
+          labels.push(v['perDay']);
+          series.push(v['total']);
+        });
+        //console.log(series);
+        this.data.areaLineData = {
+          'labels': labels,
+          'series': [series]
+        };
+        //console.log('Data::', this.data);
       }
     }, e => this.user.alert(e) );
   }
