@@ -1,10 +1,10 @@
 <div class="feed-messages-container">
   <div class="feed-message" *ngFor="let message of feed" (click)="expandMessage(message)">
     <div class="message-icon" *ngIf="config == 'qna' && message.files.length">
-      <img class="photo-icon" src="{{ ( message.files[0].url ) }}">
+      <img class="photo-icon" src="{{ ( message?.files[0]?.url ) }}">
     </div>
-    <div class="message-icon" *ngIf="config == 'review'">
-      <img class="photo-icon" src="{{ ( message.files[0].url  ) }}">
+    <div class="message-icon" *ngIf="config == 'review' && message.files.length">
+      <img class="photo-icon" src="{{ ( message?.files[0]?.url  ) }}">
       <span class="sub-photo-icon" [ngClass]="message.type"></span>
     </div>
     <div class="text-block text-message">
@@ -16,7 +16,7 @@
         {{ message.content }}
       </div>
       <div class="preview" [ngClass]="{'hidden': !message.expanded}" *ngIf="message.files.length && config == 'qna'">
-          <img src="{{ ( message.files[0].url )}}">
+          <img src="{{ ( message?.files[0]?.url )}}">
       </div>
       <div [ngClass]="{'hidden': !message.expanded}" class="message-time">
         <div class="post-time">
