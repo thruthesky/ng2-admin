@@ -6,7 +6,7 @@ export const PAGES_MENU = [
         path: 'dashboard',
         data: {
           menu: {
-            title: 'general.menu.dashboard',
+            title: 'Dashboard',
             icon: 'ion-android-home',
             selected: false,
             expanded: false,
@@ -38,30 +38,33 @@ export const PAGES_MENU = [
           }
         }
       },
-      {
-        path: '',
-        data: {
-          menu: {
-            title: 'Live Chat List',
-            icon: '',
-            url: 'http://witheng.com/~centerxmain',
-            target: '_blank',
-            order: 30,
-          }
-        }
-      },
-      {
-        path: '',
-        data: {
-          menu: {
-            title: 'Center X LMS',
-            icon: '',
-            url: 'http://witheng.com/~centerxmain',
-            target: '_blank',
-            order: 40,
-          }
-        }
-      },
+      // {
+      //   path: 'lms',
+      //   data: {
+      //     menu: {
+      //       title: 'Center X LMS',
+      //       icon: 'fa fa-cogs',
+      //       selected: false,
+      //       expanded: false,
+      //       order: 30,
+      //     }
+      //   }
+      // },
+      // {
+      //   path: '',
+      //   data: {
+      //     menu: {
+      //       title: 'Center X LMS',
+      //       icon: '',
+      //       url: 'http://witheng.com/~centerxmain',
+      //       target: '_blank',
+      //       order: 40,
+      //     }
+      //   }
+      // },
     ]
   }
 ];
+
+
+

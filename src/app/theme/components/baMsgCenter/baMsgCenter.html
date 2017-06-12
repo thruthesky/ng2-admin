@@ -1,7 +1,7 @@
 <ul class="al-msg-center clearfix">
   <li class="dropdown">
     <a href class="dropdown-toggle" id="msg-dd1" data-toggle="dropdown" aria-expanded="false">
-      <i class="fa fa-bell-o"></i><span>{{ notifications.length }}</span>
+      <i class="fa fa-id-card-o"></i><span *ngIf="shared.newPosts">{{ shared.newPosts?.length }}</span>
 
       <div class="notification-ring"></div>
     </a>
@@ -10,46 +10,48 @@
       <i class="dropdown-arr"></i>
 
       <div class="header clearfix">
-        <strong>Notifications</strong>
-        <a href>Mark All as Read</a>
-        <a href>Settings</a>
+        <strong>Latest Posts</strong>
+        <!--<a href>Mark All as Read</a>-->
+        <!--<a href>Settings</a>-->
       </div>
       <div class="msg-list">
-        <a *ngFor="let msg of notifications" href class="clearfix">
-          <div class="img-area"><img [ngClass]="{'photo-msg-item': !msg.image}"
-                                     src="{{ ( msg.image ||  (msg.name | baProfilePicture)) }}"></div>
-          <div class="msg-area">
-            <div>{{ msg.text }}</div>
-            <span>{{ msg.time }}</span>
+        <div *ngFor="let msg of shared.newPosts" href class="clearfix">
+          <div class="img-area" *ngIf="msg.files.length">
+            <img [ngClass]="{'photo-msg-item': !msg.msg}" src="{{ ( msg?.files[0]?.url ) }}">
           </div>
-        </a>
+          <div class="msg-area">
+            <div>{{ msg.title }}</div>
+            <span>{{ msg.created }}</span>
+          </div>
+        </div>
       </div>
-      <a href>See all notifications</a>
+      <!--<a href>See all notifications</a>-->
     </div>
   </li>
   <li class="dropdown">
     <a href class="msg dropdown-toggle" id="msg-dd2" data-toggle="dropdown" aria-expanded="false">
-      <i class="fa fa-envelope-o"></i><span>{{ messages.length }}</span>
+      <i class="fa fa-calendar-check-o"></i><span *ngIf="shared.todayClasses">{{ shared.todayClasses.length }}</span>
       <div class="notification-ring"></div>
     </a>
     <div class="top-dropdown-menu dropdown-menu" aria-labelledby="msg-dd2">
       <i class="dropdown-arr"></i>
       <div class="header clearfix">
-        <strong>Messages</strong>
-        <a href>Mark All as Read</a>
-        <a href>Settings</a>
+        <strong>Todays Classes</strong>
+        <!--<a href>Mark All as Read</a>-->
+        <!--<a href>Settings</a>-->
       </div>
       <div class="msg-list">
-        <a *ngFor="let msg of messages" href class="clearfix">
-          <div class="img-area"><img [ngClass]="{'photo-msg-item': !msg.image}"
-                                     src="{{ ( msg.image ||  (msg.name | baProfilePicture)) }}"></div>
-          <div class="msg-area">
-            <div>{{ msg.text }}</div>
-            <span>{{ msg.time }}</span>
+        <div *ngFor="let class of shared.todayClasses" href class="clearfix">
+          <div class="img-area">
+            <!--<img [ngClass]="{'photo-msg-item': !msg.image}" src="{{ ( msg.image ||  (msg.name | baProfilePicture)) }}">-->
           </div>
-        </a>
+          <div class="msg-area">
+            <div>Student ID: {{ class.idx_student }}</div>
+            <span>{{ class.class_begin }}-{{ class.class_end }}</span>
+          </div>
+        </div>
       </div>
-      <a href>See all messages</a>
+      <!--<a href>See all messages</a>-->
     </div>
   </li>
 </ul>

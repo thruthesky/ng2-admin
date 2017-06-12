@@ -16,9 +16,9 @@
     "no-arg": true,
     "no-internal-module": true,
     "no-bitwise": true,
-    "no-shadowed-variable": true,
+    "no-shadowed-variable": false,
     "no-unused-expression": true,
-    "one-line": [true, "check-catch", "check-else", "check-open-brace", "check-whitespace"],
+    "one-line": [false, "check-catch", "check-else", "check-open-brace", "check-whitespace"],
     "quotemark": [false, "single", "avoid-escape"],
     "semicolon": true,
     "typedef-whitespace": [
@@ -69,7 +69,7 @@
       "always"
     ],
     "brace-style": [
-      true,
+      false,
       "1tbs",
       {
         "allowSingleLine": true

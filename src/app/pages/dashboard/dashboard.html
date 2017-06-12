@@ -6,15 +6,23 @@
 
 <div class="row">
 
-  <ba-card class="col-xlg-6 col-xl-6 col-lg-12 col-sm-12 col-12"
-                     title="User Registration Graph" baCardClass="traffic-panel medium-card">
-    <!--<traffic-chart></traffic-chart>-->
+  <div class="col-xlg-6 col-xl-6 col-lg-12 col-sm-12 col-12">
+  <ba-card title="Student Reservation Graph" baCardClass="traffic-panel medium-card">
     <ba-chartist-chart baChartistChartClass="ct-chart"
                        baChartistChartType="Line"
-                       [baChartistChartData]="data['areaLineData']"
-                       [baChartistChartOptions]="data['areaLineOptions']">
+                       [baChartistChartData]="data['reservationChartData']"
+                       [baChartistChartOptions]="data['reservationChartOption']">
     </ba-chartist-chart>
   </ba-card>
+  <ba-card title="User Registration Graph" baCardClass="traffic-panel medium-card">
+    <ba-chartist-chart baChartistChartClass="ct-chart"
+                       baChartistChartType="Line"
+                       [baChartistChartData]="data['newUserChartData']"
+                       [baChartistChartOptions]="data['newUserChartOption']">
+    </ba-chartist-chart>
+  </ba-card>
+  </div>
+
 
   <div class="col-xlg-6 col-xl-6 col-lg-12 col-sm-12 col-12">
     <div class="float-left pl-0 col-6">

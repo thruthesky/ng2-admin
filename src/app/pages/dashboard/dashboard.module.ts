@@ -10,7 +10,6 @@ import { routing }       from './dashboard.routing';
 
 import { PieChart } from './pieChart';
 import { Feed } from './feed';
-import { PieChartService } from './pieChart/pieChart.service';
 
 @NgModule({
   imports: [
@@ -24,9 +23,6 @@ import { PieChartService } from './pieChart/pieChart.service';
     PieChart,
     Feed,
     Dashboard
-  ],
-  providers: [
-    PieChartService,
   ]
 })
 export class DashboardModule {}

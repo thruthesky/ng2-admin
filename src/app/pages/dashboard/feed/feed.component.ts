@@ -2,7 +2,7 @@ import {Component, Input} from '@angular/core';
 
 
 import {
-  PostData, PostComment, _POST, _POSTS, _LIST, _POST_LIST_RESPONSE,
+  PostData, _POSTS, _LIST, _POST_LIST_RESPONSE,
   _POST_COMMON_WRITE_FIELDS
 } from 'angular-backend';
 
@@ -22,7 +22,6 @@ export class Feed {
 
   constructor(
               private postData: PostData,
-              private postComment: PostComment
   ) {
   }
 

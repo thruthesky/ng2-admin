@@ -1,8 +1,9 @@
 import {Component} from '@angular/core';
 
-import {PieChartService} from './pieChart.service';
-
+import {BaThemeConfigProvider } from '../../../theme';
 import 'easy-pie-chart/dist/jquery.easypiechart.js';
+
+import { ShareService, _DATA_BOX } from './../../../providers/share-service';
 
 @Component({
   selector: 'pie-chart',
@@ -12,49 +13,27 @@ import 'easy-pie-chart/dist/jquery.easypiechart.js';
 // TODO: move easypiechart to component
 export class PieChart {
 
-  public charts: Array<Object>;
-  private _init = false;
+  public charts: _DATA_BOX[];
+
 
   constructor(
-    private _pieChartService: PieChartService) {
-
-    this.charts = this._pieChartService.getData();
-
+    public shared: ShareService,
+    private _baConfig:BaThemeConfigProvider,) {
+    this.getData();
   }
 
-  ngAfterViewInit() {
-    // if (!this._init) {
-    //   // this._loadPieCharts();
-    //   // this._updatePieCharts();
-    //   // this._init = true;
-    // }
+
+
+  getData() {
+    let pieColor = this._baConfig.get().colors.custom.dashboardPieChart;
+
+    if( pieColor ) {
+      this.shared.totalUser.color = this.shared.newUser.color = this.shared.noOfReservations.color = this.shared.noOfStudents.color = pieColor;
+    }
+
+    this.charts = [this.shared.noOfReservations , this.shared.noOfStudents , this.shared.totalUser, this.shared.newUser];
+    //console.log('this.charts',this.charts);
   }
 
-  // private _loadPieCharts() {
-  //
-  //   jQuery('.chart').each(function () {
-  //     let chart = jQuery(this);
-  //     chart.easyPieChart({
-  //       easing: 'easeOutBounce',
-  //       onStep: function (from, to, percent) {
-  //         jQuery(this.el).find('.percent').text(Math.round(percent));
-  //       },
-  //       barColor: jQuery(this).attr('data-rel'),
-  //       trackColor: 'rgba(0,0,0,0)',
-  //       size: 84,
-  //       scaleLength: 0,
-  //       animation: 2000,
-  //       lineWidth: 9,
-  //       lineCap: 'round',
-  //     });
-  //   });
-  // }
-  //
-  // private _updatePieCharts() {
-  //   let getRandomArbitrary = (min, max) => { return Math.random() * (max - min) + min; };
-  //
-  //   jQuery('.pie-charts .chart').each(function(index, chart) {
-  //     jQuery(chart).data('easyPieChart').update(getRandomArbitrary(55, 90));
-  //   });
-  // }
+
 }

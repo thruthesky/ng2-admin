@@ -94,7 +94,15 @@ We're always happy to receive your feedback!
         }
     ],
     "whitespace": [false, "check-branch", "check-decl", "check-operator", "check-module", "check-separator", "check-type", "check-preblock"],
-
+    "brace-style": [
+      false,
+      "1tbs",
+      {
+        "allowSingleLine": true
+      }
+    ],
+    "one-line": [false, "check-catch", "check-else", "check-open-brace", "check-whitespace"],
+    "no-shadowed-variable": false,
 
 ## Tips
 
