@@ -6,7 +6,7 @@ export const PAGES_MENU = [
         path: 'dashboard',
         data: {
           menu: {
-            title: 'Dashboard',
+            title: '관리자 홈',
             icon: 'ion-android-home',
             selected: false,
             expanded: false,
@@ -18,7 +18,7 @@ export const PAGES_MENU = [
         path: 'forum',
         data: {
           menu: {
-            title: 'Forum',
+            title: '게시판',
             icon: 'fa fa-weixin',
             selected: false,
             expanded: false,
@@ -30,7 +30,7 @@ export const PAGES_MENU = [
         path: 'user',
         data: {
           menu: {
-            title: 'User',
+            title: '사용자',
             icon: 'fa fa-users',
             selected: false,
             expanded: false,

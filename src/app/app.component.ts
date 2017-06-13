@@ -34,8 +34,8 @@ export class App implements AfterViewInit {
               private router: Router,
   ) {
 
-    this.backend.setBackendUrl('http://backend.org/index.php');
-    //this.backend.setBackendUrl("https://www.englishfordevelopers.com/index.php");
+    //this.backend.setBackendUrl('http://backend.org/index.php');
+    this.backend.setBackendUrl("https://www.englishfordevelopers.com/index.php");
     //console.log("backend URL: ", backend.getBackendUrl());
     backend.version().subscribe( r => console.log("backend version: ", r) );
 
