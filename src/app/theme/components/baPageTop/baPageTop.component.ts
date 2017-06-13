@@ -37,7 +37,7 @@ export class BaPageTop {
   onClickLogout() {
     this.user.logout().subscribe((res: _USER_LOGOUT_RESPONSE) => {
       this.router.navigateByUrl('/login');
-      console.log('user.logout', res);
+      //console.log('user.logout', res);
     }, err => {
       this.user.alert(err);
       this.router.navigateByUrl('/login');

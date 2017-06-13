@@ -20,11 +20,15 @@ import { PagesModule } from './pages/pages.module';
 
 
 import { AngularBackendModule } from 'angular-backend';
+import { ShareService } from './providers/share-service';
+import { LMS } from './providers/lms';
 
 // Application wide providers
 const APP_PROVIDERS = [
   AppState,
-  GlobalState
+  GlobalState,
+  ShareService,
+  LMS
 ];
 
 export type StoreType = {

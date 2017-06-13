@@ -1,6 +1,8 @@
 import {Component} from '@angular/core';
 
 import {BaMsgCenterService} from './baMsgCenter.service';
+import {ShareService} from "../../../providers/share-service";
+import {_POSTS} from "angular-backend";
 
 @Component({
   selector: 'ba-msg-center',
@@ -10,12 +12,9 @@ import {BaMsgCenterService} from './baMsgCenter.service';
 })
 export class BaMsgCenter {
 
-  public notifications:Array<Object>;
-  public messages:Array<Object>;
-
-  constructor(private _baMsgCenterService:BaMsgCenterService) {
-    this.notifications = this._baMsgCenterService.getNotifications();
-    this.messages = this._baMsgCenterService.getMessages();
+  constructor(
+    public shared: ShareService
+  ) {
   }
 
 }

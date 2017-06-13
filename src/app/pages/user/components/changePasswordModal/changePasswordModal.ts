@@ -34,7 +34,7 @@ export class ChangePasswordModal implements OnInit {
     };
 
     this.user.updatePassword( updatePass ).subscribe( (res: _USER_PASSWORD_CHANGE_RESPONSE ) => {
-      console.log('updatePassword: ', res );
+      //console.log('updatePassword: ', res );
       alert('Change Password Success..');
       this.closeModal();
     }, err => this.user.alert( err ));
