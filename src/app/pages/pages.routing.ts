@@ -19,6 +19,7 @@ export const routes: Routes = [
       { path: 'lms', loadChildren: './dashboard/dashboard.module#DashboardModule' },
       { path: 'forum', loadChildren: './forum/forum.module#ForumModule' },
       { path: 'user', loadChildren: './user/user.module#UserModule' },
+      { path: 'config', loadChildren: './config/config.module#ConfigModule'}
     ]
   }
 ];

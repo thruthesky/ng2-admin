@@ -1,5 +1,8 @@
 import {Component} from '@angular/core';
 
+import { Router } from '@angular/router';
+
+
 import {
   _LIST, _USER_LIST_RESPONSE,
   PostData, User
@@ -40,14 +43,15 @@ export class Dashboard {
     }
   };
 
-  today = Math.round((new Date).getTime() / 1000);
+  today = Math.round((new Date()).getTime() / 1000);
   sevenDaysAgo = this.today - (7 * 24 * 60 * 60);
 
   constructor(
     private user:       User,
     private postData:   PostData,
     private lms:        LMS,
-    public  shared:     ShareService
+    public  shared:     ShareService,
+    private router:      Router
   ) {
 
     this.getUserGraph();
@@ -111,7 +115,13 @@ export class Dashboard {
       if( res.code === 0 ) {
         this.shared.totalUser.stats = res.data.total;
       }
-    }, e => this.user.alert(e) );
+    }, e => {
+      console.log("ERROR: ", e);
+      if ( parseInt(e.code) === -40105 ) {
+        this.router.navigateByUrl("/login");
+      }
+      else this.user.alert(e);
+    });
   }
 
   getNewUserCount() {

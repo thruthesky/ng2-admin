@@ -39,29 +39,17 @@ export const PAGES_MENU = [
         }
       },
       {
-        path: 'lms',
+        path: 'config',
         data: {
           menu: {
-            title: 'Center X LMS',
-            icon: 'fa fa-cogs',
+            title: '사이트 설정',
+            icon: 'fa fa-gear',
             selected: false,
             expanded: false,
-            order: 30,
+            order: 25,
           }
         }
-      },
-      // {
-      //   path: '',
-      //   data: {
-      //     menu: {
-      //       title: 'Center X LMS',
-      //       icon: '',
-      //       url: 'http://witheng.com/~centerxmain',
-      //       target: '_blank',
-      //       order: 40,
-      //     }
-      //   }
-      // },
+      }
     ]
   }
 ];
