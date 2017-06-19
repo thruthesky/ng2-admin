@@ -38,18 +38,18 @@ export const PAGES_MENU = [
           }
         }
       },
-      // {
-      //   path: 'lms',
-      //   data: {
-      //     menu: {
-      //       title: 'Center X LMS',
-      //       icon: 'fa fa-cogs',
-      //       selected: false,
-      //       expanded: false,
-      //       order: 30,
-      //     }
-      //   }
-      // },
+      {
+        path: 'lms',
+        data: {
+          menu: {
+            title: 'Center X LMS',
+            icon: 'fa fa-cogs',
+            selected: false,
+            expanded: false,
+            order: 30,
+          }
+        }
+      },
       // {
       //   path: '',
       //   data: {

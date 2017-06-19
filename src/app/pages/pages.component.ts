@@ -50,9 +50,10 @@ export class Pages {
   }
 
   getNewPosts() {
+    let d = new Date().toISOString().slice(0,10);
     let data = {
-      date_begin: '2017-06-12',
-      date_end: '2017-06-12',
+      date_begin: d,
+      date_end: d,
     };
     this.lms.getClasses( data, res => {
       console.log('getClasses:: ', res );

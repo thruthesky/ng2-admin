@@ -17,6 +17,7 @@
     "rimraf": "rimraf",
     "changelog": "standard-changelog",
     "start": "ng serve",
+    "nse": "ng serve --host englishfordevelopers.com",
     "start:hmr": "ng serve --hmr",
     "start:aot": "ng serve --aot",
     "start:prod": "ng serve --prod",
