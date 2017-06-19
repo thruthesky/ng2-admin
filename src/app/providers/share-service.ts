@@ -40,7 +40,7 @@ export class ShareService {
 
   noOfReservations: _DATA_BOX = {
     color: 'grey',
-    description: 'Reservations',
+    description: '예약된 수업',
     stats: 0,
     icon: 'fa fa-calendar',
   };
@@ -48,21 +48,21 @@ export class ShareService {
 
   noOfStudents: _DATA_BOX = {
     color: 'grey',
-    description: 'Students',
+    description: '학생 수',
     stats: 0,
     icon: 'ion-android-contacts',
   };
 
   totalUser: _DATA_BOX = {
     color: 'grey',
-    description: 'No of Users',
+    description: '회원 수',
     stats: 0,
     icon: 'fa fa-users',
   };
 
   newUser: _DATA_BOX = {
     color: 'grey',
-    description: 'No of New Users',
+    description: '새로운 회원 수',
     stats: 0,
     icon: 'ion-android-person-add',
   };

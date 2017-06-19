@@ -7,14 +7,14 @@
 <div class="row">
 
   <div class="col-xlg-6 col-xl-6 col-lg-12 col-sm-12 col-12">
-  <ba-card title="Student Reservation Graph" baCardClass="traffic-panel medium-card">
+  <ba-card title="예약 현황" baCardClass="traffic-panel medium-card">
     <ba-chartist-chart baChartistChartClass="ct-chart"
                        baChartistChartType="Line"
                        [baChartistChartData]="data['reservationChartData']"
                        [baChartistChartOptions]="data['reservationChartOption']">
     </ba-chartist-chart>
   </ba-card>
-  <ba-card title="User Registration Graph" baCardClass="traffic-panel medium-card">
+  <ba-card title="회원 가입 현황" baCardClass="traffic-panel medium-card">
     <ba-chartist-chart baChartistChartClass="ct-chart"
                        baChartistChartType="Line"
                        [baChartistChartData]="data['newUserChartData']"
@@ -26,13 +26,13 @@
 
   <div class="col-xlg-6 col-xl-6 col-lg-12 col-sm-12 col-12">
     <div class="float-left pl-0 col-6">
-      <ba-card title="POST(QnA)"
+      <ba-card title="질문과 답변"
                baCardClass="large-card with-scroll feed-panel">
         <feed [config]=" 'qna' "></feed>
       </ba-card>
     </div>
     <div class="float-left pr-0 col-6">
-      <ba-card title="Comments"
+      <ba-card title="수업후기"
                baCardClass="large-card with-scroll feed-panel">
         <feed [config]=" 'review' "></feed>
       </ba-card>
