@@ -38,6 +38,18 @@ export const PAGES_MENU = [
           }
         }
       },
+      {
+        path: 'config',
+        data: {
+          menu: {
+            title: '사이트 설정',
+            icon: 'fa fa-gear',
+            selected: false,
+            expanded: false,
+            order: 25,
+          }
+        }
+      }
       // {
       //   path: 'lms',
       //   data: {
