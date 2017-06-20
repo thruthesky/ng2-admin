@@ -6,13 +6,13 @@
       <div class="row">
         <div class="col-4">
           <label for="company_name_variation_option1" class="radio-inline nowrap">
-            <input type="radio" name="company_name_variation" id="company_name_variation_option1" value="을">
+            <input type="radio" name="company_name_variation" id="company_name_variation_option1" [(ngModel)]="metaData.company_name_variation" value="을">
             <span>을</span>
           </label>
         </div>
         <div class="col-4">
           <label for="company_name_variation_option2" class="radio-inline nowrap">
-            <input type="radio" name="company_name_variation" id="company_name_variation_option2" value="를">
+            <input type="radio" name="company_name_variation" id="company_name_variation_option2" [(ngModel)]="metaData.company_name_variation" value="를">
             <span>를</span>
           </label>
         </div>
@@ -23,43 +23,44 @@
       <h4>Company Information</h4>
       <div class="form-group">
         <label for="company_name">Company Name</label>
-        <input type="text" class="form-control" id="company_name" placeholder="Company Name">
-      </div>
-      <div class="form-group">
-        <label for="company_number">Company Number</label>
-        <input type="text" class="form-control" id="company_number" placeholder="Company Number">
+        <input [(ngModel)]="metaData.company_name" type="text" class="form-control" id="company_name" placeholder="Company Name">
       </div>
       <div class="form-group">
         <label for="company_email">Company Email</label>
-        <input type="text" class="form-control" id="company_email" placeholder="Company Email">
+        <input [(ngModel)]="metaData.company_email" type="text" class="form-control" id="company_email" placeholder="Company Email">
       </div>
+      <div class="form-group">
+        <label for="phone_number">Phone Number</label>
+        <input [(ngModel)]="metaData.phone_number" type="text" class="form-control" id="phone_number" placeholder="Phone Number">
+      </div>
+
 
       <hr>
 
       <h4>Copyright</h4>
       <div class="form-group">
-        <label for="copyright_line_1">Text</label>
-        <input type="text" class="form-control" id="copyright_line_1" placeholder="Copyright Line 1">
+        <label for="copyright_line1">Line 1</label>
+        <input [(ngModel)]="metaData.copyright_line1" type="text" class="form-control" id="copyright_line1" placeholder="Copyright Line 1">
       </div>
 
       <div class="form-group">
-        <label for="copyright_line_2">Text</label>
-        <input type="text" class="form-control" id="copyright_line_2" placeholder="Copyright Line 2">
+        <label for="copyright_line2">Line 2</label>
+        <input [(ngModel)]="metaData.copyright_line2" type="text" class="form-control" id="copyright_line2" placeholder="Copyright Line 2">
       </div>
 
       <div class="form-group">
-        <label for="copyright_line_3">Text</label>
-        <input type="text" class="form-control" id="copyright_line_3" placeholder="Copyright Line 3">
+        <label for="copyright_line3">Line 3</label>
+        <input [(ngModel)]="metaData.copyright_line3" type="text" class="form-control" id="copyright_line3" placeholder="Copyright Line 3">
       </div>
 
       <div class="form-group">
-        <label for="copyright_line_4">Text</label>
-        <input type="text" class="form-control" id="copyright_line_4" placeholder="Copyright Line 4">
+        <label for="copyright_line4">Line 4</label>
+        <input [(ngModel)]="metaData.copyright_line4" type="text" class="form-control" id="copyright_line4" placeholder="Copyright Line 4">
       </div>
 
 
       <div class="d-flex justify-content-center button-wrapper ">
-        <button type="button" class="btn btn-primary btn-raised col-4">Save</button>
+        <button type="button" class="btn btn-primary btn-raised col-4"  (click)="onClickSaveMeta()">Save</button>
       </div>
 
 
