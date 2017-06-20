@@ -32,7 +32,7 @@ export class ConfigPage {
    private meta: Meta
   ){
     this.getSiteConfig();
-    console.log('config:: ', this.siteInfo);
+    //console.log('config:: ', this.siteInfo);
   }
 
 
@@ -43,10 +43,10 @@ export class ConfigPage {
        code: this.site_config,
        data: JSON.stringify( this.metaData )
      };
-     console.log('onClickSaveMeta:: ', req);
+     //console.log('onClickSaveMeta:: ', req);
      this.meta.create( req ).subscribe( (res: _META_CREATE_RESPONSE) => {
        if(res && res.data && res.data.meta && res.data.meta.data){
-         console.log('meta.create', res);
+         //console.log('meta.create', res);
          let config = res.data.meta.data ;
          localStorage.setItem(this.site_config, config);
          alert('Success Configuration Saved');
@@ -57,20 +57,25 @@ export class ConfigPage {
   getSiteConfig() {
     //localStorage.setItem(this.site_config, '');
     let config = localStorage.getItem(this.site_config);
-    console.log('config:: ', config);
+    //console.log('config:: ', config);
     if (config) {
-      this.metaData = JSON.parse(config);
+      try {
+        this.metaData = JSON.parse(config);
+      } catch(e){}
     }
     else {
       let q: _LIST = {};
       q.where = "model = ? AND code = ? AND model_idx = ?";
       q.bind = `${this.site_config},${this.site_config},1`;
 
-      console.log('query:: ', q );
+      //console.log('query:: ', q );
       this.meta.list(q).subscribe( (res: _META_LIST_RESPONSE) => {
         if(res && res.data && res.data.meta.length){
-          console.log('meta.list', res);
+          //console.log('meta.list', res);
           config = res.data.meta[0].data ;
+          try {
+            this.metaData = JSON.parse(config);
+          } catch(e){}
           localStorage.setItem(this.site_config, config);
         }
         return config;
@@ -81,13 +86,12 @@ export class ConfigPage {
 
   get siteInfo(): _SITE_CONFIGURATION {
     let data = localStorage.getItem( this.site_config );
-    console.log(data);
+    //console.log(data);
     if ( data ) {
       try {
         return JSON.parse( data );
       }
-      catch (e) {
-      }
+      catch (e) {}
     }
     return <_SITE_CONFIGURATION>{};
   }
