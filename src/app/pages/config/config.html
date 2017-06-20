@@ -9,7 +9,7 @@
         <input [(ngModel)]="metaData.company_name" type="text" class="form-control" id="company_name" placeholder="회사이름/사이트명을 입력하세요.">
       </div>
 
-      <h4>화사 이름 조사 선택</h4>
+      <h5>화사 이름 조사 선택</h5>
       <div class="row">
         <div class="col-4">
           <label for="company_name_variation_option1" class="radio-inline nowrap">
@@ -25,6 +25,8 @@
         </div>
       </div>
 
+
+
       <hr>
 
       <div class="form-group">
@@ -35,6 +37,33 @@
         <label for="phone_number">전화번호</label>
         <input [(ngModel)]="metaData.phone_number" type="text" class="form-control" id="phone_number" placeholder="전화번호">
       </div>
+
+      <h4>사이트 로고</h4>
+
+<div class="form-files clearfix">
+    <div class="file w-25 float-left" *ngFor=" let file of files "
+        style="position: relative;">
+
+        <div (click)=" onClickDeleteFile( file ) "
+            class="p-2 bg-primary" style="position: absolute; left: 2px; bottom: 2px;">
+            X
+        </div>
+
+        <img style="width: 100%" src="{{ file.url + '&crop=100x100x70' }}">
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="file-box">Upload Photos</label>
+    <div *ngIf=" percentage " class="progress mb-2">
+        <div class="progress-bar" role="progressbar" [style.width]=" percentage + '%' ">{{ percentage }} %</div>
+    </div>
+
+    <input type="file" class="form-control-file" id="file-box" #file (change)="onChangeFile(file)">
+    <small class="form-text text-muted">Please select a photo to upload</small>
+</div>
+
+
 
 
       <hr>
