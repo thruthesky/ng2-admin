@@ -39,6 +39,30 @@ export const PAGES_MENU = [
         }
       },
       {
+        path: 'user',
+        data: {
+          menu: {
+            title: '예약된 수업',
+            icon: 'fa fa-book',
+            selected: false,
+            expanded: false,
+            order: 20,
+          }
+        }
+      },
+      {
+        path: 'user',
+        data: {
+          menu: {
+            title: '지난 수업',
+            icon: 'fa fa-book',
+            selected: false,
+            expanded: false,
+            order: 20,
+          }
+        }
+      },
+      {
         path: 'config',
         data: {
           menu: {

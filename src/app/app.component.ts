@@ -7,6 +7,9 @@ import { BaThemeConfig } from './theme/theme.config';
 import { layoutPaths } from './theme/theme.constants';
 import { Router } from '@angular/router';
 import { Backend } from 'angular-backend';
+
+import { environment } from '../environments/environment';
+
 /*
  * App Component
  * Top Level Component
@@ -65,8 +68,8 @@ export class App implements AfterViewInit {
     // register some loaders
 
     //console.log('spinner before init');
-    BaThemePreloader.registerLoader(this._imageLoader.load('/admin/assets/img/sky-bg.jpg'));
-    //BaThemePreloader.registerLoader(this._imageLoader.load('/assets/img/sky-bg.jpg'));
+    BaThemePreloader.registerLoader(this._imageLoader.load( environment.background ));
+    
   }
 
 }

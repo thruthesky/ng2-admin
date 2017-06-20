@@ -63,7 +63,7 @@ export class ConfigPage {
         this.metaData = JSON.parse(config);
       } catch(e){}
     }
-    else {
+    
       let q: _LIST = {};
       q.where = "model = ? AND code = ? AND model_idx = ?";
       q.bind = `${this.site_config},${this.site_config},1`;
@@ -80,7 +80,7 @@ export class ConfigPage {
         }
         return config;
       }, error => this.meta.errorResponse(error));
-    }
+      
   }
 
 

@@ -5,4 +5,5 @@
 
 export const environment = {
   production: false,
+  background: '/assets/img/sky-bg.jpg'
 };

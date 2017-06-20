@@ -2,65 +2,67 @@
     <ba-card title="Configurations" baCardClass="with-scroll">
 
 
-      <h4>Company Variation</h4>
+
+      <h4>회사 정보</h4>
+      <div class="form-group">
+        <label for="company_name">회사 이름</label>
+        <input [(ngModel)]="metaData.company_name" type="text" class="form-control" id="company_name" placeholder="회사이름/사이트명을 입력하세요.">
+      </div>
+
+      <h4>화사 이름 조사 선택</h4>
       <div class="row">
         <div class="col-4">
           <label for="company_name_variation_option1" class="radio-inline nowrap">
             <input type="radio" name="company_name_variation" id="company_name_variation_option1" [(ngModel)]="metaData.company_name_variation" value="을">
-            <span>을</span>
+            <span> {{metaData.company_name}} 을/은/과</span>
           </label>
         </div>
         <div class="col-4">
           <label for="company_name_variation_option2" class="radio-inline nowrap">
             <input type="radio" name="company_name_variation" id="company_name_variation_option2" [(ngModel)]="metaData.company_name_variation" value="를">
-            <span>를</span>
+            <span> {{metaData.company_name}} 를/는/와</span>
           </label>
         </div>
       </div>
 
       <hr>
 
-      <h4>Company Information</h4>
       <div class="form-group">
-        <label for="company_name">Company Name</label>
-        <input [(ngModel)]="metaData.company_name" type="text" class="form-control" id="company_name" placeholder="Company Name">
+        <label for="company_email">이메일</label>
+        <input [(ngModel)]="metaData.company_email" type="text" class="form-control" id="company_email" placeholder="이메일">
       </div>
       <div class="form-group">
-        <label for="company_email">Company Email</label>
-        <input [(ngModel)]="metaData.company_email" type="text" class="form-control" id="company_email" placeholder="Company Email">
-      </div>
-      <div class="form-group">
-        <label for="phone_number">Phone Number</label>
-        <input [(ngModel)]="metaData.phone_number" type="text" class="form-control" id="phone_number" placeholder="Phone Number">
+        <label for="phone_number">전화번호</label>
+        <input [(ngModel)]="metaData.phone_number" type="text" class="form-control" id="phone_number" placeholder="전화번호">
       </div>
 
 
       <hr>
 
-      <h4>Copyright</h4>
+      <h4>카피라이트 ( 하단 회사 정보 )</h4>
       <div class="form-group">
-        <label for="copyright_line1">Line 1</label>
-        <input [(ngModel)]="metaData.copyright_line1" type="text" class="form-control" id="copyright_line1" placeholder="Copyright Line 1">
+        <label for="copyright_line1">첫번째 줄 ( 회사 명, 전화번호, 연락처 등 적당한 정보 )</label>
+        <input [(ngModel)]="metaData.copyright_line1" type="text" class="form-control" id="copyright_line1" placeholder="첫번째 줄 정보 입력">
       </div>
 
       <div class="form-group">
-        <label for="copyright_line2">Line 2</label>
-        <input [(ngModel)]="metaData.copyright_line2" type="text" class="form-control" id="copyright_line2" placeholder="Copyright Line 2">
+        <label for="copyright_line2">두번째 줄 ( 회사 등록 번호, 통신 판매업 번호 등 적당한 정보 )</label>
+        <input [(ngModel)]="metaData.copyright_line2" type="text" class="form-control" id="copyright_line2" placeholder="두번째 줄 정보 입력">
       </div>
 
       <div class="form-group">
-        <label for="copyright_line3">Line 3</label>
-        <input [(ngModel)]="metaData.copyright_line3" type="text" class="form-control" id="copyright_line3" placeholder="Copyright Line 3">
+        <label for="copyright_line3">세번째 줄 ( 개인 정보 관리 규정, 담당자 등 적당한 정보 )</label>
+        <input [(ngModel)]="metaData.copyright_line3" type="text" class="form-control" id="copyright_line3" placeholder="세번째 줄 정보 입력">
       </div>
 
       <div class="form-group">
-        <label for="copyright_line4">Line 4</label>
-        <input [(ngModel)]="metaData.copyright_line4" type="text" class="form-control" id="copyright_line4" placeholder="Copyright Line 4">
+        <label for="copyright_line4">맨 하단 카피라이트 ( Copyright (C) 2017 All Right .... 등 )</label>
+        <input [(ngModel)]="metaData.copyright_line4" type="text" class="form-control" id="copyright_line4" placeholder="Copyright (C) 2017 All Rights Reserved By ....">
       </div>
 
 
       <div class="d-flex justify-content-center button-wrapper ">
-        <button type="button" class="btn btn-primary btn-raised col-4"  (click)="onClickSaveMeta()">Save</button>
+        <button type="button" class="btn btn-primary btn-raised col-4"  (click)="onClickSaveMeta()">저장하기</button>
       </div>
 
 
