@@ -39,7 +39,7 @@ files: Array<_FILE>; // pass-by-reference.
 
   constructor(
    private meta: Meta,
-    private file: File, private ngZone: NgZone 
+    private file: File, private ngZone: NgZone
   ){
     this.getSiteConfig();
     //console.log('config:: ', this.siteInfo);
@@ -65,7 +65,7 @@ files: Array<_FILE>; // pass-by-reference.
   }
 
   getSiteConfig() {
-    localStorage.setItem(this.site_config, '');
+
     let config = localStorage.getItem(this.site_config);
     //console.log('config:: ', config);
     if (config) {
@@ -74,24 +74,19 @@ files: Array<_FILE>; // pass-by-reference.
       } catch(e){}
     }
 
-      // let q: _LIST = {};
-      // q.where = "model = ? AND model_idx = cast(? as integer)";
-      // q.bind = `${this.site_config},1`;
-      //
-      // console.log('query:: ', q );
-      // this.meta.list(q).subscribe( (res: _META_LIST_RESPONSE) => {
-      //
-      //   console.log('meta.list', res);
-      //   if(res && res.data && res.data.meta.length){
-      //     console.log('meta.list', res);
-      //     config = res.data.meta[0].data ;
-      //     try {
-      //       this.metaData = JSON.parse(config);
-      //     } catch(e){}
-      //     localStorage.setItem(this.site_config, config);
-      //   }
-      //   return config;
-      // }, error => this.meta.errorResponse(error));
+      this.meta.config().subscribe( (res) => {
+
+        console.log('meta.config', res);
+        if(res && res.data && res.data.config){
+          console.log('meta.config::config', res);
+          config = res.data.config ;
+          try {
+            this.metaData = JSON.parse(config);
+          } catch(e){}
+          localStorage.setItem(this.site_config, config);
+        }
+        return config;
+      }, error => this.meta.errorResponse(error));
 
   }
 
@@ -109,19 +104,30 @@ files: Array<_FILE>; // pass-by-reference.
   }
 
 
-    onChangeFile( _ ) {
-        this.percentage = 1;
-        this.file.uploadPostFile( _.files[0], percentage => {
-            this.percentage = percentage;
-            this.ngZone.run( () => {} );
-        } ).subscribe( (res:_UPLOAD_RESPONSE) => {
-            this.files.push( res.data );
-            this.percentage = 0;
-        }, err => {
-            if ( this.file.isError(err) == ERROR_NO_FILE_SELECTED ) return;
-            this.file.alert(err);
-        });
-    }
+  onChangeFile( _ ) {
+      this.percentage = 1;
+      this.file.upload( _.files[0], percentage => {
+          this.percentage = percentage;
+          this.ngZone.run( () => {} );
+      } ).subscribe( (res:_UPLOAD_RESPONSE) => {
+          this.files.push( res.data );
+          this.percentage = 0;
+      }, err => {
+          if ( this.file.isError(err) == ERROR_NO_FILE_SELECTED ) return;
+          this.file.alert(err);
+      });
+  }
+
+
+  onClickDeleteFile( file ) {
+    let req = {
+      idx: file.idx,
+    };
+    this.file.delete( req ).subscribe( (res:_DELETE_RESPONSE) => {
+      let i = this.files.findIndex( (f:_FILE) => f.idx == res.data.idx );
+      this.files.splice( i, 1 );
+    }, err => this.file.alert(err) );
+  }
 
 
 }
