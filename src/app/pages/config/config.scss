@@ -1,0 +1,14 @@
+
+            .file {
+                position: relative;
+            }
+            .file .fa-stack {
+                position: absolute;
+                bottom: .4em;
+                right: .4em;
+                cursor: pointer;
+            }
+            .file .fa-stack .fa-trash {
+                color: #454;
+            }
+    

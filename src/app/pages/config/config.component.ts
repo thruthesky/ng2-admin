@@ -1,7 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, NgZone, Input } from '@angular/core';
 
 import {Meta, _META_CREATE, _META_ARRAY, _META_CREATE_RESPONSE, _META_LIST_RESPONSE, _LIST} from 'angular-backend';
 
+import {
+    File,
+    _FILE,
+    _UPLOAD_RESPONSE, _DELETE_RESPONSE,
+    ERROR_NO_FILE_SELECTED
+} from 'angular-backend';
 
 export interface _SITE_CONFIGURATION {
   company_name_variation?: string;
@@ -14,6 +20,7 @@ export interface _SITE_CONFIGURATION {
   copyright_line4?: string;
 }
 
+
 @Component({
   selector: 'config-page',
   templateUrl: './config.html',
@@ -21,7 +28,9 @@ export interface _SITE_CONFIGURATION {
 })
 export class ConfigPage {
 
+    percentage: number = 0;
 
+files: Array<_FILE>; // pass-by-reference.
   metaData: _SITE_CONFIGURATION = <_SITE_CONFIGURATION>{
     company_name_variation: '을'
   };
@@ -29,7 +38,8 @@ export class ConfigPage {
   site_config = 'site_config';
 
   constructor(
-   private meta: Meta
+   private meta: Meta,
+    private file: File, private ngZone: NgZone 
   ){
     this.getSiteConfig();
     //console.log('config:: ', this.siteInfo);
@@ -95,6 +105,21 @@ export class ConfigPage {
     }
     return <_SITE_CONFIGURATION>{};
   }
+
+
+    onChangeFile( _ ) {
+        this.percentage = 1;
+        this.file.uploadPostFile( _.files[0], percentage => {
+            this.percentage = percentage;
+            this.ngZone.run( () => {} );
+        } ).subscribe( (res:_UPLOAD_RESPONSE) => {
+            this.files.push( res.data );
+            this.percentage = 0;
+        }, err => {
+            if ( this.file.isError(err) == ERROR_NO_FILE_SELECTED ) return;
+            this.file.alert(err);
+        });
+    }
 
 
 }
