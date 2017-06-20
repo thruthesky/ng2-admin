@@ -26,7 +26,7 @@ export class ConfigPage {
     company_name_variation: '을'
   };
 
-  site_config = 'site_config';
+  site_config = 'config';
 
   constructor(
    private meta: Meta
@@ -55,7 +55,7 @@ export class ConfigPage {
   }
 
   getSiteConfig() {
-    //localStorage.setItem(this.site_config, '');
+    localStorage.setItem(this.site_config, '');
     let config = localStorage.getItem(this.site_config);
     //console.log('config:: ', config);
     if (config) {
@@ -63,24 +63,26 @@ export class ConfigPage {
         this.metaData = JSON.parse(config);
       } catch(e){}
     }
-    
-      let q: _LIST = {};
-      q.where = "model = ? AND code = ? AND model_idx = ?";
-      q.bind = `${this.site_config},${this.site_config},1`;
 
-      //console.log('query:: ', q );
-      this.meta.list(q).subscribe( (res: _META_LIST_RESPONSE) => {
-        if(res && res.data && res.data.meta.length){
-          //console.log('meta.list', res);
-          config = res.data.meta[0].data ;
-          try {
-            this.metaData = JSON.parse(config);
-          } catch(e){}
-          localStorage.setItem(this.site_config, config);
-        }
-        return config;
-      }, error => this.meta.errorResponse(error));
-      
+      // let q: _LIST = {};
+      // q.where = "model = ? AND model_idx = cast(? as integer)";
+      // q.bind = `${this.site_config},1`;
+      //
+      // console.log('query:: ', q );
+      // this.meta.list(q).subscribe( (res: _META_LIST_RESPONSE) => {
+      //
+      //   console.log('meta.list', res);
+      //   if(res && res.data && res.data.meta.length){
+      //     console.log('meta.list', res);
+      //     config = res.data.meta[0].data ;
+      //     try {
+      //       this.metaData = JSON.parse(config);
+      //     } catch(e){}
+      //     localStorage.setItem(this.site_config, config);
+      //   }
+      //   return config;
+      // }, error => this.meta.errorResponse(error));
+
   }
 
 
