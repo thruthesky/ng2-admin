@@ -11,15 +11,15 @@
 
       <h5>화사 이름 조사 선택</h5>
       <div class="row">
-        <div class="col-4">
+        <div class="col-sm-6">
           <label for="company_name_variation_option1" class="radio-inline nowrap">
-            <input type="radio" name="company_name_variation" id="company_name_variation_option1" [(ngModel)]="metaData.company_name_variation" value="을">
+            <input type="radio" name="company_name_variation" id="company_name_variation_option1" [(ngModel)]="metaData.company_name_variation" value="1">
             <span> {{metaData.company_name}} 을/은/과</span>
           </label>
         </div>
-        <div class="col-4">
+        <div class="col-sm-6">
           <label for="company_name_variation_option2" class="radio-inline nowrap">
-            <input type="radio" name="company_name_variation" id="company_name_variation_option2" [(ngModel)]="metaData.company_name_variation" value="를">
+            <input type="radio" name="company_name_variation" id="company_name_variation_option2" [(ngModel)]="metaData.company_name_variation" value="2">
             <span> {{metaData.company_name}} 를/는/와</span>
           </label>
         </div>
@@ -41,15 +41,15 @@
       <h4>사이트 로고</h4>
 
 <div class="form-files clearfix">
-    <div class="file w-25 float-left" *ngFor=" let file of files "
+    <div class="file w-25 float-left" *ngIf=" logo "
         style="position: relative;">
 
-        <div (click)=" onClickDeleteFile( file ) "
+        <div (click)=" onClickDeleteFile( logo ) "
             class="p-2 bg-primary" style="position: absolute; left: 2px; bottom: 2px;">
             X
         </div>
 
-        <img style="width: 100%" src="{{ file.url + '&crop=100x100x70' }}">
+        <img style="width: 100%" src="{{ logo.url + '&crop=100x100x70' }}">
     </div>
 </div>
 

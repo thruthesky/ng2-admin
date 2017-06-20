@@ -5,7 +5,7 @@ import {Meta, _META_CREATE, _META_ARRAY, _META_CREATE_RESPONSE, _META_LIST_RESPO
 import {
     File,
     _FILE,
-    _UPLOAD_RESPONSE, _DELETE_RESPONSE,
+    _UPLOAD_RESPONSE, _DELETE_RESPONSE, _UPLOAD,
     ERROR_NO_FILE_SELECTED
 } from 'angular-backend';
 
@@ -29,7 +29,7 @@ export interface _SITE_CONFIGURATION {
 export class ConfigPage {
 
     percentage: number = 0;
-
+    logo: _FILE;
 files: Array<_FILE>; // pass-by-reference.
   metaData: _SITE_CONFIGURATION = <_SITE_CONFIGURATION>{
     company_name_variation: '을'
@@ -106,11 +106,20 @@ files: Array<_FILE>; // pass-by-reference.
 
   onChangeFile( _ ) {
       this.percentage = 1;
-      this.file.upload( _.files[0], percentage => {
+      console.log(_.files[0]);
+      let req: _UPLOAD = {
+    model: 'config',
+    model_idx: 1,
+    code: 'config',
+    unique: 'Y',
+    finish: 'Y'
+      };
+      this.file.upload( req, _.files[0], percentage => {
           this.percentage = percentage;
           this.ngZone.run( () => {} );
       } ).subscribe( (res:_UPLOAD_RESPONSE) => {
-          this.files.push( res.data );
+          this.logo = res.data;
+          console.log(this.logo);
           this.percentage = 0;
       }, err => {
           if ( this.file.isError(err) == ERROR_NO_FILE_SELECTED ) return;
@@ -124,8 +133,7 @@ files: Array<_FILE>; // pass-by-reference.
       idx: file.idx,
     };
     this.file.delete( req ).subscribe( (res:_DELETE_RESPONSE) => {
-      let i = this.files.findIndex( (f:_FILE) => f.idx == res.data.idx );
-      this.files.splice( i, 1 );
+      this.logo = null;
     }, err => this.file.alert(err) );
   }
 
