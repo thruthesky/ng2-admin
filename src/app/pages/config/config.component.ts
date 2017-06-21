@@ -1,6 +1,9 @@
 import { Component, NgZone, Input } from '@angular/core';
 
-import {Meta, _META_CREATE, _META_ARRAY, _META_CREATE_RESPONSE, _META_LIST_RESPONSE, _LIST} from 'angular-backend';
+import {
+  Meta, _META_CREATE, _META_ARRAY, _META_CREATE_RESPONSE, _META_LIST_RESPONSE, _LIST,
+  _DELETE_REQUEST
+} from 'angular-backend';
 
 import {
     File,
@@ -18,6 +21,8 @@ export interface _SITE_CONFIGURATION {
   copyright_line2?: string;
   copyright_line3?: string;
   copyright_line4?: string;
+  logo_idx?: number;
+  logo_url?: string;
 }
 
 
@@ -30,10 +35,9 @@ export class ConfigPage {
 
     percentage: number = 0;
     logo: _FILE;
-files: Array<_FILE>; // pass-by-reference.
-  metaData: _SITE_CONFIGURATION = <_SITE_CONFIGURATION>{
-    company_name_variation: '을'
-  };
+    metaData: _SITE_CONFIGURATION = <_SITE_CONFIGURATION>{
+      company_name_variation: '을'
+    };
 
   site_config = 'config';
 
@@ -46,7 +50,7 @@ files: Array<_FILE>; // pass-by-reference.
   }
 
 
-  onClickSaveMeta(){
+  onClickSaveMeta( update = false){
      let req: _META_CREATE = {
        model: this.site_config,
        model_idx: 1,
@@ -56,70 +60,72 @@ files: Array<_FILE>; // pass-by-reference.
      //console.log('onClickSaveMeta:: ', req);
      this.meta.create( req ).subscribe( (res: _META_CREATE_RESPONSE) => {
        if(res && res.data && res.data.meta && res.data.meta.data){
-         //console.log('meta.create', res);
          let config = res.data.meta.data ;
          localStorage.setItem(this.site_config, config);
-         alert('Success Configuration Saved');
+         if( ! update ) alert('Success Configuration Saved');
        }
      }, error => this.meta.errorResponse(error));
   }
 
   getSiteConfig() {
 
-    let config = localStorage.getItem(this.site_config);
-    //console.log('config:: ', config);
-    if (config) {
-      try {
-        this.metaData = JSON.parse(config);
-      } catch(e){}
-    }
+    //localStorage.setItem( this.site_config, '' );
+      let config = localStorage.getItem(this.site_config);
+      //console.log('config:: ', config);
+      if (config) {
+        try {
+          this.metaData = JSON.parse(config);
+          //console.log('metaData',this.metaData);
+        } catch(e){}
+      }
 
       this.meta.config().subscribe( (res) => {
-
-        console.log('meta.config', res);
-        if(res && res.data && res.data.config){
-          console.log('meta.config::config', res);
+        //console.log('meta.config', res);
+        if( res && res.data && res.data.config ){
+          //console.log('meta.config::config', res);
           config = res.data.config ;
           try {
             this.metaData = JSON.parse(config);
+            //console.log('metaData::config',this.metaData);
           } catch(e){}
-          localStorage.setItem(this.site_config, config);
+          localStorage.setItem( this.site_config, config );
         }
         return config;
       }, error => this.meta.errorResponse(error));
 
   }
 
-
-  get siteInfo(): _SITE_CONFIGURATION {
-    let data = localStorage.getItem( this.site_config );
-    //console.log(data);
-    if ( data ) {
-      try {
-        return JSON.parse( data );
-      }
-      catch (e) {}
-    }
-    return <_SITE_CONFIGURATION>{};
-  }
+  //
+  // get siteInfo(): _SITE_CONFIGURATION {
+  //   let data = localStorage.getItem( this.site_config );
+  //   //console.log(data);
+  //   if ( data ) {
+  //     try {
+  //       return JSON.parse( data );
+  //     }
+  //     catch (e) {}
+  //   }
+  //   return <_SITE_CONFIGURATION>{};
+  // }
 
 
   onChangeFile( _ ) {
       this.percentage = 1;
-      console.log(_.files[0]);
+      //console.log(_.files[0]);
       let req: _UPLOAD = {
-    model: 'config',
-    model_idx: 1,
-    code: 'config',
-    unique: 'Y',
-    finish: 'Y'
+          model: 'config',
+          model_idx: 1,
+          code: 'config',
+          unique: 'Y',
+          finish: 'Y'
       };
       this.file.upload( req, _.files[0], percentage => {
           this.percentage = percentage;
           this.ngZone.run( () => {} );
       } ).subscribe( (res:_UPLOAD_RESPONSE) => {
-          this.logo = res.data;
-          console.log(this.logo);
+          this.metaData.logo_idx = res.data.idx;
+          this.metaData.logo_url = res.data.url;
+          //console.log('onchange::metadata::', this.metaData);
           this.percentage = 0;
       }, err => {
           if ( this.file.isError(err) == ERROR_NO_FILE_SELECTED ) return;
@@ -128,12 +134,16 @@ files: Array<_FILE>; // pass-by-reference.
   }
 
 
-  onClickDeleteFile( file ) {
-    let req = {
-      idx: file.idx,
+  onClickDeleteFile( file_idx ) {
+    let req: _DELETE_REQUEST = {
+      idx: file_idx,
     };
     this.file.delete( req ).subscribe( (res:_DELETE_RESPONSE) => {
-      this.logo = null;
+      //console.log('delete file',res);
+      if (res.data.idx == file_idx ){
+        this.metaData.logo_idx = this.metaData.logo_url = null;
+        this.onClickSaveMeta( true );
+      }
     }, err => this.file.alert(err) );
   }
 
