@@ -38,7 +38,7 @@ export class App implements AfterViewInit {
   ) {
 
     //this.backend.setBackendUrl('http://backend.org/index.php');
-    this.backend.setBackendUrl("https://www.englishfordevelopers.com/index.php");
+    this.backend.setBackendUrl("https://"+window.location.hostname+"/index.php");
     //console.log("backend URL: ", backend.getBackendUrl());
     backend.version().subscribe( r => console.log("backend version: ", r) );
 
