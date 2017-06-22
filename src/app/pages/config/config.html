@@ -40,28 +40,34 @@
 
       <h4>사이트 로고</h4>
 
-<div class="form-files clearfix">
-    <div class="file w-25 float-left" *ngIf=" logo "
-        style="position: relative;">
+      <div class="form-files clearfix">
+          <div class="file w-25 float-left" *ngIf=" metaData.logo_idx "
+              style="position: relative;">
 
-        <div (click)=" onClickDeleteFile( logo ) "
-            class="p-2 bg-primary" style="position: absolute; left: 2px; bottom: 2px;">
-            X
-        </div>
+              <!--<div (click)=" onClickDeleteFile( metaData.logo_idx ) "-->
+                  <!--class="p-2" style="position: absolute; left: 2px; bottom: 2px;">-->
+                  <!--<i class="fa fa-trash"></i>-->
+              <!--</div>-->
 
-        <img style="width: 100%" src="{{ logo.url + '&crop=100x100x70' }}">
-    </div>
-</div>
+                <span class="fa-stack fa-lg  fs-1rem" (click)=" onClickDeleteFile( metaData.logo_idx ) " style="position: absolute; z-index:100; left: 2px; bottom: 2px;">
+                    <i class="fa fa-circle fa-stack-2x" style="color:#000"></i>
+                    <i class="fa fa-trash fa-stack-1x text-white"></i>
+                </span>
 
-<div class="form-group">
-    <label for="file-box">Upload Photos</label>
-    <div *ngIf=" percentage " class="progress mb-2">
-        <div class="progress-bar" role="progressbar" [style.width]=" percentage + '%' ">{{ percentage }} %</div>
-    </div>
+              <!--<img style="width: 100%" src="{{ metaData.logo_url + '&crop=100x100x70' }}">-->
+              <img style="width: 100%" src="{{ metaData.logo_url }}">
+          </div>
+      </div>
 
-    <input type="file" class="form-control-file" id="file-box" #file (change)="onChangeFile(file)">
-    <small class="form-text text-muted">Please select a photo to upload</small>
-</div>
+      <div class="form-group">
+          <label for="file-box">Upload Photos</label>
+          <div *ngIf=" percentage " class="progress mb-2">
+              <div class="progress-bar" role="progressbar" [style.width]=" percentage + '%' ">{{ percentage }} %</div>
+          </div>
+
+          <input type="file" class="form-control-file" id="file-box" #file (change)="onChangeFile(file)">
+          <small class="form-text text-muted">Please select a photo to upload</small>
+      </div>
 
 
 
