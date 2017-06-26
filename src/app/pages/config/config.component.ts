@@ -28,6 +28,7 @@ export interface _SITE_CONFIGURATION {
   reminder_message?: string;
   announcement_key?: string;
   announcement_message?: string;
+  atg_credit_card?: string;
   payment_banner_info?: string;
   logo_idx?: number;
   logo_url?: string;

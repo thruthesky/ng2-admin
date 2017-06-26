@@ -120,6 +120,17 @@
         <button type="button" class="btn btn-primary btn-raised col-sm-12 col-md-3"  (click)="onClickSaveMeta()">저장하기</button>
       </div>
 
+      <hr>
+      <h4>AllTheGate Credit Card Information</h4>
+      <div class="form-group">
+        <label for="atg_credit_card">Payment Banner Information</label>
+        <input [(ngModel)]="metaData.atg_credit_card" type="text" class="form-control" id="atg_credit_card" placeholder="AllTheGate Credit Card">
+      </div>
+
+      <div class="d-flex justify-content-end button-wrapper ">
+        <button type="button" class="btn btn-primary btn-raised col-sm-12 col-md-3"  (click)="onClickSaveMeta()">저장하기</button>
+      </div>
+
 
       <hr>
       <h4>Payment Information</h4>
