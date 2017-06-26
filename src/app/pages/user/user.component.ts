@@ -149,7 +149,7 @@ export class UserPage implements OnInit {
     this.searchQuery.page = page;
     this.searchQuery.limit = this.no_of_items_in_one_page;
     this.user.list(this.searchQuery).subscribe((res: _USER_LIST_RESPONSE) => {
-      console.info( 'loadSearchedData', res );
+      //console.info( 'loadSearchedData', res );
       this.list_of_users = res.data.users;
       this.list_of_users.map( (user) => {
         user['changePassword'] = user.idx;

@@ -87,7 +87,7 @@ export class Dashboard {
 
   getAdminDashboardInformation() {
     this.lms.loadAdminDashboard( res => {
-      console.log('AdminDashboard::', res);
+      //console.log('AdminDashboard::', res);
       this.shared.noOfReservations.stats = res.no_of_reserved_classes;
       this.shared.noOfStudents.stats = res.no_of_students;
       //this.shared.admin_dashboard_info.no_of_today_classes = res.no_of_today_classes;
@@ -111,12 +111,12 @@ export class Dashboard {
     q.limit = 1;
     q.order = 'idx DESC';
     this.user.list( q ).subscribe( (res: _USER_LIST_RESPONSE ) => {
-      console.log('getuser', res);
+      //console.log('getuser', res);
       if( res.code === 0 ) {
         this.shared.totalUser.stats = res.data.total;
       }
     }, e => {
-      console.log("ERROR: ", e);
+      //console.log("ERROR: ", e);
       if ( parseInt(e.code) === -40105 ) {
         this.router.navigateByUrl("/login");
       }

@@ -23,6 +23,7 @@
             <div>
               PostID : {{ msg.idx}}
               <div *ngIf="msg.title">{{ msg.title }}</div>
+              <div *ngIf="msg.content" [innerHTML]="msg.content"></div>
             </div>
             <span>{{ msg.created }}</span>
           </div>
@@ -49,7 +50,8 @@
             <!--<img [ngClass]="{'photo-msg-item': !msg.image}" src="{{ ( msg.image ||  (msg.name | baProfilePicture)) }}">-->
           </div>
           <div class="msg-area">
-            <div>Student ID: {{ class.idx_student }}</div>
+            <div>Student : {{class.student.name}} ({{ class.idx_student }})</div>
+            <div>Teacher : {{class.teacher.name}} ({{ class.idx_teacher }})</div>
             <span>{{ class.class_begin }}-{{ class.class_end }}</span>
           </div>
         </div>

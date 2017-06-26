@@ -38,12 +38,12 @@ export class App implements AfterViewInit {
   ) {
 
     //this.backend.setBackendUrl('http://backend.org/index.php');
-    //this.backend.setBackendUrl("https://"+window.location.hostname+"/index.php");
-    //this.backend.setBackendUrl("https://iamtalkative.com/index.php");
-    this.backend.setBackendUrl("https://www.englishfordevelopers.com/index.php");
+    this.backend.setBackendUrl("https://"+window.location.hostname+"/index.php");
 
-    //console.log("backend URL: ", backend.getBackendUrl());
-    backend.version().subscribe( r => console.log("backend version: ", r) );
+    //console.log('windows.location::', window.location.hostname);
+    //this.backend.setBackendUrl("https://iamtalkative.com/index.php");
+    //this.backend.setBackendUrl("https://www.englishfordevelopers.com/index.php");
+    //backend.version().subscribe( r => console.log("backend version: ", r) );
 
     if ( ! backend.logged || ! backend.info.admin ) this.router.navigateByUrl('/login');
     //console.log(backend.info);

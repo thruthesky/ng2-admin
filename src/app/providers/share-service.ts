@@ -68,7 +68,7 @@ export class ShareService {
   };
 
   constructor() {
-    console.log("SharedService::INITIALIZED");
+    //console.log("SharedService::INITIALIZED");
   }
 
 

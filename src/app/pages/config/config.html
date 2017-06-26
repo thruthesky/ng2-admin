@@ -97,8 +97,23 @@
         <input [(ngModel)]="metaData.reminder_key" type="text" class="form-control" id="reminder_key" placeholder="Remainders Key">
       </div>
       <div class="form-group">
-        <label for="reminders_message">첫번째 줄 ( 회사 명, 전화번호, 연락처 등 적당한 정보 )</label>
-        <input [(ngModel)]="metaData.reminders_message" type="text" class="form-control" id="reminders_message" placeholder="Payment Banner Info">
+        <label for="reminder_message">첫번째 줄 ( 회사 명, 전화번호, 연락처 등 적당한 정보 )</label>
+        <textarea [(ngModel)]="metaData.reminder_message" rows="3" class="form-control" id="reminder_message" placeholder="Payment Banner Info"></textarea>
+      </div>
+
+      <div class="d-flex justify-content-end button-wrapper ">
+        <button type="button" class="btn btn-primary btn-raised col-sm-12 col-md-3"  (click)="onClickSaveMeta()">저장하기</button>
+      </div>
+
+      <hr>
+      <h4>Announcement Pop-up</h4>
+      <div class="form-group">
+        <label for="reminder_key">첫번째 줄 ( 회사 명, 전화번호, 연락처 등 적당한 정보 )</label>
+        <input [(ngModel)]="metaData.announcement_key" type="text" class="form-control" id="announcement_key" placeholder="Announcement Key">
+      </div>
+      <div class="form-group">
+        <label for="reminder_message">첫번째 줄 ( 회사 명, 전화번호, 연락처 등 적당한 정보 )</label>
+        <textarea [(ngModel)]="metaData.announcement_message" rows="3" class="form-control" id="announcement_message" placeholder="Announcement Pop-up"></textarea>
       </div>
 
       <div class="d-flex justify-content-end button-wrapper ">

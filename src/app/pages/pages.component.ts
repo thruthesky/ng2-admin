@@ -56,7 +56,7 @@ export class Pages {
       date_end: d,
     };
     this.lms.getClasses( data, res => {
-      console.log('getClasses:: ', res );
+      //console.log('getClasses:: ', res );
       if(res['books'].length) {
         this.shared.todayClasses = res['books'];
       }
@@ -78,7 +78,7 @@ export class Pages {
           post.created = ( new Date( parseInt(post.created) * 1000 ) ).toDateString();
         });
 
-        console.log('newpostdata:: ', this.shared.newPosts);
+        //console.log('newpostdata:: ', this.shared.newPosts);
       }
     }, e => this.postData.alert(e));
   }

@@ -21,8 +21,13 @@ export interface _SITE_CONFIGURATION {
   copyright_line2?: string;
   copyright_line3?: string;
   copyright_line4?: string;
+  company_name_eul?: string;
+  company_name_en?: string;
+  company_name_wa?: string;
   reminder_key?: string;
   reminder_message?: string;
+  announcement_key?: string;
+  announcement_message?: string;
   payment_banner_info?: string;
   logo_idx?: number;
   logo_url?: string;
@@ -39,7 +44,7 @@ export class ConfigPage {
     percentage: number = 0;
     logo: _FILE;
     metaData: _SITE_CONFIGURATION = <_SITE_CONFIGURATION>{
-      company_name_variation: '을'
+      company_name_variation: '1'
     };
 
   site_config = 'config';

@@ -52,10 +52,15 @@ export interface _BOOK {
   "ready":string;
   "check":string;
   "status_payment":string;
+  "student":{
+    "id":string,
+    "name":string,
+    "nick":string,
+  };
   "teacher":{
     "idx":string,
-    "mb_name":string,
-    "mb_nick":string
+    "name":string,
+    "nick":string
   };
   "ap": string;
   "mins": string;
@@ -226,7 +231,7 @@ export class LMS {
       if(data.student_id) url+= `&student_id=` + data.student_id;
       if(data.date_begin) url+= `&date_begin=` + data.date_begin;
       if(data.date_end) url+= `&date_end=` + data.date_end;
-      console.log('getClasses::URL:: ', url);
+      //console.log('getClasses::URL:: ', url);
       this.http.get(url).subscribe( re => {
         let json = JSON.parse( re['_body']);
         if( json['data'] ) success( json['data'] );
