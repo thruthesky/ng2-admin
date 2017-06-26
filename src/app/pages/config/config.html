@@ -25,10 +25,6 @@
         </div>
       </div>
 
-
-
-      <hr>
-
       <div class="form-group">
         <label for="company_email">이메일</label>
         <input [(ngModel)]="metaData.company_email" type="text" class="form-control" id="company_email" placeholder="이메일">
@@ -44,16 +40,10 @@
           <div class="file w-25 float-left" *ngIf=" metaData.logo_idx "
               style="position: relative;">
 
-              <!--<div (click)=" onClickDeleteFile( metaData.logo_idx ) "-->
-                  <!--class="p-2" style="position: absolute; left: 2px; bottom: 2px;">-->
-                  <!--<i class="fa fa-trash"></i>-->
-              <!--</div>-->
-
                 <span class="fa-stack fa-lg  fs-1rem" (click)=" onClickDeleteFile( metaData.logo_idx ) " style="position: absolute; z-index:100; left: 2px; bottom: 2px;">
                     <i class="fa fa-circle fa-stack-2x" style="color:#000"></i>
                     <i class="fa fa-trash fa-stack-1x text-white"></i>
                 </span>
-
               <!--<img style="width: 100%" src="{{ metaData.logo_url + '&crop=100x100x70' }}">-->
               <img style="width: 100%" src="{{ metaData.logo_url }}">
           </div>
@@ -69,8 +59,9 @@
           <small class="form-text text-muted">Please select a photo to upload</small>
       </div>
 
-
-
+      <div class="d-flex justify-content-end button-wrapper ">
+        <button type="button" class="btn btn-primary btn-raised col-sm-12 col-md-3"  (click)="onClickSaveMeta()">저장하기</button>
+      </div>
 
       <hr>
 
@@ -95,12 +86,36 @@
         <input [(ngModel)]="metaData.copyright_line4" type="text" class="form-control" id="copyright_line4" placeholder="Copyright (C) 2017 All Rights Reserved By ....">
       </div>
 
+      <div class="d-flex justify-content-end button-wrapper ">
+        <button type="button" class="btn btn-primary btn-raised col-sm-12 col-md-3"  (click)="onClickSaveMeta()">저장하기</button>
+      </div>
 
-      <div class="d-flex justify-content-center button-wrapper ">
-        <button type="button" class="btn btn-primary btn-raised col-4"  (click)="onClickSaveMeta()">저장하기</button>
+      <hr>
+      <h4>Reminders</h4>
+      <div class="form-group">
+        <label for="reminder_key">첫번째 줄 ( 회사 명, 전화번호, 연락처 등 적당한 정보 )</label>
+        <input [(ngModel)]="metaData.reminder_key" type="text" class="form-control" id="reminder_key" placeholder="Remainders Key">
+      </div>
+      <div class="form-group">
+        <label for="reminders_message">첫번째 줄 ( 회사 명, 전화번호, 연락처 등 적당한 정보 )</label>
+        <input [(ngModel)]="metaData.reminders_message" type="text" class="form-control" id="reminders_message" placeholder="Payment Banner Info">
+      </div>
+
+      <div class="d-flex justify-content-end button-wrapper ">
+        <button type="button" class="btn btn-primary btn-raised col-sm-12 col-md-3"  (click)="onClickSaveMeta()">저장하기</button>
       </div>
 
 
+      <hr>
+      <h4>Payment Information</h4>
+      <div class="form-group">
+        <label for="payment_banner_info">Payment Banner Information</label>
+        <input [(ngModel)]="metaData.payment_banner_info" type="text" class="form-control" id="payment_banner_info" placeholder="Payment Banner Info">
+      </div>
+
+      <div class="d-flex justify-content-end button-wrapper ">
+        <button type="button" class="btn btn-primary btn-raised col-sm-12 col-md-3"  (click)="onClickSaveMeta()">저장하기</button>
+      </div>
     </ba-card>
 </div>
 

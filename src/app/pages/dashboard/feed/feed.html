@@ -12,9 +12,7 @@
         <span class="author" *ngIf="config == 'qna'">{{ message.title }} </span>
         <span class="author" *ngIf="config == 'review'">{{ message.name }} </span>
       </div>
-      <div class="message-content line-clamp" [ngClass]="{'line-clamp-2' : !message.expanded}">
-        {{ message.content }}
-      </div>
+      <div class="message-content line-clamp" [ngClass]="{'line-clamp-2' : !message.expanded}" [innerHTML]="message.content"></div>
       <div class="preview" [ngClass]="{'hidden': !message.expanded}" *ngIf="message.files.length && config == 'qna'">
           <img src="{{ ( message?.files[0]?.url )}}">
       </div>

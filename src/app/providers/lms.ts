@@ -6,7 +6,6 @@ import { User, _USER_DATA_RESPONSE, _USER_RESPONSE } from 'angular-backend';
 
 export const LMS_URL = "//witheng.com";
 export const LMS_ENDPOINT_URL = LMS_URL + "/ajax.php";
-export const domain: string = 'englishfordevelopers.onlineenglish.kr';
 export const CLASS_ID = "solution";
 export interface TEACHER {
     birthday: string;

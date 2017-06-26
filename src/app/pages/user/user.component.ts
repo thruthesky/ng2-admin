@@ -38,6 +38,7 @@ export class UserPage implements OnInit {
     actions: {
       add: false
     },
+    hideSubHeader: true,
     edit: {
       editButtonContent: '<i class="ion-edit"></i>',
       saveButtonContent: '<i class="ion-checkmark"></i>',
@@ -49,11 +50,11 @@ export class UserPage implements OnInit {
       confirmDelete: true
     },
     columns: {
-      idx: {
-        title: 'IDX',
-        type: 'number',
-        editable: false
-      },
+      // idx: {
+      //   title: 'IDX',
+      //   type: 'number',
+      //   editable: false
+      // },
       id: {
         title: 'ID',
         type: 'string',

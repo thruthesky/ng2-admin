@@ -8,7 +8,9 @@ import { ChangePasswordModal } from "../changePasswordModal/changePasswordModal"
   template: `
     <i class="fa fa-key" (click)="onClick()"></i>
   `,
-  styles: [` i.fa-key { cursor: pointer; }`]
+  styles: [` i.fa-key { 
+    cursor: pointer;
+    font-family: FontAwesome}`]
 })
 export class ChangePasswordButton implements OnInit {
   //renderValue: string;

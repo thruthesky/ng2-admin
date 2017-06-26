@@ -134,19 +134,32 @@ export class Dashboard {
       if( res.code === 0 ) {
         this.shared.newUser.stats = res.data.total;
       }
-    }, e => this.user.alert(e) );
+    }, e => {
+      //console.log("ERROR: ", e);
+      if ( parseInt(e.code) === -40105 ) {
+        this.router.navigateByUrl("/login");
+      }
+      else this.user.alert(e);
+    } );
   }
 
   getNewPostCount() {
     let q: _LIST = {};
+    q.limit = 1;
     q.where = 'created >= cast( ? as integer )';
     q.bind = '' + this.sevenDaysAgo;
     this.postData.list(q).subscribe( (res: _USER_LIST_RESPONSE ) => {
-      console.log('newpost.list:: ', res);
+      //console.log('newpost.list:: ', res);
       if( res.code === 0 ) {
         this.shared.no_of_new_post = res.data.total;
       }
-    }, e => this.user.alert(e) );
+    }, e => {
+      //console.log("ERROR: ", e);
+        if ( parseInt(e.code) === -40105 ) {
+          this.router.navigateByUrl("/login");
+        }
+        else this.user.alert(e);
+    } );
   }
 
 

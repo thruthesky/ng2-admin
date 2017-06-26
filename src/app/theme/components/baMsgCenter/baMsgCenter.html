@@ -20,7 +20,10 @@
             <img [ngClass]="{'photo-msg-item': !msg.msg}" src="{{ ( msg?.files[0]?.url ) }}">
           </div>
           <div class="msg-area">
-            <div>{{ msg.title }}</div>
+            <div>
+              PostID : {{ msg.idx}}
+              <div *ngIf="msg.title">{{ msg.title }}</div>
+            </div>
             <span>{{ msg.created }}</span>
           </div>
         </div>

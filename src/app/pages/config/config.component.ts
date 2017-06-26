@@ -21,6 +21,9 @@ export interface _SITE_CONFIGURATION {
   copyright_line2?: string;
   copyright_line3?: string;
   copyright_line4?: string;
+  reminder_key?: string;
+  reminder_message?: string;
+  payment_banner_info?: string;
   logo_idx?: number;
   logo_url?: string;
 }
@@ -50,7 +53,7 @@ export class ConfigPage {
   }
 
 
-  onClickSaveMeta( update = false){
+  onClickSaveMeta( update = false ){
      let req: _META_CREATE = {
        model: this.site_config,
        model_idx: 1,
@@ -94,20 +97,6 @@ export class ConfigPage {
       }, error => this.meta.errorResponse(error));
 
   }
-
-  //
-  // get siteInfo(): _SITE_CONFIGURATION {
-  //   let data = localStorage.getItem( this.site_config );
-  //   //console.log(data);
-  //   if ( data ) {
-  //     try {
-  //       return JSON.parse( data );
-  //     }
-  //     catch (e) {}
-  //   }
-  //   return <_SITE_CONFIGURATION>{};
-  // }
-
 
   onChangeFile( _ ) {
       this.percentage = 1;

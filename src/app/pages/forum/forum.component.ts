@@ -33,43 +33,52 @@ export class ForumPage {
       confirmDelete: true
     },
     columns: {
-      idx: {
-        title: 'IDX',
-        type: 'number',
-        editable: false
-      },
+      // idx: {
+      //   title: 'IDX',
+      //   type: 'number',
+      //   editable: false,
+      //   filter:false
+      // },
       id: {
         title: 'ID',
         type: 'string',
-        editable: false
+        //editable: false
+        filter:false
       },
       name: {
         title: 'Name',
-        type: 'string'
+        type: 'string',
+        filter:false
       },
       description: {
         title: 'Description',
-        type: 'string'
+        type: 'string',
+        filter:false
       },
       moderators: {
         title: 'Moderators',
-        type: 'string'
+        type: 'string',
+        filter:false
       },
       level_list: {
         title: 'List',
-        type: 'number'
+        type: 'number',
+        filter:false
       },
       level_view: {
         title: 'View',
-        type: 'number'
+        type: 'number',
+        filter:false
       },
       level_write: {
         title: 'Write',
-        type: 'number'
+        type: 'number',
+        filter:false
       },
       level_comment: {
         title: 'Comment',
-        type: 'number'
+        type: 'number',
+        filter:false
       },
         // deleted: {
         //   title: 'Deleted',

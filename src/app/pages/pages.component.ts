@@ -49,7 +49,7 @@ export class Pages {
     this._menuService.updateMenuByRoutes(<Routes>PAGES_MENU);
   }
 
-  getNewPosts() {
+  getTodayClasses() {
     let d = new Date().toISOString().slice(0,10);
     let data = {
       date_begin: d,
@@ -64,11 +64,13 @@ export class Pages {
 
   }
 
-  getTodayClasses() {
+  getNewPosts() {
     let q: _LIST = {};
+    q.where = "deleted is null and cast(? as integer)";
+    q.bind  = '1';
     q.extra= { file: true , post_config_id: 'qna' };
     this.postData.list(q).subscribe( (res: _POST_LIST_RESPONSE ) => {
-      //console.log(this.config + '::feed::getData::postData:: ', res);
+      //console.log( 'qna::feed::getData::postData:: ', res);
       if (res.code === 0 ) {
         this.shared.newPosts = res.data.posts;
         this.shared.newPosts.map( (post: _POST_COMMON_WRITE_FIELDS) => {
