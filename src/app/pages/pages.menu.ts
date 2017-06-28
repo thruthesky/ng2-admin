@@ -38,27 +38,39 @@ export const PAGES_MENU = [
           }
         }
       },
+      // {
+      //   path: 'user',
+      //   data: {
+      //     menu: {
+      //       title: '예약된 수업',
+      //       icon: 'fa fa-book',
+      //       selected: false,
+      //       expanded: false,
+      //       order: 20,
+      //     }
+      //   }
+      // },
+      // {
+      //   path: 'user',
+      //   data: {
+      //     menu: {
+      //       title: '지난 수업',
+      //       icon: 'fa fa-book',
+      //       selected: false,
+      //       expanded: false,
+      //       order: 20,
+      //     }
+      //   }
+      // },
       {
-        path: 'user',
+        path: 'centerX',
         data: {
           menu: {
-            title: '예약된 수업',
-            icon: 'fa fa-book',
+            title: 'CenterX LMS',
+            icon: 'fa fa-arrows-alt',
             selected: false,
             expanded: false,
-            order: 20,
-          }
-        }
-      },
-      {
-        path: 'user',
-        data: {
-          menu: {
-            title: '지난 수업',
-            icon: 'fa fa-book',
-            selected: false,
-            expanded: false,
-            order: 20,
+            order: 25,
           }
         }
       },
@@ -70,7 +82,7 @@ export const PAGES_MENU = [
             icon: 'fa fa-gear',
             selected: false,
             expanded: false,
-            order: 25,
+            order: 30,
           }
         }
       }

@@ -37,8 +37,13 @@ export class App implements AfterViewInit {
               private router: Router,
   ) {
 
+
+    if ( environment.backendUrl ) backend.setBackendUrl( environment.backendUrl  );
+    else backend.setBackendUrl("https://" + window.location.hostname  + "/index.php");
+
+
     //this.backend.setBackendUrl('http://backend.org/index.php');
-    this.backend.setBackendUrl("https://"+window.location.hostname+"/index.php");
+    //this.backend.setBackendUrl("https://"+window.location.hostname+"/index.php");
 
     //console.log('windows.location::', window.location.hostname);
     //this.backend.setBackendUrl("https://iamtalkative.com/index.php");

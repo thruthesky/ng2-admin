@@ -5,5 +5,6 @@
 
 export const environment = {
   production: false,
+  backendUrl: 'https://www.iamtalkative.com/index.php',
   background: '/assets/img/sky-bg.jpg'
 };

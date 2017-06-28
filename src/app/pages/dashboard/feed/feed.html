@@ -9,10 +9,11 @@
     </div>
     <div class="text-block text-message">
       <div class="message-header">
-        <span class="author" *ngIf="config == 'qna'">{{ message.title }} </span>
-        <span class="author" *ngIf="config == 'review'">{{ message.name }} </span>
+        <div class="author" *ngIf="config == 'qna'">{{ message.title }} </div>
+        <div class="author" *ngIf="config == 'review'">{{ message.name }} </div>
       </div>
       <div class="message-content line-clamp" [ngClass]="{'line-clamp-2' : !message.expanded}" [innerHTML]="message.content"></div>
+      <div class="message-content" *ngIf="config == 'qna' && message.mobile">Mobile No: {{ message.mobile }}</div>
       <div class="preview" [ngClass]="{'hidden': !message.expanded}" *ngIf="message.files.length && config == 'qna'">
           <img src="{{ ( message?.files[0]?.url )}}">
       </div>
@@ -27,3 +28,4 @@
     </div>
   </div>
 </div>
+

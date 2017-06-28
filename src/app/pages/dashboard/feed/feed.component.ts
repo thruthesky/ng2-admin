@@ -38,6 +38,7 @@ export class Feed {
     let q = this.searchQuery;
     q.where = "deleted is null and cast(? as integer)";
     q.bind  = '1';
+    q.limit = 20;
     q.extra= { file: true , post_config_id: this.config };
     this.postData.list(q).subscribe( (res: _POST_LIST_RESPONSE ) => {
       //console.log(this.config + '::feed::getData::postData:: ', res);
