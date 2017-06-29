@@ -45,6 +45,7 @@ export class Dashboard {
 
   today = Math.round((new Date()).getTime() / 1000);
   sevenDaysAgo = this.today - (7 * 24 * 60 * 60);
+  nineMonths = this.today - (90 * 24 * 60 * 60);
 
   constructor(
     private user:       User,
@@ -67,8 +68,10 @@ export class Dashboard {
     let q: _LIST = {};
     q.select = "DATE( FROM_UNIXTIME( created ) ) AS perDay, COUNT(idx) AS total, idx";
     q.where = "created > cast(? as integer) GROUP BY PerDay";
-    q.bind = "sevenDaysAgo";
+    q.bind = "" + this.nineMonths;
+    q.limit = 100;
     this.user.list( q ).subscribe( (res: _USER_LIST_RESPONSE ) => {
+      console.log('userGraph:: ', res);
       if( res.code === 0 ) {
         //let labels = [];
         let series = [];

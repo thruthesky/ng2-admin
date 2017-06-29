@@ -21,9 +21,8 @@
           </div>
           <div class="msg-area">
             <div>
-              PostID : {{ msg.idx}}
               <div *ngIf="msg.title">{{ msg.title }}</div>
-              <div *ngIf="msg.content" [innerHTML]="msg.content"></div>
+              <div *ngIf="msg.content" [innerHTML]="msg.content" style="font-size: 12px important!"></div>
             </div>
             <span>{{ msg.created }}</span>
           </div>

@@ -1,7 +1,9 @@
-import { Component, NgZone, Input } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 
 import {
-  Meta, _META_CREATE, _META_ARRAY, _META_CREATE_RESPONSE, _META_LIST_RESPONSE, _LIST,
+  Meta,
+  _META_CREATE,
+  _META_CREATE_RESPONSE,
   _DELETE_REQUEST
 } from 'angular-backend';
 
@@ -28,6 +30,8 @@ export interface _SITE_CONFIGURATION {
   reminder_message?: string;
   announcement_key?: string;
   announcement_message?: string;
+  announcement_photo_idx?: number;
+  announcement_photo_url?: string;
   atg_credit_card?: string;
   payment_banner_info?: string;
   logo_idx?: number;
@@ -42,11 +46,13 @@ export interface _SITE_CONFIGURATION {
 })
 export class ConfigPage {
 
-    percentage: number = 0;
-    logo: _FILE;
-    metaData: _SITE_CONFIGURATION = <_SITE_CONFIGURATION>{
-      company_name_variation: '1'
-    };
+  logoPercentage: number = 0;
+  announcementPercentage: number = 0;
+
+  logo: _FILE;
+  metaData: _SITE_CONFIGURATION = <_SITE_CONFIGURATION>{
+    company_name_variation: '1'
+  };
 
   site_config = 'config';
 
@@ -66,7 +72,6 @@ export class ConfigPage {
        code: this.site_config,
        data: JSON.stringify( this.metaData )
      };
-     //console.log('onClickSaveMeta:: ', req);
      this.meta.create( req ).subscribe( (res: _META_CREATE_RESPONSE) => {
        if(res && res.data && res.data.meta && res.data.meta.data){
          let config = res.data.meta.data ;
@@ -74,6 +79,7 @@ export class ConfigPage {
          if( ! update ) alert('Success Configuration Saved');
        }
      }, error => this.meta.errorResponse(error));
+
   }
 
   getSiteConfig() {
@@ -104,42 +110,84 @@ export class ConfigPage {
 
   }
 
-  onChangeFile( _ ) {
-      this.percentage = 1;
-      //console.log(_.files[0]);
-      let req: _UPLOAD = {
-          model: 'config',
-          model_idx: 1,
-          code: 'config',
-          unique: 'Y',
-          finish: 'Y'
-      };
-      this.file.upload( req, _.files[0], percentage => {
-          this.percentage = percentage;
-          this.ngZone.run( () => {} );
-      } ).subscribe( (res:_UPLOAD_RESPONSE) => {
-          this.metaData.logo_idx = res.data.idx;
-          this.metaData.logo_url = res.data.url;
-          //console.log('onchange::metadata::', this.metaData);
-          this.percentage = 0;
-      }, err => {
-          if ( this.file.isError(err) == ERROR_NO_FILE_SELECTED ) return;
-          this.file.alert(err);
-      });
+  onChangeLogo( _ ){
+    this.logoPercentage = 1;
+    let req: _UPLOAD = {
+      model: 'config',
+      model_idx: 1,
+      code: 'config',
+      unique: 'Y',
+      finish: 'Y'
+    };
+
+    this.file.upload( req, _.files[0], percentage => {
+      this.logoPercentage = percentage;
+      this.ngZone.run( () => {} );
+    } ).subscribe( (res:_UPLOAD_RESPONSE) => {
+      console.log(res);
+      this.metaData.logo_idx = res.data.idx;
+      this.metaData.logo_url = res.data.url;
+      this.logoPercentage = 0;
+    }, err => {
+      this.logoPercentage = 0;
+      if ( this.file.isError(err) == ERROR_NO_FILE_SELECTED ) return;
+      this.file.alert(err);
+    });
   }
 
+  onChangeAnnouncementPhoto( _ ){
+    this.announcementPercentage = 1;
+    let req: _UPLOAD = {
+      model: 'config-announcement',
+      model_idx: 1,
+      code: 'config-announcement',
+      unique: 'Y',
+      finish: 'Y'
+    };
 
-  onClickDeleteFile( file_idx ) {
+    this.file.upload( req, _.files[0], percentage => {
+      this.announcementPercentage = percentage;
+      this.ngZone.run( () => {} );
+    } ).subscribe( (res:_UPLOAD_RESPONSE) => {
+      this.metaData.announcement_photo_idx = res.data.idx;
+      this.metaData.announcement_photo_url = res.data.url;
+      this.announcementPercentage = 0;
+    }, err => {
+      this.announcementPercentage = 0;
+      if ( this.file.isError(err) == ERROR_NO_FILE_SELECTED ) return;
+      this.file.alert(err);
+    });
+  }
+
+  onClickDeleteAnnouncementPhoto( file_idx ) {
     let req: _DELETE_REQUEST = {
       idx: file_idx,
     };
     this.file.delete( req ).subscribe( (res:_DELETE_RESPONSE) => {
-      //console.log('delete file',res);
+      if (res.data.idx == file_idx ){
+        this.metaData.announcement_photo_idx = this.metaData.announcement_photo_url = null;
+        this.onClickSaveMeta( true );
+      }
+    }, err => {
+      console.log(err);
+      this.file.alert(err);
+    });
+  }
+
+  onClickDeleteLogo( file_idx ) {
+    let req: _DELETE_REQUEST = {
+      idx: file_idx,
+    };
+    this.file.delete( req ).subscribe( (res:_DELETE_RESPONSE) => {
+      console.log(res);
       if (res.data.idx == file_idx ){
         this.metaData.logo_idx = this.metaData.logo_url = null;
         this.onClickSaveMeta( true );
       }
-    }, err => this.file.alert(err) );
+    }, err => {
+      console.log(err);
+      this.file.alert(err);
+    });
   }
 
 

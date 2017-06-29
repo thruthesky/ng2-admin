@@ -3,10 +3,10 @@
   <a routerLink="/pages/dashboard" class="al-logo clearfix">ADMIN <span>LMS</span></a>
   <a href (click)="toggleMenu()" class="collapse-menu-link ion-navicon"></a>
 
-  <!--<div class="search">-->
-    <!--<i class="ion-ios-search-strong" ng-click="startSearch()"></i>-->
-    <!--<input id="searchInput" type="text" placeholder="Search for...">-->
-  <!--</div>-->
+  <div class="search">
+    <i class="ion-ios-search-strong"></i>
+    <input [(ngModel)]="search" id="searchInput" type="text" placeholder="Search student..." (keyup)="onChangeSearchStudent()">
+  </div>
 
   <div class="user-profile clearfix">
     <div class="dropdown al-user-profile">
@@ -15,7 +15,7 @@
         <i class="fa fa-user-circle-o fa-3x text-white"></i>
       </a>
       <ul class="dropdown-menu top-dropdown-menu profile-dropdown" aria-labelledby="user-profile-dd">
-        <li class="dropdown-item"><a><i class="fa fa-user"></i>Profile</a></li>
+        <li class="dropdown-item"><a href="/index.html"><i class="fa fa-user"></i>Home</a></li>
         <li class="dropdown-item"><a><i class="fa fa-cog"></i>Settings</a></li>
         <li class="dropdown-item"><a (click)="onClickLogout()" class="signout"><i class="fa fa-power-off"></i>Sign out</a></li>
       </ul>

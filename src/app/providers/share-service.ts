@@ -21,22 +21,13 @@ export interface _ADMIN_DASHBOARD_INFO {
 @Injectable()
 export class ShareService {
 
-
-  // date:Date = new Date();
-  // year:number = this.date.getFullYear();
-  // month:number = parseInt(("0" + (this.date.getMonth() + 1)).slice(-2));
+  searchString: string;
 
   newPosts: _POSTS = <_POSTS>[];
   todayClasses: _BOOKS = <_BOOKS>[];
 
-  // admin_dashboard_info: _ADMIN_DASHBOARD_INFO = {
-  //   no_of_reserved_classes: 0,
-  //   no_of_students: 0,
-  //   no_of_today_classes: 0
-  // };
 
   no_of_new_post: number = 0;
-  // no_of_all_post: number = 0;
 
   noOfReservations: _DATA_BOX = {
     color: 'grey',

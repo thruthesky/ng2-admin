@@ -3,6 +3,8 @@ import {Component} from '@angular/core';
 import {GlobalState} from '../../../global.state';
 import {Router} from "@angular/router";
 import {User, _USER_LOGOUT_RESPONSE } from "angular-backend";
+import {Subject} from "rxjs/Subject";
+import {ShareService} from "../../../providers/share-service";
 
 @Component({
   selector: 'ba-page-top',
@@ -14,14 +16,28 @@ export class BaPageTop {
   public isScrolled:boolean = false;
   public isMenuCollapsed:boolean = false;
 
+  search: string = '';
+  searchChangeDebounce = new Subject();
+
   constructor(
     public user: User,
     private _state:GlobalState,
-    private router: Router
+    private router: Router,
+    public shared: ShareService
   ) {
     this._state.subscribe('menu.isCollapsed', (isCollapsed) => {
       this.isMenuCollapsed = isCollapsed;
     });
+
+
+
+    this.searchChangeDebounce
+      .debounceTime(500) // wait 500ms after the last event before emitting last event
+      .subscribe(() => this.searchStudent());
+  }
+
+  onChangeSearchStudent() {
+    this.searchChangeDebounce.next();
   }
 
   public toggleMenu() {
@@ -42,5 +58,12 @@ export class BaPageTop {
       this.user.alert(err);
       this.router.navigateByUrl('/login');
     });
+  }
+
+
+
+  searchStudent() {
+    this.shared.searchString = this.search;
+    this.router.navigateByUrl('/pages/user');
   }
 }

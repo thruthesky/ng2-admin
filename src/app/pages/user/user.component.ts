@@ -6,6 +6,7 @@ import {
   _DELETE_RESPONSE
 } from "angular-backend";
 import { ChangePasswordButton } from "./components/changePasswordButton/changePasswordButton";
+import {ShareService} from "../../providers/share-service";
 
 @Component({
   selector: 'user-page',
@@ -73,16 +74,16 @@ export class UserPage implements OnInit {
       //   type: 'string',
       //   width: '15px'
       // },
-      gender: {
-        title: 'Gender',
-        type: 'html',
-        editor: {
-          type: 'list',
-          config: {
-            list: [{title: 'Male', value: 'M'}, {title: 'Female', value: 'F'}]
-          }
-        }
-      },
+      // gender: {
+      //   title: 'Gender',
+      //   type: 'html',
+      //   editor: {
+      //     type: 'list',
+      //     config: {
+      //       list: [{title: 'Male', value: 'M'}, {title: 'Female', value: 'F'}]
+      //     }
+      //   }
+      // },
       changePassword: {
         title: 'Change Password',
         type: 'custom',
@@ -103,15 +104,18 @@ export class UserPage implements OnInit {
 
 
   constructor(
-    public user: User
+    public user: User,
+    public shared: ShareService
   ) {
+
+  }
+
+  ngOnInit() {
+    if(this.shared.searchString) this.searchString = this.shared.searchString;
     this.onChangedSearch();
     this.searchChangeDebounce
       .debounceTime(300) // wait 300ms after the last event before emitting last event
       .subscribe(() => this.onChangedSearch());
-  }
-
-  ngOnInit() {
   }
 
   onChangedSearch() {

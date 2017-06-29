@@ -3,8 +3,7 @@ import { CommonModule }  from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgaModule } from '../../theme/nga.module';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
-import { NgbModalModule } from "@ng-bootstrap/ng-bootstrap";
-
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { CenterXPage } from './centerX.component';
 import { routing }       from './centerX.routing';
 import { PaginationModule } from "../../components/pagination/pagination.module";
@@ -16,7 +15,7 @@ import { PaginationModule } from "../../components/pagination/pagination.module"
     FormsModule,
     NgaModule,
     Ng2SmartTableModule,
-    NgbModalModule,
+    NgbModule.forRoot(),
     routing,
     PaginationModule,
   ],

@@ -73,6 +73,13 @@ export interface _BOOK {
 export type _BOOKS = _BOOK[];
 export type TEACHERS = TEACHER[];
 
+
+export interface _API_SEARCH {
+  student_id?: string;
+  date_begin?: string;
+  date_end?: string;
+}
+
 @Injectable()
 export class LMS {
     userData: _USER_RESPONSE = null;
@@ -197,7 +204,13 @@ export class LMS {
     getNextClass( success, failure ) {
             let url = LMS_ENDPOINT_URL + `?function=api_next_class&id_member=${this.user.info.id}@` + this.getDomain();
             this.http.get( url ).subscribe( re => {
-                let json = JSON.parse( re['_body'] );
+              let json = null;
+              try {
+                json = JSON.parse( re['_body'] );
+              }
+              catch ( e ) {
+                alert("Parse ERROR on lms::getNextClass()");
+              }
                 if( json['data'] ) success( json['data'] );
                 else failure( ' error on getting next class ' );
             });
@@ -218,8 +231,14 @@ export class LMS {
     loadAdminDashboard( success, failure ) {
       let url = LMS_ENDPOINT_URL + `?function=api_admin_dashboard&domain=` + this.getDomain();
       this.http.get(url).subscribe( re => {
-        let json = JSON.parse( re['_body']);
-        if( json['data'] ) success( json['data'] );
+        let json = null;
+        try {
+          json = JSON.parse( re['_body'] );
+        }
+        catch ( e ) {
+          //alert("Parse ERROR on lms::loadAdminDashboard()");
+        }
+        if(json && json['data'] ) success( json['data'] );
         else failure( ' error on getting admin Dashboard ' );
         }
       );
@@ -233,11 +252,17 @@ export class LMS {
       if(data.date_end) url+= `&date_end=` + data.date_end;
       //console.log('getClasses::URL:: ', url);
       this.http.get(url).subscribe( re => {
-        let json = JSON.parse( re['_body']);
-        if( json['data'] ) success( json['data'] );
+        //console.log( 'getClasses',re);
+        let json = null;
+          try {
+            json = JSON.parse( re['_body'] );
+          }
+          catch ( e ) {
+            //alert("Parse ERROR on lms::getClasses()");
+          }
+        if( json && json['data'] ) success( json['data'] );
         else failure( ' error on getting admin Dashboard ' );
       });
-
     }
 
 
