@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {EventEmitter, Injectable} from '@angular/core';
 import { _POSTS } from "angular-backend";
 import { _BOOKS} from "./lms";
 
@@ -20,6 +20,8 @@ export interface _ADMIN_DASHBOARD_INFO {
 
 @Injectable()
 export class ShareService {
+
+  public myEvent: EventEmitter<any> = new EventEmitter<any>();
 
   searchString: string;
 

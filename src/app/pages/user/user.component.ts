@@ -75,12 +75,12 @@ export class UserPage implements OnInit {
       //   width: '15px'
       // },
       // gender: {
-      //   title: 'Gender',
+      //   title: 'ClassID',
       //   type: 'html',
       //   editor: {
       //     type: 'list',
       //     config: {
-      //       list: [{title: 'Male', value: 'M'}, {title: 'Female', value: 'F'}]
+      //       list: [{title: 'IE', value: 'solution'}, {title: 'Chrome', value: 've4'}]
       //     }
       //   }
       // },
@@ -107,8 +107,21 @@ export class UserPage implements OnInit {
     public user: User,
     public shared: ShareService
   ) {
-
+    this.listenEvents();
   }
+
+  listenEvents() {
+    this.shared.myEvent.subscribe( item => {
+      if( item.eventType == 'header-search'  ){
+        this.searchString = item.search;
+        this.onChangedSearch();
+      }
+    });
+  }
+
+  // ngOnDestroy() {
+  //   this.shared.myEvent.unsubscribe();
+  // }
 
   ngOnInit() {
     if(this.shared.searchString) this.searchString = this.shared.searchString;

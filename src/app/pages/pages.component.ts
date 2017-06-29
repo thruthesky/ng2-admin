@@ -11,7 +11,7 @@ import {_LIST, _POST_COMMON_WRITE_FIELDS, _POST_LIST_RESPONSE, PostData, User} f
   selector: 'pages',
   template: `
     <ba-sidebar></ba-sidebar>
-    <ba-page-top></ba-page-top>
+    <ba-page-top (headerSearch)="onHeaderSearchChange($event)"></ba-page-top>
     <div class="al-main">
       <div class="al-content">
         <ba-content-top></ba-content-top>
@@ -82,5 +82,11 @@ export class Pages {
       }
     }, e => this.postData.alert(e));
   }
+
+  onHeaderSearchChange(event){
+    console.log('onHeaderSearchChange', event);
+
+  }
+
 
 }

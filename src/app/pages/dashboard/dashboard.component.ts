@@ -71,7 +71,7 @@ export class Dashboard {
     q.bind = "" + this.nineMonths;
     q.limit = 100;
     this.user.list( q ).subscribe( (res: _USER_LIST_RESPONSE ) => {
-      console.log('userGraph:: ', res);
+      //console.log('userGraph:: ', res);
       if( res.code === 0 ) {
         //let labels = [];
         let series = [];

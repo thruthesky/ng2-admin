@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
 import {Subject} from "rxjs/Subject";
-import {User} from "angular-backend";
 import {_API_SEARCH, _BOOKS, LMS} from "../../providers/lms";
 
 export interface _DATE {
@@ -30,9 +29,8 @@ export class CenterXPage {
   no_more_student:boolean = false;
 
   constructor(
-    private user: User,
     private lms: LMS) {
-    console.log('CenterX');
+    //console.log('CenterX');
 
     this.date_begin = this.date_end = {
       year: this.d.getFullYear(),

@@ -19,6 +19,7 @@ export class BaPageTop {
   search: string = '';
   searchChangeDebounce = new Subject();
 
+
   constructor(
     public user: User,
     private _state:GlobalState,
@@ -65,5 +66,9 @@ export class BaPageTop {
   searchStudent() {
     this.shared.searchString = this.search;
     this.router.navigateByUrl('/pages/user');
+    this.shared.myEvent.emit({
+      eventType: "header-search",
+      search: this.search
+    });
   }
 }
