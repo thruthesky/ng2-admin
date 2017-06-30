@@ -27,6 +27,7 @@ export interface _SITE_CONFIGURATION {
   company_name_en?: string;
   company_name_wa?: string;
   reminder_key?: string;
+  reminder_title?: string;
   reminder_message?: string;
   announcement_key?: string;
   announcement_message?: string;

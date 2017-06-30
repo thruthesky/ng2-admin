@@ -93,12 +93,16 @@
       <hr>
       <h4>Reminders</h4>
       <div class="form-group">
-        <label for="reminder_key">첫번째 줄 ( 회사 명, 전화번호, 연락처 등 적당한 정보 )</label>
+        <label for="reminder_key">Reminders Key</label>
         <input [(ngModel)]="metaData.reminder_key" type="text" class="form-control" id="reminder_key" placeholder="Remainders Key">
       </div>
       <div class="form-group">
-        <label for="reminder_message">첫번째 줄 ( 회사 명, 전화번호, 연락처 등 적당한 정보 )</label>
-        <textarea [(ngModel)]="metaData.reminder_message" rows="3" class="form-control" id="reminder_message" placeholder="Payment Banner Info"></textarea>
+        <label for="reminder_title">Reminders Title</label>
+        <input [(ngModel)]="metaData.reminder_title" class="form-control" id="reminder_title" placeholder="Reminder Title">
+      </div>
+      <div class="form-group">
+        <label for="reminder_message">Reminders Message</label>
+        <textarea [(ngModel)]="metaData.reminder_message" rows="3" class="form-control" id="reminder_message" placeholder="Reminder Message"></textarea>
       </div>
 
       <div class="d-flex justify-content-end button-wrapper ">
