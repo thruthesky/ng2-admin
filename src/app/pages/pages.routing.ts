@@ -19,6 +19,7 @@ export const routes: Routes = [
       { path: 'centerX', loadChildren: './centerX/centerX.module#CenterXModule' },
       { path: 'forum', loadChildren: './forum/forum.module#ForumModule' },
       { path: 'user', loadChildren: './user/user.module#UserModule' },
+      { path: 'user/:id', loadChildren: './user/user.module#UserModule' },
       { path: 'config', loadChildren: './config/config.module#ConfigModule'}
     ]
   }

@@ -65,4 +65,28 @@ export class ShareService {
   }
 
 
+  getQueryVariable( variable )
+  {
+    let query = window['location_href'];
+    if( ! query ) return false;
+    let vars = query.split("&");
+    for ( let i = 0; i < vars.length; i++ ) {
+      let pair = vars[i].split("=");
+      if( pair[0] === variable) { return pair[1]; }
+    }
+    return(false);
+  }
+
+
+  decode_URI( data ): string {
+    let params:string = null;
+    if( data ) {
+        params = decodeURIComponent(data).replace(/\++/g, ' ');
+    }
+    return params;
+  }
+
+
+
+
 }

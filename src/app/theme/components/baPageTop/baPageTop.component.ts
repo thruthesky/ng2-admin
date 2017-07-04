@@ -31,7 +31,6 @@ export class BaPageTop {
     });
 
 
-
     this.searchChangeDebounce
       .debounceTime(500) // wait 500ms after the last event before emitting last event
       .subscribe(() => this.searchStudent());
@@ -60,7 +59,6 @@ export class BaPageTop {
       this.router.navigateByUrl('/login');
     });
   }
-
 
 
   searchStudent() {

@@ -112,7 +112,7 @@ export class UserPage implements OnInit {
 
   listenEvents() {
     this.shared.myEvent.subscribe( item => {
-      if( item.eventType == 'header-search'  ){
+      if( item.eventType === 'header-search'  ){
         this.searchString = item.search;
         this.onChangedSearch();
       }
@@ -124,7 +124,11 @@ export class UserPage implements OnInit {
   // }
 
   ngOnInit() {
-    if(this.shared.searchString) this.searchString = this.shared.searchString;
+
+    if (this.shared.searchString){
+      this.searchString = this.shared.searchString;
+      this.shared.searchString = null;
+    }
     this.onChangedSearch();
     this.searchChangeDebounce
       .debounceTime(300) // wait 300ms after the last event before emitting last event

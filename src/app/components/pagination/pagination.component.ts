@@ -7,24 +7,24 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
     <nav *ngIf="no_of_total_items" class="{{structureClass.nav}}">
       <ul class="{{structureClass.ul}}">
         <li class="{{structureClass.li}}{{structureClass.pageIn}}"><a class="{{structureClass.a}}">Page {{no_of_current_page}} of {{no_of_total_pages}}</a></li>
-        <li class="{{structureClass.li}}" *ngIf="show_first_last && currentDisplay > 0" (click)="gotoFirst()">
+        <li class="{{structureClass.li}} pointer" *ngIf="show_first_last && currentDisplay > 0" (click)="gotoFirst()">
           <a class="{{structureClass.a}}" innerHTML="{{text_first}}"></a>
         </li>
-        <li class="{{structureClass.li}}" *ngIf="show_prev_next && currentDisplay > 0"  (click)="previousPage()">
+        <li class="{{structureClass.li}} pointer" *ngIf="show_prev_next && currentDisplay > 0"  (click)="previousPage()">
           <a class="{{structureClass.a}}" innerHTML="{{text_prev}}">
 
           </a>
         </li>
-        <li class="{{structureClass.li}}" *ngFor="let x of numbers"
+        <li class="{{structureClass.li}} pointer" *ngFor="let x of numbers"
             [ngClass]="{ active : no_of_current_page == x }"
             (click)="gotoPage( x )"
         >
           <a class="{{structureClass.a}}">{{x}}</a>
         </li>
-        <li class="{{structureClass.li}}" *ngIf="show_prev_next && numbers[ numbers.length - 1] < no_of_total_pages "  (click)="nextPage()">
+        <li class="{{structureClass.li}} pointer" *ngIf="show_prev_next && numbers[ numbers.length - 1] < no_of_total_pages "  (click)="nextPage()">
           <a class="{{structureClass.a}}" innerHTML="{{text_next}}"></a>
         </li>
-        <li class="{{structureClass.li}}" *ngIf="show_first_last && numbers[ numbers.length - 1] < no_of_total_pages" (click)="gotoLast()">
+        <li class="{{structureClass.li}} pointer" *ngIf="show_first_last && numbers[ numbers.length - 1] < no_of_total_pages" (click)="gotoLast()">
           <a class="{{structureClass.a}}" innerHTML="{{text_last}}"></a>
         </li>
       </ul>

@@ -125,7 +125,7 @@ export class ConfigPage {
       this.logoPercentage = percentage;
       this.ngZone.run( () => {} );
     } ).subscribe( (res:_UPLOAD_RESPONSE) => {
-      console.log(res);
+      //console.log(res);
       this.metaData.logo_idx = res.data.idx;
       this.metaData.logo_url = res.data.url;
       this.logoPercentage = 0;
@@ -170,7 +170,7 @@ export class ConfigPage {
         this.onClickSaveMeta( true );
       }
     }, err => {
-      console.log(err);
+      //console.log(err);
       this.file.alert(err);
     });
   }
@@ -180,13 +180,13 @@ export class ConfigPage {
       idx: file_idx,
     };
     this.file.delete( req ).subscribe( (res:_DELETE_RESPONSE) => {
-      console.log(res);
+      //console.log(res);
       if (res.data.idx == file_idx ){
         this.metaData.logo_idx = this.metaData.logo_url = null;
         this.onClickSaveMeta( true );
       }
     }, err => {
-      console.log(err);
+      //console.log(err);
       this.file.alert(err);
     });
   }

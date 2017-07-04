@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Routes } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { BaMenuService } from '../theme';
 import { PAGES_MENU } from './pages.menu';
@@ -11,7 +12,7 @@ import {_LIST, _POST_COMMON_WRITE_FIELDS, _POST_LIST_RESPONSE, PostData, User} f
   selector: 'pages',
   template: `
     <ba-sidebar></ba-sidebar>
-    <ba-page-top (headerSearch)="onHeaderSearchChange($event)"></ba-page-top>
+    <ba-page-top></ba-page-top>
     <div class="al-main">
       <div class="al-content">
         <ba-content-top></ba-content-top>
@@ -39,14 +40,27 @@ export class Pages {
               private user:       User,
               private postData:   PostData,
               private lms:        LMS,
-              public  shared:     ShareService
+              public  shared:     ShareService,
+              private router:Router
   ) {
+
+    let chatUid = this.shared.getQueryVariable('userId');
+    //console.log('chatUid', chatUid );
+    if ( chatUid ) {
+      this.searchStudentLMS(chatUid);
+    }
+
     this.getNewPosts();
     this.getTodayClasses();
   }
 
   ngOnInit() {
     this._menuService.updateMenuByRoutes(<Routes>PAGES_MENU);
+  }
+
+  searchStudentLMS(chatUid) {
+    this.shared.searchString = chatUid;
+    this.router.navigateByUrl('/pages/centerX');
   }
 
   getTodayClasses() {
@@ -83,10 +97,6 @@ export class Pages {
     }, e => this.postData.alert(e));
   }
 
-  onHeaderSearchChange(event){
-    console.log('onHeaderSearchChange', event);
-
-  }
 
 
 }

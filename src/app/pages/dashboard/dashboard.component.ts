@@ -55,6 +55,8 @@ export class Dashboard {
     private router:      Router
   ) {
 
+    //console.log("location_href: ", window['location_href'])
+
     this.getUserGraph();
     this.getUserCount();
     //this.getPostCount();

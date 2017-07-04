@@ -76,8 +76,8 @@ export type TEACHERS = TEACHER[];
 
 export interface _API_SEARCH {
   student_id?: string;
-  date_begin?: string;
-  date_end?: string;
+  date_begin: string;
+  date_end: string;
 }
 
 @Injectable()
@@ -251,6 +251,7 @@ export class LMS {
       if(data.date_begin) url+= `&date_begin=` + data.date_begin;
       if(data.date_end) url+= `&date_end=` + data.date_end;
       //console.log('getClasses::URL:: ', url);
+
       this.http.get(url).subscribe( re => {
         //console.log( 'getClasses',re);
         let json = null;
@@ -264,8 +265,5 @@ export class LMS {
         else failure( ' error on getting admin Dashboard ' );
       });
     }
-
-
-
 
 }

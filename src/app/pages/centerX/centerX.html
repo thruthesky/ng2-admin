@@ -1,84 +1,86 @@
 <div class="widgets">
   <div class="row">
     <ba-card title="" baCardClass="with-scroll" class="smart-table-container w-100">
-      <h2>CenterX Schedule Search</h2>
+      <div class="centerX">
+        <h2>CenterX Schedule Search</h2>
 
-      <div class="row">
-        <div class="input-group mt-3 mb-0 col-sm-12 col-md-6">
-          <span class="input-group-addon input-group-addon-primary addon-left" id="date_begin">Date Begin</span>
-          <input class="form-control" placeholder="yyyy-mm-dd"
-                 name="dp" [(ngModel)]="date_begin" ngbDatepicker #b="ngbDatepicker" (ngModelChange)="onChangeSearch()">
-          <div class="input-group-addon" (click)="b.toggle()" >
-            <i class="fa fa-calendar" style="cursor: pointer;"></i>
+        <div class="row">
+          <div class="input-group mt-3 mb-0 col-sm-12 col-md-6">
+            <span class="input-group-addon input-group-addon-primary addon-left" id="date_begin">Date Begin</span>
+            <input class="form-control" placeholder="yyyy-mm-dd"
+                   name="dp" [(ngModel)]="date_begin" ngbDatepicker #b="ngbDatepicker" (ngModelChange)="onChangeSearch()">
+            <div class="input-group-addon" (click)="b.toggle()" >
+              <i class="fa fa-calendar" style="cursor: pointer;"></i>
+            </div>
+          </div>
+
+          <div class="input-group mt-3 mb-0 col-sm-12 col-md-6">
+            <span class="input-group-addon input-group-addon-primary addon-left" id="date_end">Date End</span>
+            <input class="form-control" placeholder="yyyy-mm-dd"
+                   name="dp" [(ngModel)]="date_end" ngbDatepicker #e="ngbDatepicker" (ngModelChange)="onChangeSearch()" >
+            <div class="input-group-addon" (click)="e.toggle()" >
+              <i class="fa fa-calendar" style="cursor: pointer;"></i>
+            </div>
           </div>
         </div>
-
-        <div class="input-group mt-3 mb-0 col-sm-12 col-md-6">
-          <span class="input-group-addon input-group-addon-primary addon-left" id="date_end">Date End</span>
-          <input class="form-control" placeholder="yyyy-mm-dd"
-                 name="dp" [(ngModel)]="date_end" ngbDatepicker #e="ngbDatepicker" (ngModelChange)="onChangeSearch()" >
-          <div class="input-group-addon" (click)="e.toggle()" >
-            <i class="fa fa-calendar" style="cursor: pointer;"></i>
-          </div>
+        <div class="input-group mt-3">
+          <span class="input-group-addon input-group-addon-primary addon-left" id="student_id">Student ID</span>
+          <input type="text" class="form-control with-primary-addon" placeholder="Student ID" [(ngModel)]="searchLMS.student_id" (keyup)="onChangeSearch()">
         </div>
-      </div>
-      <div class="input-group mt-3">
-        <span class="input-group-addon input-group-addon-primary addon-left" id="student_id">Student ID</span>
-        <input type="text" class="form-control with-primary-addon" placeholder="Student ID" [(ngModel)]="searchLMS.student_id" (keyup)="onChangeSearch()">
-      </div>
-      <!--<div class="input-group mt-3">-->
-        <!--<span class="input-group-addon input-group-addon-primary addon-left" id="student_name">Student Name</span>-->
-        <!--<input type="text" class="form-control with-primary-addon" placeholder="Student Name">-->
-      <!--</div>-->
-      <!--<div class="input-group mt-3">-->
-        <!--<span class="input-group-addon input-group-addon-primary addon-left" id="student_nickname">Student Nickname</span>-->
-        <!--<input type="text" class="form-control with-primary-addon" placeholder="Student Nickname">-->
-      <!--</div>-->
-      <!--<div class="input-group mt-3 mb-3">-->
-        <!--<span class="input-group-addon input-group-addon-primary addon-left" id="student_email">Student Email</span>-->
-        <!--<input type="text" class="form-control with-primary-addon" placeholder="Student Email">-->
-      <!--</div>-->
+        <!--<div class="input-group mt-3">-->
+          <!--<span class="input-group-addon input-group-addon-primary addon-left" id="student_name">Student Name</span>-->
+          <!--<input type="text" class="form-control with-primary-addon" placeholder="Student Name">-->
+        <!--</div>-->
+        <!--<div class="input-group mt-3">-->
+          <!--<span class="input-group-addon input-group-addon-primary addon-left" id="student_nickname">Student Nickname</span>-->
+          <!--<input type="text" class="form-control with-primary-addon" placeholder="Student Nickname">-->
+        <!--</div>-->
+        <!--<div class="input-group mt-3 mb-3">-->
+          <!--<span class="input-group-addon input-group-addon-primary addon-left" id="student_email">Student Email</span>-->
+          <!--<input type="text" class="form-control with-primary-addon" placeholder="Student Email">-->
+        <!--</div>-->
 
 
 
-      <div class="result" *ngIf="books && books.length">
-        <table class="table table-striped">
-          <thead>
-          <tr>
-            <th class="table-id">#</th>
-            <th>Date</th>
-            <th>Begin</th>
-            <th>End</th>
-            <th>Teacher</th>
-            <th>Student ID</th>
-            <th>Student Name</th>
-            <th>Point</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr *ngFor="let book of books">
-            <td class="table-id">{{ book.idx }}</td>
-            <td>{{ book.date }}</td>
-            <td>{{ book.class_begin }}</td>
-            <td>{{ book.class_end }}</td>
-            <td>{{ book.teacher.name }}</td>
-            <td>{{ book.student.id }}</td>
-            <td>{{ book.student.name }}</td>
-            <td>{{ book.point }}</td>
+        <div class="result" *ngIf="books && books.length">
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th class="table-id">#</th>
+              <th>Date</th>
+              <th>Begin</th>
+              <th>End</th>
+              <th>Teacher</th>
+              <th>Student ID</th>
+              <th>Student Name</th>
+              <th>Point</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let book of books">
+              <td class="table-id">{{ book.idx }}</td>
+              <td>{{ book.date }}</td>
+              <td>{{ book.class_begin }}</td>
+              <td>{{ book.class_end }}</td>
+              <td>{{ book.teacher.name }}</td>
+              <td>{{ book.student.id }}</td>
+              <td>{{ book.student.name }}</td>
+              <td>{{ book.point }}</td>
 
-          </tr>
-          </tbody>
-        </table>
-      </div>
+            </tr>
+            </tbody>
+          </table>
+        </div>
 
-      <div *ngIf="loading">
-      <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
-      <span>Loading...</span>
-      </div>
+        <div *ngIf="loading">
+        <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+        <span>Loading...</span>
+        </div>
 
-      <div *ngIf="no_more_student">
-        <hr>
-        <span>No Record Found...</span>
+        <div *ngIf="no_more_student">
+          <hr>
+          <span>No Record Found...</span>
+        </div>
       </div>
 
     </ba-card>
