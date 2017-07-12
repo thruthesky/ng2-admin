@@ -1,4 +1,4 @@
-import {Component, ViewChild, Input, Output, ElementRef, EventEmitter} from '@angular/core';
+import {Component, ViewChild, Input, Output, ElementRef, EventEmitter, OnChanges} from '@angular/core';
 
 import {BaThemePreloader} from '../../../theme/services';
 
@@ -18,8 +18,10 @@ import {BaAmChartThemeService} from './baAmChartTheme.service';
   styleUrls: ['./baAmChart.scss'],
   providers: [BaAmChartThemeService],
 })
-export class BaAmChart {
+export class BaAmChart implements OnChanges{
 
+  init: Boolean = false;
+  @Input() makeChange:Boolean;
   @Input() baAmChartConfiguration:Object;
   @Input() baAmChartClass:string;
   @Output() onChartReady = new EventEmitter<any>();
@@ -34,9 +36,21 @@ export class BaAmChart {
     AmCharts.themes.blur = this._baAmChartThemeService.getTheme();
   }
 
+
+
   ngAfterViewInit() {
+    //console.log('afterView', this.baAmChartConfiguration, this.init);
+    this.init = true;
     let chart = AmCharts.makeChart(this._selector.nativeElement, this.baAmChartConfiguration);
     this.onChartReady.emit(chart);
+  }
+
+  ngOnChanges() {
+    if (this.init) {
+      //console.log('onchange', this.baAmChartConfiguration);
+      let chart = AmCharts.makeChart(this._selector.nativeElement, this.baAmChartConfiguration);
+      this.onChartReady.emit(chart);
+    }
   }
 
   private _loadChartsLib():void {

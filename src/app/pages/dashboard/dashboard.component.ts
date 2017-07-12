@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, ElementRef, ViewChild} from '@angular/core';
 
 import { Router } from '@angular/router';
 
@@ -11,6 +11,9 @@ import {
 import { LMS } from './../../providers/lms';
 import { ShareService } from './../../providers/share-service';
 
+import {BaThemeConfigProvider, colorHelper, layoutPaths} from '../../theme';
+
+
 
 @Component({
   selector: 'dashboard',
@@ -20,49 +23,99 @@ import { ShareService } from './../../providers/share-service';
 export class Dashboard {
 
 
-  data = {
-    reservationChartData: {
-      labels: [],
-      series: []
+  registrationChartData = {
+    type: 'serial',
+    theme: 'blur',
+    marginTop: 15,
+    marginRight: 15,
+    responsive: {
+      'enabled': true
     },
-    reservationChartOption: {
-      fullWidth: true,
-      height: '300px',
-      low: 0,
-      showArea: false
+    dataProvider: [
+    ],
+    categoryField: 'date',
+    categoryAxis: {
+      parseDates: true,
+      gridAlpha: 0,
+      color: '#000',
+      axisColor: '#000'
     },
-    newUserChartData: {
-      labels: [],
-      series: []
+    valueAxes: [
+      {
+        minVerticalGap: 50,
+        gridAlpha: 0,
+        color: '#000',
+        axisColor: '#000',
+        minimum: 0
+      }
+    ],
+    graphs: [
+      {
+        id: 'g1',
+        bullet: 'none',
+        useLineColorForBulletBorder: true,
+        lineColor: colorHelper.hexToRgbA('#0615e3', 0.15),
+        lineThickness: 1,
+        negativeLineColor: '#000',
+        type: 'smoothedLine',
+        valueField: 'value',
+        fillAlphas: 1,
+        fillColorsField: 'lineColor'
+      }
+    ],
+    chartCursor: {
+      categoryBalloonDateFormat: 'DD',
+      categoryBalloonColor: '#4285F4',
+      categoryBalloonAlpha: 0.7,
+      cursorAlpha: 0,
+      valueLineEnabled: true,
+      valueLineBalloonEnabled: true,
+      valueLineAlpha: 0.5
     },
-    newUserChartOption: {
-      fullWidth: true,
-      height: '300px',
-      low: 0,
-      showArea: false
-    }
+    dataDateFormat: 'MM YYYY',
+    export: {
+      enabled: true
+    },
+    creditsPosition: 'bottom-right',
+    zoomOutButton: {
+      backgroundColor: '#fff',
+      backgroundAlpha: 0
+    },
+    zoomOutText: '',
+    pathToImages: layoutPaths.images.amChart
   };
+
+  reservationChartData  = JSON.parse(JSON.stringify(this.registrationChartData));
+
+
+  registrationChange: boolean = false;
+  reservationChange:  boolean = false;
 
   today = Math.round((new Date()).getTime() / 1000);
   sevenDaysAgo = this.today - (7 * 24 * 60 * 60);
-  nineMonths = this.today - (90 * 24 * 60 * 60);
+  oneMonth = this.today - (30 * 24 * 60 * 60);
+  threeMonths = this.today - (90 * 24 * 60 * 60);
+
+
 
   constructor(
-    private user:       User,
-    private postData:   PostData,
-    private lms:        LMS,
-    public  shared:     ShareService,
-    private router:      Router
+    private user:        User,
+    private postData:    PostData,
+    private lms:         LMS,
+    public  shared:      ShareService,
+    private router:      Router,
+    private _baConfig:   BaThemeConfigProvider
   ) {
 
     //console.log("location_href: ", window['location_href'])
 
+    this.getAdminDashboardInformation();
     this.getUserGraph();
     this.getUserCount();
     //this.getPostCount();
     this.getNewUserCount();
     this.getNewPostCount();
-    this.getAdminDashboardInformation();
+    this.reservationChartData.graphs[0].lineColor = colorHelper.hexToRgbA('#21ff14', 0.15);
   }
 
 
@@ -70,45 +123,42 @@ export class Dashboard {
     let q: _LIST = {};
     q.select = "DATE( FROM_UNIXTIME( created ) ) AS perDay, COUNT(idx) AS total, idx";
     q.where = "created > cast(? as integer) GROUP BY PerDay";
-    q.bind = "" + this.nineMonths;
+    q.bind = "" + this.threeMonths;
+    console.log(q);
+
+
+
     q.limit = 100;
     this.user.list( q ).subscribe( (res: _USER_LIST_RESPONSE ) => {
-      //console.log('userGraph:: ', res);
+      console.log('userGraph:: ', res);
       if( res.code === 0 ) {
         //let labels = [];
-        let series = [];
+        let data = [];
         res.data.users.map( v => {
-          //labels.push(v['perDay']);
-          series.push(v['total']);
+          data.push({date: this.parse(v['perDay']) ,value:v['total']});
         });
-        //console.log(series);
-        this.data.newUserChartData = {
-          'labels': [],
-          'series': [series]
-        };
+        this.registrationChartData.dataProvider = data;
+        this.registrationChange = ! this.registrationChange;
       }
     }, e => this.user.alert(e) );
   }
 
   getAdminDashboardInformation() {
+    //console.log('getAdminDashboardInformation');
     this.lms.loadAdminDashboard( res => {
-      //console.log('AdminDashboard::', res);
       this.shared.noOfReservations.stats = res.no_of_reserved_classes;
       this.shared.noOfStudents.stats = res.no_of_students;
-      //this.shared.admin_dashboard_info.no_of_today_classes = res.no_of_today_classes;
 
-      //let labels = [];
-      let series = [];
+      let data = [];
       res.stat_of_classes.map( v => {
-        //labels.push(v['date']);
-        series.push(v['no']);
+        data.push({date: this.parse(v['date']) ,value:v['no']});
       });
-      this.data.reservationChartData = {
-        'labels': [],
-        'series': [series]
-      };
-
-    }, error => this.user.alert(error));
+      this.reservationChartData.dataProvider = data;
+      this.reservationChange = ! this.reservationChange;
+      //console.log('chartData', this.chartData);
+    }, error => {
+      this.user.alert(error);
+    });
   }
 
   getUserCount() {
@@ -167,6 +217,15 @@ export class Dashboard {
     } );
   }
 
+  parse(str) {
+    let date = str.replace(/-/g, '');
+    if( !/^(\d){8}$/.test( date ) ) return "invalid date";
+    let y = date.substr(0,4),
+      m = date.substr(4,2) - 1,
+      d = date.substr(6,2);
+    return new Date(y,m,d);
+  }
+
 
   // getPostCount() {
   //   let q:_LIST = {};
@@ -178,5 +237,7 @@ export class Dashboard {
   //     }
   //   }, e => this.user.alert(e) );
   // }
+
+
 
 }

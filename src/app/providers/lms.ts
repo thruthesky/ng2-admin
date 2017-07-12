@@ -145,9 +145,9 @@ export class LMS {
         }
         return domain;
     }
+
     update( data, success, failure: ( error: string) => void ){
-        data = data.value;
-        data['classid'] = CLASS_ID;
+        data['classid'] = data.city ? data.city: CLASS_ID;
         let domain = this.getDomain();
         let url = LMS_ENDPOINT_URL + `?id=${data['id']}&name=${data['name']}&nickname=${data['nickname']}&email=${data['email']}&mobile=${data['mobile']}&classid=${data['classid']}&domain=${domain}&domain_key=empty&function=user_update`;
         this.http.get( url ).subscribe( re => {
@@ -155,6 +155,8 @@ export class LMS {
             else failure( ' error on lms update user ' );
         });
     }
+
+
     loadUserData() {
         this.user.data().subscribe( (res: _USER_DATA_RESPONSE) => {
             this.userData = res.data.user;

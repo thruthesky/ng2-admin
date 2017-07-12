@@ -129,6 +129,7 @@ export class ConfigPage {
       this.metaData.logo_idx = res.data.idx;
       this.metaData.logo_url = res.data.url;
       this.logoPercentage = 0;
+      this.onClickSaveMeta( true );
     }, err => {
       this.logoPercentage = 0;
       if ( this.file.isError(err) == ERROR_NO_FILE_SELECTED ) return;
@@ -153,6 +154,7 @@ export class ConfigPage {
       this.metaData.announcement_photo_idx = res.data.idx;
       this.metaData.announcement_photo_url = res.data.url;
       this.announcementPercentage = 0;
+      this.onClickSaveMeta( true );
     }, err => {
       this.announcementPercentage = 0;
       if ( this.file.isError(err) == ERROR_NO_FILE_SELECTED ) return;

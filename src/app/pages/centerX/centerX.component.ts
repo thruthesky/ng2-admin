@@ -36,20 +36,18 @@ export class CenterXPage {
     //console.log('CenterX');
 
 
-    this.date_begin = {
+  }
+
+  ngOnInit() {
+    //console.log('studentID', this.shared.searchString);
+    this.date_begin = this.date_end = {
       year: this.d.getFullYear(),
       month: this.d.getMonth()+1,
       day: this.d.getDate()
     };
 
-  }
-
-  ngOnInit() {
-    //console.log('studentID', this.shared.searchString);
-
     if (this.shared.searchString){
       this.searchLMS.student_id = this.shared.searchString + '@' +this.lms.getDomain();
-      this.date_begin = null;
       this.date_end = null;
       this.shared.searchString = null;
     }
@@ -72,8 +70,8 @@ export class CenterXPage {
     this.loading = true;
     this.books = [];
 
-    if( this.date_begin ) this.searchLMS.date_begin = this.date_begin.year + '-' + this.add0(this.date_begin.month) + '-' + this.date_begin.day ;
-    if( this.date_end ) this.searchLMS.date_end = this.date_end.year + '-' + this.add0(this.date_end.month) + '-' + this.date_end.day ;
+    if( this.date_begin ) this.searchLMS.date_begin = this.date_begin.year + this.add0(this.date_begin.month) + this.add0(this.date_begin.day);
+    if( this.date_end ) this.searchLMS.date_end = this.date_end.year + this.add0(this.date_end.month) + this.add0(this.date_end.day);
 
     this.lms.getClasses( this.searchLMS, res => {
       //console.log('searchStudentInformation:: ', res );

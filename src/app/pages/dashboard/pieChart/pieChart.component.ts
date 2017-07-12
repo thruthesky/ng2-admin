@@ -22,8 +22,6 @@ export class PieChart {
     this.getData();
   }
 
-
-
   getData() {
     let pieColor = this._baConfig.get().colors.custom.dashboardPieChart;
 

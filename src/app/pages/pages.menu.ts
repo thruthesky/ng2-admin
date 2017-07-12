@@ -38,30 +38,30 @@ export const PAGES_MENU = [
           }
         }
       },
-      // {
-      //   path: 'user',
-      //   data: {
-      //     menu: {
-      //       title: '예약된 수업',
-      //       icon: 'fa fa-book',
-      //       selected: false,
-      //       expanded: false,
-      //       order: 20,
-      //     }
-      //   }
-      // },
-      // {
-      //   path: 'user',
-      //   data: {
-      //     menu: {
-      //       title: '지난 수업',
-      //       icon: 'fa fa-book',
-      //       selected: false,
-      //       expanded: false,
-      //       order: 20,
-      //     }
-      //   }
-      // },
+      {
+        path: 'payment-history',
+        data: {
+          menu: {
+            title: 'Payment History',
+            icon: 'fa fa-history',
+            selected: false,
+            expanded: false,
+            order: 23,
+          }
+        }
+      },
+      {
+        path: 'leveltest-history',
+        data: {
+          menu: {
+            title: 'Leveltest History',
+            icon: 'fa fa-calendar',
+            selected: false,
+            expanded: false,
+            order: 23,
+          }
+        }
+      },
       {
         path: 'centerX',
         data: {

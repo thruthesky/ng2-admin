@@ -7,22 +7,19 @@
 <div class="row">
 
   <div class="col-xlg-6 col-xl-6 col-lg-12 col-sm-12 col-12">
-  <ba-card title="예약 현황" baCardClass="traffic-panel medium-card">
-    <ba-chartist-chart baChartistChartClass="ct-chart"
-                       baChartistChartType="Line"
-                       [baChartistChartData]="data['reservationChartData']"
-                       [baChartistChartOptions]="data['reservationChartOption']">
-    </ba-chartist-chart>
+  <ba-card title="예약 현황" baCardClass="medium-card">
+    <ba-am-chart
+                 baAmChartClass="dashboard-line-chart"
+                 [makeChange]="reservationChange"
+                 [baAmChartConfiguration]="reservationChartData"></ba-am-chart>
   </ba-card>
   <ba-card title="회원 가입 현황" baCardClass="traffic-panel medium-card">
-    <ba-chartist-chart baChartistChartClass="ct-chart"
-                       baChartistChartType="Line"
-                       [baChartistChartData]="data['newUserChartData']"
-                       [baChartistChartOptions]="data['newUserChartOption']">
-    </ba-chartist-chart>
+    <ba-am-chart
+                 baAmChartClass="dashboard-line-chart"
+                 [makeChange]="registrationChange"
+                 [baAmChartConfiguration]="registrationChartData"></ba-am-chart>
   </ba-card>
   </div>
-
 
   <div class="col-xlg-6 col-xl-6 col-lg-12 col-sm-12 col-12">
     <div class="float-left pl-0 col-6">

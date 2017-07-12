@@ -21,13 +21,19 @@ import { PagesModule } from './pages/pages.module';
 
 import { AngularBackendModule } from 'angular-backend';
 import { ShareService } from './providers/share-service';
+import { FirebaseService } from './providers/firebase';
 import { LMS } from './providers/lms';
+import {AngularFireModule} from "angularfire2";
+import {environment} from "../environments/environment";
+import {AngularFireAuthModule} from "angularfire2/auth";
+import {AngularFireDatabaseModule} from "angularfire2/database";
 
 // Application wide providers
 const APP_PROVIDERS = [
   AppState,
   GlobalState,
   ShareService,
+  FirebaseService,
   LMS
 ];
 
@@ -55,7 +61,10 @@ export type StoreType = {
     NgbModule.forRoot(),
     PagesModule,
     routing,
-    AngularBackendModule.forRoot()
+    AngularBackendModule.forRoot(),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     APP_PROVIDERS,

@@ -7,6 +7,7 @@ import {
 } from "angular-backend";
 import { ChangePasswordButton } from "./components/changePasswordButton/changePasswordButton";
 import {ShareService} from "../../providers/share-service";
+import {LMS} from "../../providers/lms";
 
 @Component({
   selector: 'user-page',
@@ -69,21 +70,14 @@ export class UserPage implements OnInit {
         title: 'Email',
         type: 'string'
       },
-      // gender: {
-      //   title: 'Gender',
-      //   type: 'string',
-      //   width: '15px'
-      // },
-      // gender: {
-      //   title: 'ClassID',
-      //   type: 'html',
-      //   editor: {
-      //     type: 'list',
-      //     config: {
-      //       list: [{title: 'IE', value: 'solution'}, {title: 'Chrome', value: 've4'}]
-      //     }
-      //   }
-      // },
+      mobile: {
+        title: 'Mobile',
+        type: 'Number'
+      },
+      city: {
+        title: 'ClassID',
+        type: 'string'
+      },
       changePassword: {
         title: 'Change Password',
         type: 'custom',
@@ -104,6 +98,7 @@ export class UserPage implements OnInit {
 
 
   constructor(
+    private lms: LMS,
     public user: User,
     public shared: ShareService
   ) {
@@ -183,12 +178,9 @@ export class UserPage implements OnInit {
   }
 
 
-  onCreateConfirm(event) {
-    //console.log('onCreateConfirm:: ', event);
-  }
 
   onEditConfirm(event) {
-    //console.log('onEditConfirm:: ', event);
+    console.log('onEditConfirm:: ', event);
     //console.log('onEditConfirm:: ', event.newData);
     //console.log( event.newData ) ;
     let re = confirm("Save Changes for User ID : " + event.newData.id);
@@ -198,12 +190,18 @@ export class UserPage implements OnInit {
       id: event.newData.id,
       name: event.newData.name,
       email: event.newData.email,
-      gender: event.newData.gender
+      mobile: event.newData.mobile,
+      city: event.newData.city
     };
+
     this.user.edit( edit ).subscribe( (res: _USER_EDIT_RESPONSE) => {
-      //console.log("edit response: ", res);
+      console.log("onEditConfirm::response: ", res);
       if ( res.code === 0 ) {
         //event.confirm.resolve();
+        this.lms.update( event.newData, res => {
+        }, err => {
+          this.user.alert(err);
+        } );
         this.loadSearchedData();
       }
     }, err => this.user.alert( err ) );

@@ -21,3 +21,12 @@
 .blurCalendar {
   height: 475px;
 }
+
+
+:host {
+  /deep/.dashboard-line-chart {
+    width: 100%;
+    height: 340px;
+    margin-top: -10px;
+  }
+}

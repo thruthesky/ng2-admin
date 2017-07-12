@@ -7,9 +7,9 @@ import { NgaModule } from '../../theme/nga.module';
 import { Dashboard } from './dashboard.component';
 import { routing }       from './dashboard.routing';
 
-
 import { PieChart } from './pieChart';
 import { Feed } from './feed';
+
 
 @NgModule({
   imports: [
@@ -23,6 +23,6 @@ import { Feed } from './feed';
     PieChart,
     Feed,
     Dashboard
-  ]
+  ],
 })
 export class DashboardModule {}

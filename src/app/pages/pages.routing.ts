@@ -19,7 +19,8 @@ export const routes: Routes = [
       { path: 'centerX', loadChildren: './centerX/centerX.module#CenterXModule' },
       { path: 'forum', loadChildren: './forum/forum.module#ForumModule' },
       { path: 'user', loadChildren: './user/user.module#UserModule' },
-      { path: 'user/:id', loadChildren: './user/user.module#UserModule' },
+      { path: 'payment-history', loadChildren: './payment-history/payment-history.module#PaymentHistoryModule' },
+      { path: 'leveltest-history', loadChildren: './leveltest-history/leveltest-history.module#LevelTestHistoryModule' },
       { path: 'config', loadChildren: './config/config.module#ConfigModule'}
     ]
   }
