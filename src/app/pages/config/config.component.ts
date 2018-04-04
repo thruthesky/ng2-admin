@@ -14,6 +14,14 @@ import {
     ERROR_NO_FILE_SELECTED
 } from 'angular-backend';
 
+export interface _ANNOUNCEMENT {
+  key?: string;
+  photo_idx?: number;
+  photo_url?: string;
+}
+
+export type _ANNOUNCEMENTS = _ANNOUNCEMENT[];
+
 export interface _SITE_CONFIGURATION {
   company_name_variation?: string;
   company_name?: string;
@@ -33,6 +41,7 @@ export interface _SITE_CONFIGURATION {
   announcement_message?: string;
   announcement_photo_idx?: number;
   announcement_photo_url?: string;
+  announcements: _ANNOUNCEMENTS;
   atg_credit_card?: string;
   payment_banner_info?: string;
   logo_idx?: number;
@@ -52,7 +61,8 @@ export class ConfigPage {
 
   logo: _FILE;
   metaData: _SITE_CONFIGURATION = <_SITE_CONFIGURATION>{
-    company_name_variation: '1'
+    company_name_variation: '1',
+    announcements: []
   };
 
   site_config = 'config';
@@ -65,8 +75,23 @@ export class ConfigPage {
     //console.log('config:: ', this.siteInfo);
   }
 
+  onClickAddNew() {
+    console.log('add new::', this.metaData);
+    this.metaData.announcements.push(
+      {
+        key: ''
+      }
+    );
+
+  }
+
+  onClickDelete(id) {
+    this.metaData.announcements.splice(id,1);
+  }
+
 
   onClickSaveMeta( update = false ){
+
      let req: _META_CREATE = {
        model: this.site_config,
        model_idx: 1,
@@ -137,38 +162,41 @@ export class ConfigPage {
     });
   }
 
-  onChangeAnnouncementPhoto( _ ){
-    this.announcementPercentage = 1;
+
+  onChangeAnnouncementPhoto( _, _an, index ){
+    _an['Percentage'] = 1;
     let req: _UPLOAD = {
       model: 'config-announcement',
       model_idx: 1,
-      code: 'config-announcement',
+      code: 'config-announcement' + index,
       unique: 'Y',
       finish: 'Y'
     };
 
     this.file.upload( req, _.files[0], percentage => {
-      this.announcementPercentage = percentage;
+      _an['Percentage'] = percentage;
       this.ngZone.run( () => {} );
     } ).subscribe( (res:_UPLOAD_RESPONSE) => {
-      this.metaData.announcement_photo_idx = res.data.idx;
-      this.metaData.announcement_photo_url = res.data.url;
-      this.announcementPercentage = 0;
+      console.log('onChangeAnnouncementPhoto',res);
+      _an.photo_idx = res.data.idx;
+      _an.photo_url = res.data.url;
+      delete _an['Percentage'];
       this.onClickSaveMeta( true );
     }, err => {
-      this.announcementPercentage = 0;
+      delete _an['Percentage'];
       if ( this.file.isError(err) == ERROR_NO_FILE_SELECTED ) return;
       this.file.alert(err);
     });
   }
 
-  onClickDeleteAnnouncementPhoto( file_idx ) {
+  onClickDeleteAnnouncementPhoto( _an ) {
+    let file_idx = _an.photo_idx;
     let req: _DELETE_REQUEST = {
       idx: file_idx,
     };
     this.file.delete( req ).subscribe( (res:_DELETE_RESPONSE) => {
       if (res.data.idx == file_idx ){
-        this.metaData.announcement_photo_idx = this.metaData.announcement_photo_url = null;
+        _an.photo_idx = _an.photo_url = null;
         this.onClickSaveMeta( true );
       }
     }, err => {

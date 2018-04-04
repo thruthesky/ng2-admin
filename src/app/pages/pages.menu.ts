@@ -74,12 +74,37 @@ export const PAGES_MENU = [
           }
         }
       },
+
+      {
+        path: 'faq',
+        data: {
+          menu: {
+            title: 'FAQ',
+            icon: 'fa fa-question',
+            selected: false,
+            expanded: false,
+            order: 30,
+          }
+        }
+      },
       {
         path: 'config',
         data: {
           menu: {
             title: '사이트 설정',
             icon: 'fa fa-gear',
+            selected: false,
+            expanded: false,
+            order: 30,
+          }
+        }
+      },
+      {
+        path: 'teachers',
+        data: {
+          menu: {
+            title: 'Teachers',
+            icon: 'fa fa-id-card',
             selected: false,
             expanded: false,
             order: 30,

@@ -41,7 +41,7 @@ export class PaymentHistoryPage {
 
     this.payment_history = this.fc.getRecords('payment', { limitToLast:50, orderByKey:true });
     this.payment_history.subscribe( snap => {
-      console.log('snap::', snap);
+      //console.log('snap::', snap);
       if( snap && snap.length ) {
         this.source.load( snap.reverse() );
       }

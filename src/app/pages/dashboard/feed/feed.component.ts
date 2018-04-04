@@ -18,7 +18,7 @@ export class Feed {
     limit: 10,
     order: 'idx DESC'
   };
-  public
+
   feed: _POSTS = <_POSTS>[];
 
   constructor(
@@ -41,7 +41,7 @@ export class Feed {
     q.limit = 20;
     q.extra= { file: true , post_config_id: this.config };
     this.postData.list(q).subscribe( (res: _POST_LIST_RESPONSE ) => {
-      //console.log(this.config + '::feed::getData::postData:: ', res);
+      // console.log(this.config + '::feed::getData::postData:: ', res);
       if (res.code === 0 ) {
         this.feed = res.data.posts;
         this.feed.map( (post: _POST_COMMON_WRITE_FIELDS) => {

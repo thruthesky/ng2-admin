@@ -21,7 +21,9 @@ export const routes: Routes = [
       { path: 'user', loadChildren: './user/user.module#UserModule' },
       { path: 'payment-history', loadChildren: './payment-history/payment-history.module#PaymentHistoryModule' },
       { path: 'leveltest-history', loadChildren: './leveltest-history/leveltest-history.module#LevelTestHistoryModule' },
-      { path: 'config', loadChildren: './config/config.module#ConfigModule'}
+      { path: 'config', loadChildren: './config/config.module#ConfigModule'},
+      { path: 'faq', loadChildren: './faq/faq.module#FAQModule'},
+      { path: 'teachers', loadChildren: './teachers/teachers.module#TeachersModule'}
     ]
   }
 ];

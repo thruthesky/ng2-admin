@@ -1,5 +1,5 @@
 <div class="feed-messages-container">
-  <div class="feed-message" *ngFor="let message of feed" (click)="expandMessage(message)">
+  <div class="feed-message" *ngFor="let message of feed" (click)="message['expanded'] = !message['expanded']">
     <div class="message-icon" *ngIf="config == 'qna' && message.files.length">
       <img class="photo-icon" src="{{ ( message?.files[0]?.url ) }}">
     </div>
@@ -7,23 +7,19 @@
       <img class="photo-icon" src="{{ ( message?.files[0]?.url  ) }}">
       <span class="sub-photo-icon" [ngClass]="message.type"></span>
     </div>
-    <div class="text-block text-message">
+    <div class="text-block text-message" [ngClass]="{'mw-100 m-0': !message.files.length}">
       <div class="message-header">
         <div class="author" *ngIf="config == 'qna'">{{ message.title }} </div>
         <div class="author" *ngIf="config == 'review'">{{ message.name }} </div>
       </div>
       <div class="message-content line-clamp" [ngClass]="{'line-clamp-2' : !message.expanded}" [innerHTML]="message.content"></div>
-      <div class="message-content" *ngIf="config == 'qna' && message.mobile">Mobile No: {{ message.mobile }}</div>
+      <div class="message-content" *ngIf="message.mobile">Mobile No: {{ message.mobile }}</div>
+      <div class="message-content" *ngIf="message.email">Email: {{ message.email }}</div>
       <div class="preview" [ngClass]="{'hidden': !message.expanded}" *ngIf="message.files.length && config == 'qna'">
           <img src="{{ ( message?.files[0]?.url )}}">
       </div>
-      <div [ngClass]="{'hidden': !message.expanded}" class="message-time">
-        <div class="post-time">
-          {{ message.created }}
-        </div>
-        <!--<div class="ago-time">-->
-          <!--{{ message.ago }}-->
-        <!--</div>-->
+      <div class="message-content">
+        {{ message.created }}
       </div>
     </div>
   </div>

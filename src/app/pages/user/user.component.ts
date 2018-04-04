@@ -180,7 +180,7 @@ export class UserPage implements OnInit {
 
 
   onEditConfirm(event) {
-    console.log('onEditConfirm:: ', event);
+    //console.log('onEditConfirm:: ', event);
     //console.log('onEditConfirm:: ', event.newData);
     //console.log( event.newData ) ;
     let re = confirm("Save Changes for User ID : " + event.newData.id);
@@ -195,7 +195,7 @@ export class UserPage implements OnInit {
     };
 
     this.user.edit( edit ).subscribe( (res: _USER_EDIT_RESPONSE) => {
-      console.log("onEditConfirm::response: ", res);
+      //console.log("onEditConfirm::response: ", res);
       if ( res.code === 0 ) {
         //event.confirm.resolve();
         this.lms.update( event.newData, res => {

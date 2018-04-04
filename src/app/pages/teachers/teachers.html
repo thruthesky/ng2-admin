@@ -1,0 +1,29 @@
+<div class="widgets">
+  <ba-card title="Teachers Page" baCardClass="with-scroll">
+    <h4>Teacher List</h4>
+    <ng-container *ngIf="teachers.length">
+      <div class="form-group" *ngFor="let teacher of teachers">
+        <span class="pr-3">({{teacher.idx}}) {{teacher.nickname}}</span>
+        <ng-container *ngIf="teachers_status[teacher.idx]">
+          <label class="pr-3 pointer">
+            <input [(ngModel)]="teachers_status[teacher.idx]['best']" type="checkbox" value="best" placeholder="Best">Best
+          </label>
+          <label class="pr-3 pointer">
+            <input [(ngModel)]="teachers_status[teacher.idx]['good']" type="checkbox" value="good" placeholder="Good">Good
+          </label>
+          <label class="pr-3 pointer">
+            <input [(ngModel)]="teachers_status[teacher.idx]['new']" type="checkbox" value="best" placeholder="New">New
+          </label>
+        </ng-container>
+      </div>
+    </ng-container>
+    <div class="d-flex justify-content-end button-wrapper ">
+      <button type="button" class="btn btn-primary btn-raised col-sm-12 col-md-3" (click)="onClickSaveMeta()">Update
+        Status
+      </button>
+    </div>
+  </ba-card>
+</div>
+
+
+

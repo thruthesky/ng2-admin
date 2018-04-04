@@ -29,6 +29,11 @@ export class LevelTestHistoryPage {
         type: 'string',
         filter:false
       },
+      ipAddress: {
+        title: 'IP Address',
+        type: 'string',
+        filter:false
+      },
       time: {
         title: 'Time',
         type: 'string',

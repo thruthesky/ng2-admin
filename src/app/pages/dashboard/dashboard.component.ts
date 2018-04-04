@@ -124,13 +124,11 @@ export class Dashboard {
     q.select = "DATE( FROM_UNIXTIME( created ) ) AS perDay, COUNT(idx) AS total, idx";
     q.where = "created > cast(? as integer) GROUP BY PerDay";
     q.bind = "" + this.threeMonths;
-    console.log(q);
-
 
 
     q.limit = 100;
     this.user.list( q ).subscribe( (res: _USER_LIST_RESPONSE ) => {
-      console.log('userGraph:: ', res);
+      //console.log('userGraph:: ', res);
       if( res.code === 0 ) {
         //let labels = [];
         let data = [];
