@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import {Router} from "@angular/router";
-import {FirebaseListObservable} from "angularfire2/database";
+
+import { Observable } from 'rxjs/Observable';
+
 import {FirebaseService} from "../../providers/firebase";
 
 @Component({
@@ -32,17 +34,20 @@ export class PaymentHistoryPage {
 
   source: LocalDataSource = new LocalDataSource();
 
-  payment_history: FirebaseListObservable<any[]>;
+  payment_history: Observable<any[]>;
 
   constructor(
     public router: Router,
     private fc: FirebaseService,
   ) {
 
-    this.payment_history = this.fc.getRecords('payment', { limitToLast:50, orderByKey:true });
-    this.payment_history.subscribe( snap => {
-      //console.log('snap::', snap);
-      if( snap && snap.length ) {
+    this.payment_history = this.fc.getRecords('payment', { limitToLast:50, orderByKey:true }).valueChanges();
+    this.payment_history
+    .map(actions => {
+      return actions.map(action => ({ key: action.key, ...action.payload.val() }));
+    })
+    .subscribe( snap => {
+      if( snap && snap.length ) { // wrong
         this.source.load( snap.reverse() );
       }
     });

@@ -23,10 +23,18 @@ import { AngularBackendModule } from 'angular-backend';
 import { ShareService } from './providers/share-service';
 import { FirebaseService } from './providers/firebase';
 import { LMS } from './providers/lms';
-import {AngularFireModule} from "angularfire2";
+
+// import {AngularFireModule} from "angularfire2";
+// import {environment} from "../environments/environment";
+// import {AngularFireAuthModule} from "angularfire2/auth";
+// import {AngularFireDatabaseModule} from "angularfire2/database";
+
+
 import {environment} from "../environments/environment";
-import {AngularFireAuthModule} from "angularfire2/auth";
-import {AngularFireDatabaseModule} from "angularfire2/database";
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -65,6 +73,7 @@ export type StoreType = {
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
+    AngularFirestoreModule
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     APP_PROVIDERS,

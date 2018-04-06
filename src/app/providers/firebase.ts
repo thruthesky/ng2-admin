@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
+import { AngularFireDatabase} from 'angularfire2/database';
+
+import { Observable } from 'rxjs/Observable';
 
 export interface _FIREBASE_CHAT {
   user: string;
@@ -19,7 +21,7 @@ export class FirebaseService {
 
 
 
-  new_user: FirebaseListObservable<any[]>;
+  new_user:  Observable<any[]>;
 
 
   constructor(
@@ -29,16 +31,13 @@ export class FirebaseService {
 
   }
 
-  getRecords( path: string, req? ): FirebaseListObservable<any[]>{
-      let query = {};
-      if( req  ) {
-        query = req;
-        if( !query['limitToLast']) query['limitToLast'] = 20;
-      }
-      else {
-        query['limitToLast'] = 20;
-      }
-    return this.db.list('/' + path, {query});
+  getRecords( path: string, req = {}) {
+    if ( ! req['limitToLast'] ) req['limitToLast'] = 20;
+    return this.db.list('/' + path, ref => {
+      if ( req['orderByKey'] ) ref.orderByKey().limitToLast( req['limitToLast'] );
+      else ref.limitToLast( req['limitToLast']);
+      return ref;
+    });
   }
 
   push( path, data ) {

@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import {Router} from "@angular/router";
-import {FirebaseListObservable} from "angularfire2/database";
 import {FirebaseService} from "../../providers/firebase";
+
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'leveltest-history-page',
@@ -47,22 +48,30 @@ export class LevelTestHistoryPage {
 
   source: LocalDataSource = new LocalDataSource();
 
-  level_test_history: FirebaseListObservable<any[]>;
+  level_test_history:  Observable<any[]>;
 
   constructor(
     public router: Router,
     private fc: FirebaseService,
   ) {
 
-    this.level_test_history = this.fc.getRecords('level_test', {limitToLast:50, orderByKey:true});
-    this.level_test_history.subscribe( snap => {
-      //console.log('snap::', snap);
+    this.level_test_history = this.fc.getRecords('level_test', {limitToLast:50, orderByKey:true}).valueChanges();
+    this.level_test_history.map(actions => {
+      return actions.map(action => ({ key: action.key, ...action.payload.val() }));
+    }).subscribe( snap => { // wrong
       if( snap && snap.length ) {
         this.source.load(snap.reverse());
       }
-
-
     });
+
+    // this.fc.getRecords('level_test').snapshotChanges().map(actions => {
+    //   return actions.map(action => ({ key: action.key, ...action.payload.val() }));
+    // }).subscribe(snap => {
+    //   if( snap && snap.length ) {
+    //     this.source.load(snap.reverse());
+    //   }
+    // });
+
 
   }
 
