@@ -7,6 +7,7 @@ import { PAGES_MENU } from './pages.menu';
 import { LMS } from './../providers/lms';
 import { ShareService } from './../providers/share-service';
 import {_LIST, _POST_COMMON_WRITE_FIELDS, _POST_LIST_RESPONSE, PostData, User} from "angular-backend";
+import {ReviewService} from "../providers/review-service";
 
 @Component({
   selector: 'pages',
@@ -41,6 +42,7 @@ export class Pages {
               private postData:   PostData,
               private lms:        LMS,
               public  shared:     ShareService,
+              public review: ReviewService,
               private router:Router
   ) {
 
@@ -52,6 +54,7 @@ export class Pages {
 
     this.getNewPosts();
     this.getTodayClasses();
+    this.getTeacherReview();
   }
 
   ngOnInit() {
@@ -95,6 +98,13 @@ export class Pages {
         //console.log('newpostdata:: ', this.shared.newPosts);
       }
     }, e => this.postData.alert(e));
+  }
+
+  getTeacherReview() {
+    // console.log("getTeacherReview");
+    // this.review.getTeacherLatestReview({}, res => {
+    //   console.log(res);
+    // });
   }
 
 

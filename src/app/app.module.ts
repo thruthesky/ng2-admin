@@ -23,6 +23,7 @@ import { AngularBackendModule } from 'angular-backend';
 import { ShareService } from './providers/share-service';
 import { FirebaseService } from './providers/firebase';
 import { LMS } from './providers/lms';
+import { ReviewService } from './providers/review-service';
 
 // import {AngularFireModule} from "angularfire2";
 // import {environment} from "../environments/environment";
@@ -42,7 +43,8 @@ const APP_PROVIDERS = [
   GlobalState,
   ShareService,
   FirebaseService,
-  LMS
+  LMS,
+  ReviewService
 ];
 
 export type StoreType = {

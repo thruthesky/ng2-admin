@@ -5,6 +5,7 @@ import {Router} from "@angular/router";
 import { Observable } from 'rxjs/Observable';
 
 import {FirebaseService} from "../../providers/firebase";
+import {AngularFireList} from "angularfire2/database";
 
 @Component({
   selector: 'payment-history-page',
@@ -34,23 +35,35 @@ export class PaymentHistoryPage {
 
   source: LocalDataSource = new LocalDataSource();
 
-  payment_history: Observable<any[]>;
+  payment_history: AngularFireList<any[]>;
 
   constructor(
     public router: Router,
     private fc: FirebaseService,
   ) {
 
-    this.payment_history = this.fc.getRecords('payment', { limitToLast:50, orderByKey:true }).valueChanges();
-    this.payment_history
-    .map(actions => {
-      return actions.map(action => ({ key: action.key, ...action.payload.val() }));
-    })
-    .subscribe( snap => {
-      if( snap && snap.length ) { // wrong
-        this.source.load( snap.reverse() );
-      }
-    });
+
+    this.payment_history = this.fc.getRecords('payment', {limitToLast:50, orderByKey:true});
+
+    this.payment_history.valueChanges()
+      .subscribe( snap => {
+        console.log(snap);
+        if( snap && snap.length ) {
+          this.source.load(snap.reverse());
+        }
+      });
+
+
+    // this.payment_history = this.fc.getRecords('payment', { limitToLast:50, orderByKey:true }).valueChanges();
+    // this.payment_history
+    // .map(actions => {
+    //   return actions.map(action => ({ key: action.key, ...action.payload.val() }));
+    // })
+    // .subscribe( snap => {
+    //   if( snap && snap.length ) { // wrong
+    //     this.source.load( snap.reverse() );
+    //   }
+    // });
   }
 
 

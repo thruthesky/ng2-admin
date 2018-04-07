@@ -1,5 +1,37 @@
 <ul class="al-msg-center clearfix">
   <li class="dropdown">
+    <a href class="dropdown-toggle" id="msg-dd0" data-toggle="dropdown" aria-expanded="false">
+      <i class="fa fa-bell"></i><span *ngIf="shared.newPosts">{{ shared.newPosts?.length }}</span>
+
+      <div class="notification-ring"></div>
+    </a>
+
+    <div class="top-dropdown-menu dropdown-menu" aria-labelledby="msg-dd0">
+      <i class="dropdown-arr"></i>
+
+      <div class="header clearfix">
+        <strong>최근 게시물</strong>
+        <!--<a href>Mark All as Read</a>-->
+        <!--<a href>Settings</a>-->
+      </div>
+      <div class="msg-list">
+        <div *ngFor="let msg of shared.newPosts" href class="clearfix">
+          <div class="img-area" *ngIf="msg.files.length">
+            <img [ngClass]="{'photo-msg-item': !msg.msg}" src="{{ ( msg?.files[0]?.url ) }}">
+          </div>
+          <div class="msg-area">
+            <div>
+              <div *ngIf="msg.title">{{ msg.title }}</div>
+              <div *ngIf="msg.content" [innerHTML]="msg.content" style="font-size: 12px !important"></div>
+            </div>
+            <span>{{ msg.created }}</span>
+          </div>
+        </div>
+      </div>
+      <!--<a href>See all notifications</a>-->
+    </div>
+  </li>
+  <li class="dropdown">
     <a href class="dropdown-toggle" id="msg-dd1" data-toggle="dropdown" aria-expanded="false">
       <i class="fa fa-id-card-o"></i><span *ngIf="shared.newPosts">{{ shared.newPosts?.length }}</span>
 
@@ -22,7 +54,7 @@
           <div class="msg-area">
             <div>
               <div *ngIf="msg.title">{{ msg.title }}</div>
-              <div *ngIf="msg.content" [innerHTML]="msg.content" style="font-size: 12px important!"></div>
+              <div *ngIf="msg.content" [innerHTML]="msg.content" style="font-size: 12px!important"></div>
             </div>
             <span>{{ msg.created }}</span>
           </div>

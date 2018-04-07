@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {FirebaseService} from "../../providers/firebase";
 
 import { Observable } from 'rxjs/Observable';
+import {AngularFireList} from "angularfire2/database";
 
 @Component({
   selector: 'leveltest-history-page',
@@ -48,29 +49,48 @@ export class LevelTestHistoryPage {
 
   source: LocalDataSource = new LocalDataSource();
 
-  level_test_history:  Observable<any[]>;
+  level_test_history:  AngularFireList<any[]>;
 
   constructor(
     public router: Router,
     private fc: FirebaseService,
   ) {
 
-    this.level_test_history = this.fc.getRecords('level_test', {limitToLast:50, orderByKey:true}).valueChanges();
-    this.level_test_history.map(actions => {
-      return actions.map(action => ({ key: action.key, ...action.payload.val() }));
-    }).subscribe( snap => { // wrong
-      if( snap && snap.length ) {
-        this.source.load(snap.reverse());
-      }
-    });
 
-    // this.fc.getRecords('level_test').snapshotChanges().map(actions => {
+    // this.level_test_history = this.fc.getRecords('level_test', { limitToLast:50, orderByKey:true }).valueChanges();
+    // this.level_test_history
+    // .map(actions => {
     //   return actions.map(action => ({ key: action.key, ...action.payload.val() }));
-    // }).subscribe(snap => {
+    // })
+    // .subscribe( snap => {
+    //   if( snap && snap.length ) { // wrong
+    //     this.source.load( snap.reverse() );
+    //   }
+    // });
+
+    this.level_test_history = this.fc.getRecords('level_test', {limitToLast:50, orderByKey:true});
+
+    this.level_test_history.valueChanges()
+      .subscribe( snap => {
+        console.log(snap);
+          if( snap && snap.length ) {
+            this.source.load(snap.reverse());
+          }
+      });
+
+
+    // this.level_test_history = this.fc
+    //   .getRecords('level_test', {limitToLast:50, orderByKey:true})
+    //   .valueChanges();
+    // this.level_test_history.map(actions => {
+    //   return actions.map(action => ({ key: action.key, ...action.payload.val() }));
+    // }).subscribe( snap => { // wrong
     //   if( snap && snap.length ) {
     //     this.source.load(snap.reverse());
     //   }
     // });
+
+
 
 
   }
