@@ -101,10 +101,11 @@ export class Pages {
   }
 
   getTeacherReview() {
-    // console.log("getTeacherReview");
-    // this.review.getTeacherLatestReview({}, res => {
-    //   console.log(res);
-    // });
+    console.log("getTeacherReview");
+    this.review.getTeacherLatestReview({limit:30}, res => {
+      console.log(res);
+      this.shared.teacherReviews = res['data'];
+    });
   }
 
 

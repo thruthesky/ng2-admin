@@ -1,7 +1,7 @@
 <ul class="al-msg-center clearfix">
   <li class="dropdown">
     <a href class="dropdown-toggle" id="msg-dd0" data-toggle="dropdown" aria-expanded="false">
-      <i class="fa fa-bell"></i><span *ngIf="shared.newPosts">{{ shared.newPosts?.length }}</span>
+      <i class="fa fa-bell"></i><span *ngIf="shared.teacherReviews">{{ shared.teacherReviews?.length }}</span>
 
       <div class="notification-ring"></div>
     </a>
@@ -10,21 +10,20 @@
       <i class="dropdown-arr"></i>
 
       <div class="header clearfix">
-        <strong>최근 게시물</strong>
+        <strong>Teacher Review</strong>
         <!--<a href>Mark All as Read</a>-->
         <!--<a href>Settings</a>-->
       </div>
       <div class="msg-list">
-        <div *ngFor="let msg of shared.newPosts" href class="clearfix">
-          <div class="img-area" *ngIf="msg.files.length">
-            <img [ngClass]="{'photo-msg-item': !msg.msg}" src="{{ ( msg?.files[0]?.url ) }}">
-          </div>
-          <div class="msg-area">
-            <div>
-              <div *ngIf="msg.title">{{ msg.title }}</div>
-              <div *ngIf="msg.content" [innerHTML]="msg.content" style="font-size: 12px !important"></div>
+        <div *ngFor="let msg of shared.teacherReviews" href class="clearfix">
+          <div class="msg-area" style="float:none;width: 100%">
+            <div style="max-height: 100%;border-bottom: 1px dashed lightgrey">
+              <div *ngIf="msg['studentName']">Teacher: {{ msg['studentName'] }}</div>
+              <div *ngIf="msg['teacherName']">Student: {{ msg['teacherName'] }}</div>
+              <div *ngIf="msg['rate']">Rate: {{ msg['rate'] }} </div>
+              <div *ngIf="msg['comment']" [innerHTML]="msg['comment']" style="font-size: 12px !important;max-height: 100%;"></div>
+              <span>{{ msg['time'] | date }}</span>
             </div>
-            <span>{{ msg.created }}</span>
           </div>
         </div>
       </div>
@@ -51,10 +50,10 @@
           <div class="img-area" *ngIf="msg.files.length">
             <img [ngClass]="{'photo-msg-item': !msg.msg}" src="{{ ( msg?.files[0]?.url ) }}">
           </div>
-          <div class="msg-area">
-            <div>
+          <div class="msg-area" style="float:none;width: 100%;border-bottom: 1px dashed lightgrey">
+            <div style="max-height: 100%;">
               <div *ngIf="msg.title">{{ msg.title }}</div>
-              <div *ngIf="msg.content" [innerHTML]="msg.content" style="font-size: 12px!important"></div>
+              <div *ngIf="msg.content" [innerHTML]="msg.content" style="font-size: 12px!important;max-height: 100%;"></div>
             </div>
             <span>{{ msg.created }}</span>
           </div>

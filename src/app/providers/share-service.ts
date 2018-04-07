@@ -27,6 +27,7 @@ export class ShareService {
 
   newPosts: _POSTS = <_POSTS>[];
   todayClasses: _BOOKS = <_BOOKS>[];
+  teacherReviews = [];
 
 
   no_of_new_post: number = 0;

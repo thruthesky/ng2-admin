@@ -54,20 +54,59 @@ constructor(
     private afs: AngularFirestore
 ) {
     this.store = <any>afs.firestore;
-    this.store.collection('review')
-    .orderBy('date', 'desc')
-    .limit(5)
-    .get().then(docs => {
-        // console.log(shots.size);
-        if ( docs.size ) {
-            docs.forEach( doc => {
-                if ( doc && doc.exists  ) {
-                    console.log( doc.data() );
-                }
-            });
-        }
-    });
+    // this.store.collection('review')
+    // .orderBy('date', 'desc')
+    // .limit(5)
+    // .get().then(docs => {
+    //     // console.log(shots.size);
+    //     if ( docs.size ) {
+    //         docs.forEach( doc => {
+    //             if ( doc && doc.exists  ) {
+    //                 console.log( doc.data() );
+    //             }
+    //         });
+    //     }
+    // });
 }
+
+
+
+  getTeacherLatestReview(req, callback) {
+    let query;
+
+    if ( !req['limit'] ) req['limit'] = 10;
+
+    if (req['next']) {
+      query = this.store.collection("review")
+        .orderBy("time", "desc")
+        .limit(req['limit'])
+        .startAfter(req['next']);
+    } else {
+      query = this.store.collection("review")
+        .orderBy("time", "desc")
+        .limit(req['limit']);
+    }
+
+    query.get()
+      .then((querySnapshot) => {
+        const re = [];
+        querySnapshot.forEach(function (doc) {
+          // doc.data() is never undefined for query doc snapshots
+          // console.log(doc.id, " => ", doc.data());
+          const data = doc.data();
+          data['documentID'] = doc.id;
+          re.push(data);
+        });
+        callback({data: re, next: querySnapshot.docs[querySnapshot.docs.length - 1]});
+      })
+      .catch((error) => {
+        console.log("Error getting documents: ", error);
+        alert("후기 목록 읽기. 데이터베이스 에러. 관리자에게 연락해주세요."); // Database error. Please inform this to admin immediately.
+      });
+  }
+
+
+
     //
     // /**
     //  *
@@ -223,39 +262,7 @@ constructor(
     // }
     //
     //
-    // getTeacherLatestReview(req, callback) {
-    //   let query;
-    //
-    //   if ( !req['limit'] ) req['limit'] = 10;
-    //
-    //   if (req['next']) {
-    //     query = this.db.collection("review")
-    //       .orderBy("time", "desc")
-    //       .limit(req['limit'])
-    //       .startAfter(req['next']);
-    //   } else {
-    //     query = this.db.collection("review")
-    //       .orderBy("time", "desc")
-    //       .limit(req['limit']);
-    //   }
-    //
-    //   query.get()
-    //     .then((querySnapshot) => {
-    //       const re = [];
-    //       querySnapshot.forEach(function (doc) {
-    //         // doc.data() is never undefined for query doc snapshots
-    //         console.log(doc.id, " => ", doc.data());
-    //         const data = doc.data();
-    //         data['documentID'] = doc.id;
-    //         re.push(data);
-    //       });
-    //       callback({data: re, next: querySnapshot.docs[querySnapshot.docs.length - 1]});
-    //     })
-    //     .catch((error) => {
-    //       console.log("Error getting documents: ", error);
-    //       alert("후기 목록 읽기. 데이터베이스 에러. 관리자에게 연락해주세요."); // Database error. Please inform this to admin immediately.
-    //     });
-    // }
+
 
 }
 
