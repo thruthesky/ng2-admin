@@ -29,7 +29,7 @@
     "build:prod:aot": "npm run build:prod -- --aot",
     "build:ci": "npm run build:prod && npm run build:prod:aot",
     "build:demo": "npm run build:prod:aot -- --base-href \"http://akveo.com/ng2-admin/\"",
-    "build:eng": "npm run build:prod:aot -- --output-path=admin --base-href \"/admin/\"",
+    "build:eng": "npm run clean:dist && ng build --prod --aot=false -- --output-path=admin --base-href \"/admin/\"",
     "test": "ng test -sr",
     "test:coverage": "npm run clean:coverage && ng test -sr -cc",
     "lint": "ng lint",
